@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_categories', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->decimal('price', 8, 2);
+            $table->decimal('price_offer', 8, 2)->nullable();
+            $table->time('schedule_time')->nullable();
+            $table->time('hours')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course_categories');
+        Schema::dropIfExists('courses');
     }
 };

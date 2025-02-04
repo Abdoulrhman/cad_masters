@@ -2,169 +2,118 @@
 
 namespace App\Http\Controllers;
 
-use App\course;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $course = course::latest()->paginate(5);
-        return view('courses/index', compact('course'))->with('i', (request()->input('page',1) - 1) * 5);
+        $courses = Course::latest()->paginate(5);
+        return view('admin/courses/index', compact(''))->with('i', (request()->input('page',1) - 1) * 5);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('course.create');
+        return view('admin.courses.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name'              =>  'required',
-            'description'       =>  'required',
-            'category_id'       =>  'required',
-            'start_date'        =>  'required',
-            'end_date'          =>  'required',
-            'hours'             =>  'required',
-            'schedule_time'     =>  'required',
-            'branch'            =>  'required',
-            'price'             =>  'required',
-            'price_offer'       =>  'required',
-            'image'             =>  'required'
+            'name'            =>  'required',
         ]);
 
-        $image = $request->file('image');
+        $course = new Course();
+        $course->name =$request->name;
+        /*$form_data = array(
+            $courses->name  = request('name'),
+        );*/
+        Course::create($course);
+
+        return redirect('admin.courses.index')->with('success', 'Data Added successfully.');
+
+
+       /* $request->validate
+        ([
+            'name'           =>  'required|string|max:255',
+            'description'    =>  'required|nullable|string',
+            //'image'          =>  'required|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'hours'          =>  'required|nullable|string',
+            'schedule_time'  =>  'required|nullable|date_format:H:i',
+            'branch'         =>  'required|nullable|string|max:255',
+            'price'          =>  'nullable|numeric|min:0',
+            'price_offer'    =>  'nullable|numeric|min:0',
+            'category_id'    =>  'required|exists:categories,id'
+        ]);
+
+
+    /*    $image = $request->file('image');
 
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);
-        $form_data = array(
+        $image->move(public_path('images'), $new_name);*/
+        /*$form_data = array(
 
-            'name'                  => request('name'),
-            'description'           => request('description'),
-            'start_date'            => request('start_date'),
-            'end_date'              => request('end_date'),
-            'hours'                 => request('hours'),
-            'schedule_time'         => request('schedule_time'),
-            'branch'                => request('branch'),
-            'category_id'           => request('category_id'),
-            'price'                 => request('price'),
-            'price_offer'           => request('price_offer'),
-            'image'                 => $new_name
+            'name'              =>  request('name'),
+            'description'       =>  request('description'),
+            'hours'             =>  request('hours'),
+            'schedule_time'     =>  request('schedule_time'),
+            'branch'            =>  request('branch'),
+            'price'             =>  request('price'),
+            'price_offer'       =>  request('price_offer'),
+            'category_id'       =>  request('category_id'),
+            //'image'             =>  $new_name
         );
 
-        course::create($form_data);
+     /*   if ($request->has('category_id')) {
+            Course->categoriesCourse()->attach($request->input('category_id'));
+        }*/
 
-        return redirect('courses')->with('success', 'Data Added successfully.');
+//        cousre::create($form_data);
+//
+//        return redirect('admin.courses.index')->with('success', 'Data Added successfully.');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $id)
     {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        $courses = course::findOrFail($id);
-        return view('courses.edit',compact('courses'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $image_name = $request->hidden_image;
-        $image = $request->file('image');
-        if($image != '')
-        {
-            $request->validate([
-                'name'              =>  'required',
-                'description'       =>  'required',
-                'category_id'       =>  'required',
-                'start_date'        =>  'required',
-                'end_date'          =>  'required',
-                'hours'             =>  'required',
-                'schedule_time'     =>  'required',
-                'branch'            =>  'required',
-                'price'             =>  'required',
-                'price_offer'       =>  'required',
-                'image'             =>  'required'
-            ]);
-
-            $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
-        }
-        else
-        {
-            $request->validate([
-
-                'image'           =>  'image|max:2048'
-
-            ]);
-        }
-
-        $form_data = array(
-            'name'                  => request('name'),
-            'description'           => request('description'),
-            'start_date'            => request('start_date'),
-            'end_date'              => request('end_date'),
-            'hours'                 => request('hours'),
-            'schedule_time'         => request('schedule_time'),
-            'branch'                => request('branch'),
-            'category_id'           => request('category_id'),
-            'price'                 => request('price'),
-            'price_offer'           => request('price_offer'),
-            'image'                 =>   $image_name
-        );
-
-        course::whereId($id)->update($form_data);
-
-        return redirect('courses')->with('success', 'Data is successfully updated');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $courses = course::findOrFail($id);
-        $courses->delete();
-
-        return redirect('courses')->with('success', 'Data is successfully deleted');
+        //
     }
 }
