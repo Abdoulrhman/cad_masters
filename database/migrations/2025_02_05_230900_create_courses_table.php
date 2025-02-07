@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 10, 2)->nullable();
             $table->decimal('price_offer', 8, 2)->nullable();
             $table->time('schedule_time')->nullable();
             $table->time('hours')->nullable();
             $table->string('branch')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });

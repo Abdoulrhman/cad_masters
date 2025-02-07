@@ -6,7 +6,7 @@
                 <div class="col-xl-4 col-lg-3 col-md-6">
                     <div class="tp-footer-widget tp-footer-col-1 mb-30">
                         <div class="tp-footer-widget-logo mb-20 tp-header-logo">
-                            <a href="#"><img src="assets/img/logo/logo-white.png" alt=""></a>
+                            <a href="#"><img src="{{asset('build/assets/admin/img/logo/logo-white.png')}}" alt=""></a>
                         </div>
                         <div class="tp-footer-widget-content">
                             <p>Lorem ipsum dolor sit amet, consectetur <br> adipisc ing elit.</p>

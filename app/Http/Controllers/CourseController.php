@@ -13,7 +13,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->paginate(5);
-        return view('admin/courses/index', compact(''))->with('i', (request()->input('page',1) - 1) * 5);
+        return view('admin/courses/index', compact('courses'))->with('i', (request()->input('page',1) - 1) * 5);
     }
 
     /**
@@ -31,39 +31,25 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'            =>  'required',
-        ]);
-
-        $course = new Course();
-        $course->name =$request->name;
-        /*$form_data = array(
-            $courses->name  = request('name'),
-        );*/
-        Course::create($course);
-
-        return redirect('admin.courses.index')->with('success', 'Data Added successfully.');
-
-
-       /* $request->validate
+        $request->validate
         ([
             'name'           =>  'required|string|max:255',
             'description'    =>  'required|nullable|string',
-            //'image'          =>  'required|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'          =>  'required|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'hours'          =>  'required|nullable|string',
             'schedule_time'  =>  'required|nullable|date_format:H:i',
             'branch'         =>  'required|nullable|string|max:255',
             'price'          =>  'nullable|numeric|min:0',
             'price_offer'    =>  'nullable|numeric|min:0',
-            'category_id'    =>  'required|exists:categories,id'
+            //'category_id'    =>  'required|exists:categories,id'
         ]);
 
 
-    /*    $image = $request->file('image');
+        $image = $request->file('image');
 
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);*/
-        /*$form_data = array(
+        $image->move(public_path('images'), $new_name);
+        $form_data = array(
 
             'name'              =>  request('name'),
             'description'       =>  request('description'),
@@ -73,16 +59,15 @@ class CourseController extends Controller
             'price'             =>  request('price'),
             'price_offer'       =>  request('price_offer'),
             'category_id'       =>  request('category_id'),
-            //'image'             =>  $new_name
+            'image'             =>  $new_name
         );
 
-     /*   if ($request->has('category_id')) {
-            Course->categoriesCourse()->attach($request->input('category_id'));
+        /*if ($request->has('category_id')) {
+            course->categoriesCourse()->attach($request->input('category_id'));
         }*/
 
-//        cousre::create($form_data);
-//
-//        return redirect('admin.courses.index')->with('success', 'Data Added successfully.');
+        Course::create($form_data);
+        return redirect()->route('admin.courses.index')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -90,7 +75,7 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -98,7 +83,8 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $courses = Course::findOrFail($id);
+        return view('admin/courses/edit',compact('courses'));
     }
 
     /**
@@ -106,7 +92,49 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        /*$image_name = $request->hidden_image;
+        $image = $request->file('image');
+        if($image != '')*/
+
+            $request->validate([
+                'name'           =>  'required'
+                /*'price'          =>  'required',
+                //'url'          =>  'required',
+                'type'           =>  'required',
+                'seo'            => 'required',
+                'height'         => 'required',
+                'length'         => 'required',
+                'width'          => 'required',
+                'image'          =>  'image|max:2048'*/
+            ]);
+
+            /*$image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);*/
+
+      /*  else
+        {
+            $request->validate([
+
+                'image'           =>  'image|max:2048'
+
+            ]);*/
+
+
+        $form_data = array(
+            'name'           =>   request('name')
+            /*'price'          =>   request('price'),
+            //'url'          => request('url'),
+            'type'           => request('type'),
+            'seo'            => request('seo'),
+            'height'         => request('height'),
+            'length'         => request('length'),
+            'width'          => request('width'),
+            'image'          =>   $image_name*/
+        );
+
+        Course::whereId($id)->update($form_data);
+
+        return redirect('admin/courses/index')->with('success', 'Data is successfully updated');
     }
 
     /**
@@ -114,6 +142,10 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $courses = Course::findOrFail($id);
+        $courses->delete();
+
+        return redirect('admin/courses/index')->with('success', 'Data is successfully deleted');
     }
 }

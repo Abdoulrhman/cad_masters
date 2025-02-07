@@ -1,5 +1,6 @@
 @include('admin/layouts/header')
-@include('admin/layouts/navbar')
+@include('admin/layouts/menu')
+
 
     <section class="content">
         @yield('content')

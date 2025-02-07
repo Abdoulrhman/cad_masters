@@ -41,9 +41,11 @@ Route::get('admin/home', function () {
 
 //Route::resource('/courses', 'CourseController@index');
 Route::get('admin/courses/index', [courseController::class,'index'])->name('admin.courses.index');
-Route::post('admin/courses/create', [courseController::class,'create'])->name('admin.courses.create');
-Route::post('admin/courses/store', [courseController::class,'store'])->name('admin.courses.store');
-
+Route::get('admin/courses/create', [courseController::class,'create'])->name('admin.courses.create');
+Route::post('/admin/courses/store', [courseController::class,'store'])->name('admin.courses.store');
+Route::get('admin/courses/edit/{id}', [courseController::class,'edit'])->name('admin.courses.edit');
+Route::put('admin/courses/update/{id}', [courseController::class,'update'])->name('admin.courses.update');
+Route::delete('admin/courses/{id}/destroy', [courseController::class,'destroy'])->name('admin.courses.destroy');
 
 Route::get('admin/categories/index', [courseCategoriesController::class,'index'])->name('admin.categories.index');
 Route::post('admin/categories/create', [courseCategoriesController::class,'create'])->name('admin.categories.create');

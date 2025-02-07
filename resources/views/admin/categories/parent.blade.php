@@ -3,6 +3,7 @@
 
 
 
+
    {{-- @yield('arrival')
     @yield('arrivalA')
     @yield('arrivalB')
