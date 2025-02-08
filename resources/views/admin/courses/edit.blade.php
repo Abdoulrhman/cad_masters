@@ -42,13 +42,13 @@
                                      <div class="col-xl-6 col-lg-6">
                                          <div class="tp-contact-input p-relative">
                                              <label>Price</label>
-                                             <input type="number" name="price" class="form-control input-lg">
+                                             <input type="number" name="price" value="{{ $courses->price }}" class="form-control input-lg">
                                          </div>
                                      </div>
                                      <div class="col-xl-6 col-lg-6">
                                          <div class="tp-contact-input p-relative">
                                              <label>Offer Price</label>
-                                             <input type="number" name="price_offer" class="form-control input-lg">
+                                             <input type="number" name="price_offer" value="{{ $courses->price_offer }}" class="form-control input-lg">
                                          </div>
                                      </div>
                                      <div class="col-xl-6 col-lg-6">
@@ -60,25 +60,26 @@
                                      <div class="col-xl-6 col-lg-6">
                                          <div class="tp-contact-input p-relative">
                                              <label>Course Hours</label>
-                                             <input type="time" name="hours" class="form-control input-lg">
+                                             <input type="time" name="hours" value="{{ $courses->hours }}" class="form-control input-lg">
                                          </div>
                                      </div>
                                      <div class="col-xl-6 col-lg-6">
                                          <div class="tp-contact-input p-relative">
                                              <label>Branch</label>
-                                             <input type="text" name="branch" class="form-control input-lg">
+                                             <input type="text" name="branch" value="{{ $courses->branch }}" class="form-control input-lg">
                                          </div>
                                      </div>
-                                    <div class="col-xl-6 col-lg-6">--}}
-                                       <div class="tp-contact-input p-relative">--}}
-                                            <label>Upload Course Photo</label>--}}
-                                            <input type="file" name="image" class="form-control input-lg">
+                                    <div class="col-xl-6 col-lg-6">
+                                       <div class="tp-contact-input p-relative">
+                                            <label>Upload Course Photo</label>
+                                            <input type="file" name="image" value="{{ $courses->image }}" class="form-control input-lg">
+                                           <input type="hidden" name="hidden_image" value="{{ $courses->image }}" />
                                         </div>
                                     </div>
-                                    <div class="col-xl-12">--}}
-                                        <div class="tp-contact-input p-relative">--}}
-                                            <label>Description</label>--}}
-                                            <textarea name="description"></textarea>--}}
+                                    <div class="col-xl-12">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Description</label>
+                                            <textarea name="description" value="{{ $courses->description }}"></textarea>
                                         </div>
                                     </div>
                                     <div class="tp-contact-btn">

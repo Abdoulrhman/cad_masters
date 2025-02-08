@@ -35,7 +35,7 @@ class CourseController extends Controller
         ([
             'name'           =>  'required|string|max:255',
             'description'    =>  'required|nullable|string',
-            'image'          =>  'required|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'          =>  'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'hours'          =>  'required|nullable|string',
             'schedule_time'  =>  'required|nullable|date_format:H:i',
             'branch'         =>  'required|nullable|string|max:255',
@@ -44,11 +44,19 @@ class CourseController extends Controller
             //'category_id'    =>  'required|exists:categories,id'
         ]);
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $new_name);
+            $form_data['image'] = $new_name;
+        } else {
+            $form_data['image'] = null; // Or a default image
+        }
 
-        $image = $request->file('image');
+        /*$image = $request->file('image');
 
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);
+        $image->move(public_path('images'), $new_name);*/
         $form_data = array(
 
             'name'              =>  request('name'),
@@ -58,7 +66,7 @@ class CourseController extends Controller
             'branch'            =>  request('branch'),
             'price'             =>  request('price'),
             'price_offer'       =>  request('price_offer'),
-            'category_id'       =>  request('category_id'),
+            //'category_id'       =>  request('category_id'),
             'image'             =>  $new_name
         );
 

@@ -23,9 +23,9 @@
                      <th>Description</th>
                      <th>Category</th>
                      <th>price</th>
-                     <th>Hours</th>
-                     <th>Branch</th>
                      <th>Price Offer</th>
+                     <th>Branch</th>
+                     <th>hours</th>
                      <th>Updated_at</th>
                      <th>Created_at</th>
                      <th class="inline-block">Action</th>
@@ -36,13 +36,13 @@
                      <tr>
                         <td>{{$course->id}}</td>
                         <td>{{$course->name}}</td>
-                        {{--<th width="2"><img src="{{url('/')}}/images/{{ $course->image }}" class="img-thumbnail"></th>--}}
+                        <th width="2"><img src="{{asset( '/images/' . $course->image) }}" class="img-thumbnail"></th>
                         <td>{{$course->description}}</td>
                         <td>{{$course->categoryid}}</td>
                         <td>{{$course->price}}</td>
                         <td>{{$course->price_offer}}</td>
-                        <td>{{$course->hourse}}</td>
                         <td>{{$course->branch}}</td>
+                        <td>{{$course->hours}}</td>
                         <td>{{$course->created_at->diffForHumans()}}</td>
                         <td>{{$course->updated_at->diffForHumans()}}</td>
                         <th style="" class="inline-block">
