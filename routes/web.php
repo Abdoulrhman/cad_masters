@@ -48,9 +48,10 @@ Route::put('admin/courses/update/{id}', [courseController::class,'update'])->nam
 Route::delete('admin/courses/{id}/destroy', [courseController::class,'destroy'])->name('admin.courses.destroy');
 
 Route::get('admin/categories/index', [courseCategoriesController::class,'index'])->name('admin.categories.index');
-Route::post('admin/categories/create', [courseCategoriesController::class,'create'])->name('admin.categories.create');
+Route::get('admin/categories/create', [courseCategoriesController::class,'create'])->name('admin.categories.create');
 Route::post('admin/categories/store', [courseCategoriesController::class,'store'])->name('admin.categories.store');
-Route::get('admin/categories/{id}/edit', [courseCategoriesController::class,'edit'])->name('admin.categories.edit');
+Route::get('admin/categories/edit/{id}', [courseCategoriesController::class,'edit'])->name('admin.categories.edit');
+Route::put('admin/categories/update/{id}', [courseCategoriesController::class,'update'])->name('admin.categories.update');
 Route::delete('admin/categories/{id}/destroy', [courseCategoriesController::class,'destroy'])->name('admin.categories.destroy');
 
 //Route::get('/courses', 'App\Http\Controllers\CourseController@index');

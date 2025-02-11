@@ -92,7 +92,21 @@ class CourseCategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'name'           =>  'required',
+            'description'    =>  'required'
+        ]);
+
+
+        $form_data = array(
+            'name'           =>   request('name'),
+            'description'    =>   request('description')
+        );
+
+        CourseCategories::whereId($id)->update($form_data);
+
+        return redirect('admin.categories.index')->with('success', 'Data is successfully updated');
     }
 
     /**

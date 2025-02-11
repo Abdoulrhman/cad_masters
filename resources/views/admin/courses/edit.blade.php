@@ -20,7 +20,7 @@
                 <div class="tpd-content-layout">
 
                     <div class="tp-contact-from-box">
-                        <h3 class="tp-contact-from-title">Add New Course  👍🏻</h3>
+                        <h3 class="tp-contact-from-title">Edit Course  👍🏻</h3>
                         <form id="contact-form" method="POST" action="{{ route('admin.courses.update', $courses->id) }}" enctype="multipart/form-data">
                             {{--{{ csrf_field() }}--}}
                             @csrf

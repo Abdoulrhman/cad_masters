@@ -26,8 +26,8 @@
                      <th>Price Offer</th>
                      <th>Branch</th>
                      <th>hours</th>
-                     <th>Updated_at</th>
                      <th>Created_at</th>
+                     <th>Updated_at</th>
                      <th class="inline-block">Action</th>
                   </tr>
                   </thead>
@@ -36,7 +36,7 @@
                      <tr>
                         <td>{{$course->id}}</td>
                         <td>{{$course->name}}</td>
-                        <th width="2"><img src="{{asset( '/images/' . $course->image) }}" class="img-thumbnail"></th>
+                        <th width="2"><img src="{{ asset('/build') }}/images/{{ $course->image }}" class="img-thumbnail"></th>
                         <td>{{$course->description}}</td>
                         <td>{{$course->categoryid}}</td>
                         <td>{{$course->price}}</td>

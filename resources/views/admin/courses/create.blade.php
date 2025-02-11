@@ -25,7 +25,7 @@
 
                 <div class="tp-contact-from-box">
                     <h3 class="tp-contact-from-title">Add New Course  👍🏻</h3>
-                    <form id="contact-form" method="GET" action="{{route('admin.courses.store') }}" enctype="multipart/form-data">
+                    <form id="contact-form" method="POST" action="{{route('admin.courses.store') }}" enctype="multipart/form-data">
                         {{--{{ csrf_field() }--}}
                         @csrf
                         {{ method_field('POST') }}

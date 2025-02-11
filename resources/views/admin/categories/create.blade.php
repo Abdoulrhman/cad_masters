@@ -1,4 +1,4 @@
-@extends('admin.courses.parent')
+@extends('admin.categories.parent')
 
 @if($errors->any())
     <div class="alert alert-danger">
@@ -8,96 +8,58 @@
             @endforeach
         </ul>
     </div>
+@endif
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
+            <!-- fact-area-start -->
+    <section class="container">
+        <div class="row">
+            @include('admin.layouts.menu')
+            <div class="col-lg-9">
 
-        <!-- fact-area-start -->
-<section class="container">
-    <div class="row">
-       @include('admin.layouts.menu')
-        <div class="col-lg-9">
+                <!-- dashboard-content-area-start -->
+                <div class="tpd-content-layout">
 
-            <!-- dashboard-content-area-start -->
-            <div class="tpd-content-layout">
-
-                <div class="tp-contact-from-box">
-                    <h3 class="tp-contact-from-title">Add New Course  👍🏻</h3>
-                    <form id="contact-form" method="post" action="{{route('admin.categories.store') }}" enctype="multipart/form-data">
-                        {{--{{ csrf_field() }}--}}
-                        @csrf
-                        {{ method_field('POST') }}
-                        <div class="tp-contact-input-form">
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Category Name</label>
-                                        <input type="text" name="name" for="name">
+                    <div class="tp-contact-from-box">
+                        <h3 class="tp-contact-from-title">Add New Category  👍🏻</h3>
+                        <form id="contact-form" method="POST" action="{{route('admin.categories.store') }}" enctype="multipart/form-data">
+                            {{--{{ csrf_field() }--}}
+                            @csrf
+                            {{ method_field('POST') }}
+                            <div class="tp-contact-input-form">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Category Name</label>
+                                            <input type="text" name="name" for="name">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Category</label>
-                                        <input type="text" name="category_id" class="form-control input-lg">
+                                    <div class="col-xl-12">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Description</label>
+                                            <textarea name="description"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Price</label>
-                                        <input type="number" name="price" class="form-control input-lg">
+                                    <div class="tp-contact-btn">
+                                        <button type="submit" class="btn btn-primary btn-lg" class="col-md-8" href="{{route('admin.categories.index') }}">Save</button>
+                                        <p style="display: none;" class="ajax-response text-danger mt-1 mb-0"></p>
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Offer Price</label>
-                                        <input type="number" name="price_offer" class="form-control input-lg">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Schedule Time</label>
-                                        <input type="time" name="schedule_time" class="form-control input-lg">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Course Hours</label>
-                                        <input type="time" name="hours" class="form-control input-lg">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Branch</label>
-                                        <input type="text" name="branch" class="form-control input-lg">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Upload Course Photo</label>
-                                        <input type="file" name="image" class="form-control input-lg">
-                                   </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="tp-contact-input p-relative">
-                                        <label>Description</label>
-                                        <textarea name="description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="tp-contact-btn">
-                                    <button type="submit" class="tp-btn-inner" href="{{route('admin.courses.index')}}">Save</button>
-                                    <p style="display: none;" class="ajax-response text-danger mt-1 mb-0"></p>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
+                <!-- dashboard-content-area-end -->
 
             </div>
-            <!-- dashboard-content-area-end -->
 
         </div>
 
-    </div>
 
-
-</section>
-<!-- fact-area-end -->
+    </section>
+    <!-- fact-area-end -->
 
