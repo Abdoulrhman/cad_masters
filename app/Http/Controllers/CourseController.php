@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourseCategory;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.create');
+        $courseCategories = CourseCategory::all();
+        return view('admin.courses.create', compact('courseCategories'));
     }
 
     /**
@@ -41,7 +43,7 @@ class CourseController extends Controller
             'branch'         =>  'required|nullable|string|max:255',
             'price'          =>  'nullable|numeric|min:0',
             'price_offer'    =>  'nullable|numeric|min:0',
-            //'category_id'    =>  'required|exists:categories,id'
+            'category_id'    => 'required|exists:categories,id',
         ]);
 
        /* if ($request->hasFile('image')) {
@@ -61,22 +63,22 @@ class CourseController extends Controller
 
             $form_data = array(
 
-            'name'              =>  request('name'),
-            'description'       =>  request('description'),
-            'hours'             =>  request('hours'),
-            'schedule_time'     =>  request('schedule_time'),
-            'branch'            =>  request('branch'),
-            'price'             =>  request('price'),
-            'price_offer'       =>  request('price_offer'),
-            //'category_id'       =>  request('category_id'),
-            'image'             => $new_name
+//            'name'              =>  request('name'),
+//            'description'       =>  request('description'),
+//            'hours'             =>  request('hours'),
+//            'schedule_time'     =>  request('schedule_time'),
+//            'branch'            =>  request('branch'),
+//            'price'             =>  request('price'),
+//            'price_offer'       =>  request('price_offer'),
+//            'category_id'       =>  request('category_id'),
+            //'image'             => $new_name
         );
 
         /*if ($request->has('category_id')) {
-            course->categoriesCourse()->attach($request->input('category_id'));
+            Course::courseCategories()->attach($request->input('category_id'));
         }*/
 
-        Course::create($form_data);
+        Course::create($request->all());
         return redirect()->route('admin.courses.index')->with('success', 'Data Added successfully.');
     }
 

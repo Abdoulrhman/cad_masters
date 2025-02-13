@@ -22,7 +22,9 @@ class Course extends Model
         'branch',
         'image',
         'price',
-        'price_offer'];
+        'price_offer'
+    ];
+
 
     public function category()
     {

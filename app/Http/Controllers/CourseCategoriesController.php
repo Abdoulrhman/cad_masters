@@ -104,8 +104,9 @@ class CourseCategoriesController extends Controller
             'description'    =>   request('description')
         );
 
-        CourseCategories::whereId($id)->update($form_data);
+        CourseCategory::whereId($id)->update($form_data);
 
+        //return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
         return redirect('admin.categories.index')->with('success', 'Data is successfully updated');
     }
 
@@ -117,6 +118,6 @@ class CourseCategoriesController extends Controller
         $courseCategories = CourseCategory::findOrFail($id);
         $courseCategories->delete();
 
-        return redirect('admin.categories.index')->with('success', 'Data is successfully deleted');
+        return redirect('admin/categories/index')->with('success', 'Data is successfully deleted');
     }
 }

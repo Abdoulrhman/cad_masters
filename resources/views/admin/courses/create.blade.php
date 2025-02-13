@@ -37,10 +37,15 @@
                                         <input type="text" name="name" for="name">
                                     </div>
                                 </div>
-                               <div class="col-xl-6 col-lg-6">
+                                <div class="col-xl-6 col-lg-6">
                                     <div class="tp-contact-input p-relative">
-                                        <label>Category</label>
-                                        <input type="text" name="category_id" class="form-control input-lg">
+                                        <label for="category_id">Category</label>
+                                        <select  name="category_id" id="category_id" class="form-control" required>
+                                            <option value="">Select a Category</option>
+                                            @foreach ($courseCategories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
