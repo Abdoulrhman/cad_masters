@@ -1,14 +1,11 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/** @noinspection PhpHierarchyChecksInspection */
 class Course extends Model
 {
-
     use HasFactory;
 
     protected $fillable = [
@@ -22,13 +19,11 @@ class Course extends Model
         'branch',
         'image',
         'price',
-        'price_offer'
+        'price_offer',
     ];
-
 
     public function category()
     {
-        return $this->belongsTo(CourseCategory::class);
-
+        return $this->belongsTo(CourseCategory::class, 'category_id');
     }
 }
