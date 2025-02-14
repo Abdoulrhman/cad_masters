@@ -6,7 +6,7 @@
                 <div class="col-xl-4 col-lg-3 col-md-6">
                     <div class="tp-footer-widget tp-footer-col-1 mb-30">
                         <div class="tp-footer-widget-logo mb-20 tp-header-logo">
-                            <a href="#"><img src="{{asset('build/assets/admin/img/logo/logo-white.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('assets/img/logo/logo-white.png')}}" alt=""></a>
                         </div>
                         <div class="tp-footer-widget-content">
                             <p>Lorem ipsum dolor sit amet, consectetur <br> adipisc ing elit.</p>
@@ -17,14 +17,23 @@
                         </div>
                         <div class="tp-footer-contact-mail">
                             <a href="mailto:sofial@gmail.com">
-                              <span>
-                                 <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                     <path d="M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                     <path d="M13 5.40039L10.496 7.40015C9.672 8.05607 8.32 8.05607 7.496 7.40015L5 5.40039" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                     <path d="M1 11.4004H5.8" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                     <path d="M1 8.19922H3.4" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                 </svg>
-                              </span>
+                                <span>
+                                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5"
+                                            stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M13 5.40039L10.496 7.40015C9.672 8.05607 8.32 8.05607 7.496 7.40015L5 5.40039"
+                                            stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M1 11.4004H5.8" stroke="currentColor" stroke-width="1.5"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M1 8.19922H3.4" stroke="currentColor" stroke-width="1.5"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
                                 acadia@gmail.com</a>
                         </div>
                     </div>
@@ -101,21 +110,22 @@
 <!-- footer-area-end -->
 
 <!-- JS here -->
-<script src="{{asset('build/assets/admin/js/vendor/jquery.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/vendor/waypoints.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/bootstrap-bundle.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/swiper-bundle.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/slick.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/magnific-popup.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/nice-select.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/select2.min.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/purecounter.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/wow.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/isotope-pkgd.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/imagesloaded-pkgd.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/flatpickr.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/ajax-form.js')}}"></script>
-<script src="{{asset('build/assets/admin/js/main.js')}}"></script>
+<script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/waypoints.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-bundle.js') }}"></script>
+<script src="{{ asset('assets/js/swiper-bundle.js') }}"></script>
+<script src="{{ asset('assets/js/slick.js') }}"></script>
+<script src="{{ asset('assets/js/magnific-popup.js') }}"></script>
+<script src="{{ asset('assets/js/nice-select.js') }}"></script>
+<script src="{{ asset('assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/purecounter.js') }}"></script>
+<script src="{{ asset('assets/js/wow.js') }}"></script>
+<script src="{{ asset('assets/js/isotope-pkgd.js') }}"></script>
+<script src="{{ asset('assets/js/imagesloaded-pkgd.js') }}"></script>
+<script src="{{ asset('assets/js/flatpickr.js') }}"></script>
+<script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
+
 
 </body>
 
