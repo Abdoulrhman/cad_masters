@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -11,13 +12,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard Route (Requires Authentication)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 // Authentication Routes
 require __DIR__ . '/auth.php';
+
+// Dashboard Routes (No Authentication Required)
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/analytics', [DashboardController::class, 'analytics'])->name('dashboard.analytics');
+    Route::get('/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
+    // Courses Routes (Requires Authentication)
+    Route::resource('courses', CourseController::class)->except(['show'])->names([
+        'index'   => 'dashboard.courses.index',
+        'create'  => 'dashboard.courses.create',
+        'store'   => 'dashboard.courses.store',
+        'edit'    => 'dashboard.courses.edit',
+        'update'  => 'dashboard.courses.update',
+        'destroy' => 'dashboard.courses.destroy',
+    ]);
+
+// Categories Routes (Requires Authentication)
+    Route::resource('categories', CourseCategoriesController::class)->except(['show'])->names([
+        'index'   => 'dashboard.categories.index',
+        'create'  => 'dashboard.categories.create',
+        'store'   => 'dashboard.categories.store',
+        'edit'    => 'dashboard.categories.edit',
+        'update'  => 'dashboard.categories.update',
+        'destroy' => 'dashboard.categories.destroy',
+    ]);
+});
+
+// Posts Routes (Requires Authentication)
+Route::resource('posts', PostController::class)->middleware('auth');
 
 // Profile Routes (Requires Authentication)
 Route::middleware('auth')->group(function () {
@@ -26,33 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Posts Routes (Requires Authentication)
-Route::resource('posts', PostController::class)->middleware('auth');
-
-// Courses Routes
-Route::prefix('courses')->group(function () {
-    Route::get('/index', function () {
-        return view('courses/index');
-    });
-});
-
-// Admin Routes
-Route::prefix('admin')->group(function () {
-    Route::resource('courses', CourseController::class)->names([
-        'index'   => 'admin.courses.index',
-        'create'  => 'admin.courses.create',
-        'store'   => 'admin.courses.store',
-        'edit'    => 'admin.courses.edit',
-        'update'  => 'admin.courses.update',
-        'destroy' => 'admin.courses.destroy',
-    ]);
-
-    Route::resource('categories', CourseCategoriesController::class)->names([
-        'index'   => 'admin.categories.index',
-        'create'  => 'admin.categories.create',
-        'store'   => 'admin.categories.store',
-        'edit'    => 'admin.categories.edit',
-        'update'  => 'admin.categories.update',
-        'destroy' => 'admin.categories.destroy',
-    ]);
+// Debug Route (Check Authentication Status)
+Route::get('/debug-auth', function () {
+    return response()->json(auth()->user());
 });

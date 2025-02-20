@@ -51,8 +51,8 @@
                                 Courses
                             </a>
                             <ul class="tp-submenu">
-                                <li><a href="{{route('admin.courses.index')}}"><i class="fa fa-circle-o"></i> View courses</a></li>
-                                <li><a href="{{route('admin.courses.create')}}"><i class="fa fa-circle-o"></i> Add courses</a></li>
+                                <li><a href="{{route('dashboard.courses.index')}}"><i class="fa fa-circle-o"></i> View courses</a></li>
+                                <li><a href="{{route('dashboard.courses.create')}}"><i class="fa fa-circle-o"></i> Add courses</a></li>
                             </ul>
                         </li>
                         <li class="has-dropdown tp-static">

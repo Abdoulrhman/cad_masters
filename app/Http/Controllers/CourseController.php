@@ -1,92 +1,108 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
+    /**
+     * Display a listing of the courses.
+     */
     public function index()
     {
-        $courses = Course::latest()->paginate(5);
-        return view('admin.courses.index', compact('courses'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $courses = Course::latest()->paginate(10);
+
+        return view('dashboard.courses.index', compact('courses'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
+    /**
+     * Show the form for creating a new course.
+     */
     public function create()
     {
         $courseCategories = CourseCategory::all();
-        return view('admin.courses.create', compact('courseCategories'));
+
+        return view('dashboard.courses.create', compact('courseCategories'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created course in storage.
+     */
+    public function store(CourseRequest $request)
     {
-        $request->validate([
-            'name'          => 'required|string|max:255',
-            'description'   => 'nullable|string',
-            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'hours'         => 'nullable|string',
-            'schedule_time' => 'nullable|date_format:H:i',
-            'branch'        => 'nullable|string|max:255',
-            'price'         => 'nullable|numeric|min:0',
-            'price_offer'   => 'nullable|numeric|min:0',
-            'category_id'   => 'required|exists:course_categories,id',
-        ]);
+        $form_data = $request->validated();
 
-        $form_data = $request->except('_token', '_method');
-
-        // Handle image upload
         if ($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $image_name = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
-            $form_data['image'] = $image_name;
+            $form_data['image'] = $request->file('image')->store('courses', 'public');
         }
+
+        Log::info("Course created by user: " . auth()->user()->name);
+        // log the request data with message
+        Log::info("Course created with data: " . json_encode($form_data));
 
         Course::create($form_data);
-        return redirect()->route('admin.courses.index')->with('success', 'Course added successfully.');
+
+        return redirect()->route('dashboard.courses.index')
+            ->with('success', 'Course added successfully.');
     }
 
-    public function edit(string $id)
+    /**
+     * Show the form for editing the specified course.
+     */
+    public function edit($id)
     {
         $course           = Course::findOrFail($id);
-        $courseCategories = CourseCategory::all(); // Fetch categories if needed
-        return view('admin.courses.edit', compact('course', 'courseCategories'));
+        $courseCategories = CourseCategory::all();
+
+        return view('dashboard.courses.edit', compact('course', 'courseCategories'));
     }
 
-    public function update(Request $request, string $id)
+    /**
+     * Update the specified course in storage.
+     */
+    public function update(CourseRequest $request, Course $course)
     {
-        $course = Course::findOrFail($id);
+        $form_data = $request->validated();
 
-        $request->validate([
-            'name'          => 'required|string|max:255',
-            'description'   => 'nullable|string',
-            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'hours'         => 'nullable|string',
-            'schedule_time' => 'nullable|date_format:H:i',
-            'branch'        => 'nullable|string|max:255',
-            'price'         => 'nullable|numeric|min:0',
-            'price_offer'   => 'nullable|numeric|min:0',
-            'category_id'   => 'required|exists:course_categories,id',
-        ]);
-
-        $image_name = $course->image;
+        // Handle Image Upload
         if ($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
+            // Delete old image if exists
+            if ($course->image && Storage::disk('public')->exists($course->image)) {
+                Storage::disk('public')->delete($course->image);
+            }
+
+            // Store new image
+            $form_data['image'] = $request->file('image')->store('courses', 'public');
         }
 
-        $course->update(array_merge($request->all(), ['image' => $image_name]));
+        // Update Course
+        $course->update($form_data);
 
-        return redirect()->route('admin.courses.index')->with('success', 'Course updated successfully.');
+        return redirect()->route('dashboard.courses.index')
+            ->with('success', 'Course updated successfully.');
     }
 
-    public function destroy(string $id)
+    /**
+     * Remove the specified course from storage.
+     */
+    public function destroy($id)
     {
         $course = Course::findOrFail($id);
+
+        // Delete Course Image if Exists
+        if ($course->image) {
+            Storage::disk('public')->delete($course->image);
+        }
+
         $course->delete();
 
-        return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully.');
+        return redirect()->route('dashboard.courses.index')
+            ->with('success', 'Course deleted successfully.');
     }
 }
