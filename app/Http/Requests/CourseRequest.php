@@ -27,8 +27,8 @@ class CourseRequest extends FormRequest
             'category_id'   => ['required', 'exists:course_categories,id'],
             'price'         => ['required', 'numeric'],
             'price_offer'   => ['nullable', 'numeric'],
-            'schedule_time' => ['nullable', 'date_format:H:i'],
-            'hours'         => ['nullable', 'integer'],
+            'schedule_time' => ['nullable', 'string'],
+            'hours'         => ['nullable', 'string'],
             'branch'        => ['nullable', 'string', 'max:255'],
             'image'         => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'], // Ensure correct validation
         ];

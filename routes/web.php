@@ -39,6 +39,8 @@ Route::prefix('dashboard')->group(function () {
         'update'  => 'dashboard.categories.update',
         'destroy' => 'dashboard.categories.destroy',
     ]);
+
+
 });
 
 // Posts Routes (Requires Authentication)

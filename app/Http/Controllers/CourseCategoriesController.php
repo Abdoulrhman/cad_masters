@@ -9,12 +9,12 @@ class CourseCategoriesController extends Controller
     public function index()
     {
         $courseCategories = CourseCategory::latest()->paginate(5);
-        return view('admin.categories.index', compact('courseCategories'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dashboard.categories.index', compact('courseCategories'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
-        return view('admin.categories.create');
+        return view('dashboard.categories.create');
     }
 
     public function store(Request $request)
@@ -25,13 +25,13 @@ class CourseCategoriesController extends Controller
         ]);
 
         CourseCategory::create($validatedData);
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Category created successfully.');
     }
 
     public function edit(string $id)
     {
         $courseCategory = CourseCategory::findOrFail($id);
-        return view('admin.categories.edit', compact('courseCategory'));
+        return view('dashboard.categories.edit', compact('courseCategory'));
     }
 
     public function update(Request $request, string $id)
@@ -44,7 +44,7 @@ class CourseCategoriesController extends Controller
         $courseCategory = CourseCategory::findOrFail($id);
         $courseCategory->update($request->all());
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Category updated successfully.');
     }
 
     public function destroy(string $id)
@@ -52,6 +52,6 @@ class CourseCategoriesController extends Controller
         $courseCategory = CourseCategory::findOrFail($id);
         $courseCategory->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Category deleted successfully.');
     }
 }

@@ -31,6 +31,25 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-book"></i></span>
+                            Category
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.categories.index') }}">
+                                    <i class="fas fa-list"></i> All Categories
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.categories.create') }}">
+                                    <i class="fas fa-plus"></i> Add New Category
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li>
                         <a href="{{ url('/dashboard/profile') }}">
