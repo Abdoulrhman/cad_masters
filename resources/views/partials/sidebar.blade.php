@@ -51,6 +51,86 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-book"></i></span>
+                            Employees
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.employees.index') }}">
+                                    <i class="fas fa-list"></i> All Employees
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.employees.create') }}">
+                                    <i class="fas fa-plus"></i> Add New Employee
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-book"></i></span>
+                            Clients
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.clients.index') }}">
+                                    <i class="fas fa-list"></i> All Clients
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.clients.create') }}">
+                                    <i class="fas fa-plus"></i> Add New Clients
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-book"></i></span>
+                            Partners
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.partners.index') }}">
+                                    <i class="fas fa-list"></i> All Partners
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.partners.create') }}">
+                                    <i class="fas fa-plus"></i> Add New Partner
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-book"></i></span>
+                            Instructors
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.instructors.index') }}">
+                                    <i class="fas fa-list"></i> All Instructors
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.instructors.create') }}">
+                                    <i class="fas fa-plus"></i> Add New Instructor
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="{{ url('/dashboard/profile') }}">
                             <span><i class="fas fa-user"></i></span>

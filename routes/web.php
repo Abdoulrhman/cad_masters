@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -40,6 +44,46 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.categories.destroy',
     ]);
 
+    // Employees Routes (Required Authentication)
+    Route::resource('employees', EmployeeController::class)->except(['show'])->names([
+        'index'        => 'dashboard.employees.index',
+        'create'       => 'dashboard.employees.create',
+        'store'        => 'dashboard.employees.store',
+        'edit'         => 'dashboard.employees.edit',
+        'update'       => 'dashboard.employees.update',
+        'destroy'      => 'dashboard.employees.destroy',
+        'downloadPdf'  => 'dashboard.employees.downloadPdf',
+    ]);
+
+    // Clients Routes (Required Authentication)
+    Route::resource('clients', ClientsController::class)->except(['show'])->names([
+        'index'   => 'dashboard.clients.index',
+        'create'  => 'dashboard.clients.create',
+        'store'   => 'dashboard.clients.store',
+        'edit'    => 'dashboard.clients.edit',
+        'update'  => 'dashboard.clients.update',
+        'destroy' => 'dashboard.clients.destroy',
+    ]);
+
+    // Instructors Routes (Required Authentication)
+    Route::resource('instructors', InstructorsController::class)->except(['show'])->names([
+        'index'   => 'dashboard.instructors.index',
+        'create'  => 'dashboard.instructors.create',
+        'store'   => 'dashboard.instructors.store',
+        'edit'    => 'dashboard.instructors.edit',
+        'update'  => 'dashboard.instructors.update',
+        'destroy' => 'dashboard.instructors.destroy',
+    ]);
+
+    // Partner Routes (Required Authentication)
+    Route::resource('partners', PartnersController::class)->except(['show'])->names([
+        'index'   => 'dashboard.partners.index',
+        'create'  => 'dashboard.partners.create',
+        'store'   => 'dashboard.partners.store',
+        'edit'    => 'dashboard.partners.edit',
+        'update'  => 'dashboard.partners.update',
+        'destroy' => 'dashboard.partners.destroy',
+    ]);
 
 });
 
