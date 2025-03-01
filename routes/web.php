@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Home Page
@@ -54,6 +56,15 @@ Route::prefix('dashboard')->group(function () {
         'update'  => 'dashboard.students.update',
         'destroy' => 'dashboard.students.destroy',
     ]);
+    Route::resource('carousel', CarouselController::class)->names([
+        'index'   => 'dashboard.carousel.index',
+        'create'  => 'dashboard.carousel.create',
+        'store'   => 'dashboard.carousel.store',
+        'edit'    => 'dashboard.carousel.edit',
+        'update'  => 'dashboard.carousel.update',
+        'destroy' => 'dashboard.carousel.destroy',
+    ]);
+
 });
 
 // Profile Routes (Requires Authentication)
