@@ -131,6 +131,48 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="carouselDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-images"></i></span>
+                            Carousel
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="carouselDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.carousel.index') }}">
+                                    <i class="fas fa-list"></i> All Sliders
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#addCarouselModal">
+                                    <i class="fas fa-plus"></i> Add New Slider
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-user-graduate"></i></span>
+                            Students
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="studentsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.students.index') }}">
+                                    <i class="fas fa-list"></i> All Students
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.students.create') }}">
+                                    <i class="fas fa-user-plus"></i> Add New Student
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="{{ url('/dashboard/profile') }}">
                             <span><i class="fas fa-user"></i></span>

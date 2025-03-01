@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ClientsController;
-use App\Http\Controllers\PartnersController;
-use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InstructorsController;
+use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Home Page
@@ -34,6 +36,11 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.courses.destroy',
     ]);
 
+    // Courses Routes (Requires Authentication)
+    Route::resource('posts', PostController::class)->except(['show'])->names([
+        'index' => 'dashboard.posts.index',
+    ]);
+
 // Categories Routes (Requires Authentication)
     Route::resource('categories', CourseCategoriesController::class)->except(['show'])->names([
         'index'   => 'dashboard.categories.index',
@@ -46,13 +53,13 @@ Route::prefix('dashboard')->group(function () {
 
     // Employees Routes (Required Authentication)
     Route::resource('employees', EmployeeController::class)->except(['show'])->names([
-        'index'        => 'dashboard.employees.index',
-        'create'       => 'dashboard.employees.create',
-        'store'        => 'dashboard.employees.store',
-        'edit'         => 'dashboard.employees.edit',
-        'update'       => 'dashboard.employees.update',
-        'destroy'      => 'dashboard.employees.destroy',
-        'downloadPdf'  => 'dashboard.employees.downloadPdf',
+        'index'       => 'dashboard.employees.index',
+        'create'      => 'dashboard.employees.create',
+        'store'       => 'dashboard.employees.store',
+        'edit'        => 'dashboard.employees.edit',
+        'update'      => 'dashboard.employees.update',
+        'destroy'     => 'dashboard.employees.destroy',
+        'downloadPdf' => 'dashboard.employees.downloadPdf',
     ]);
 
     // Clients Routes (Required Authentication)
@@ -85,10 +92,25 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.partners.destroy',
     ]);
 
-});
+    Route::resource('students', StudentController::class)->names([
+        'index'   => 'dashboard.students.index',
+        'create'  => 'dashboard.students.create',
+        'store'   => 'dashboard.students.store',
+        'show'    => 'dashboard.students.show',
+        'edit'    => 'dashboard.students.edit',
+        'update'  => 'dashboard.students.update',
+        'destroy' => 'dashboard.students.destroy',
+    ]);
+    Route::resource('carousel', CarouselController::class)->names([
+        'index'   => 'dashboard.carousel.index',
+        'create'  => 'dashboard.carousel.create',
+        'store'   => 'dashboard.carousel.store',
+        'edit'    => 'dashboard.carousel.edit',
+        'update'  => 'dashboard.carousel.update',
+        'destroy' => 'dashboard.carousel.destroy',
+    ]);
 
-// Posts Routes (Requires Authentication)
-Route::resource('posts', PostController::class)->middleware('auth');
+});
 
 // Profile Routes (Requires Authentication)
 Route::middleware('auth')->group(function () {
