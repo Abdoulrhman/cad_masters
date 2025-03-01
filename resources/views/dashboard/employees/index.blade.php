@@ -14,11 +14,12 @@
                             <h1 align="center" class="jumbotron" align="center">New employees</h1>
 
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'number', 'email', 'subject', 'pdf'],
+                            'headers' => ['id', 'name', 'number', 'email', 'subject'],
                             'items' => $employees,
                             'actions' => [
                             'edit' => 'dashboard.employees.edit',
-                            'delete' => 'dashboard.employees.destroy'
+                            'delete' => 'dashboard.employees.destroy',
+                            'pdf' => true // Adding the PDF action
                             ]
                             ])
                         </section>

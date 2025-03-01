@@ -27,17 +27,8 @@
                     @endif
                 </td>
                 @endforeach
-                <td>
-                    @if ($header === 'pdf' && $item->$header)
-                        <a href="{{ Storage::url($item->$header) }}" download class="btn btn-primary btn-sm">
-                            <i class="fas fa-download"></i> Download PDF
-                        </a>
-                    @else
-                        {{ $item->$header }}
-                    @endif
-                </td>
 
-            @if(isset($actions) && $actions)
+                @if(isset($actions) && $actions)
                 <td>
                     <div class="d-flex gap-2">
                         <a href="{{ route($actions['edit'], $item->id) }}" class="btn btn-sm btn-warning">
@@ -50,6 +41,11 @@
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
+                        @if(isset($actions['pdf']) && !empty($item->pdf))
+                        <a href="{{ Storage::url($item->pdf) }}" download class="btn btn-sm btn-primary">
+                            <i class="fas fa-download"></i> PDF
+                        </a>
+                        @endif
                     </div>
                 </td>
                 @endif
