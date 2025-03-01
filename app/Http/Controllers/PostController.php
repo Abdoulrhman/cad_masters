@@ -1,18 +1,20 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $posts = Post::with('categories')->latest()->paginate(10);
-        return view('posts.index', compact('posts'));
+
+        // Maintain page state on navigation
+        return view('posts.index', compact('posts'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     public function create()
@@ -24,19 +26,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|min:3',
+            'title'   => 'required|min:3',
             'content' => 'required',
         ]);
 
         $post = Post::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title, '-'),
+            'title'   => $request->title,
+            'slug'    => Str::slug($request->title, '-'),
             'content' => $request->content,
             'user_id' => auth()->id() ?? null,
         ]);
 
         // Attach categories if provided
-        if($request->has('categories')) {
+        if ($request->has('categories')) {
             $post->categories()->attach($request->categories);
         }
 
@@ -57,19 +59,19 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => 'required|min:3',
+            'title'   => 'required|min:3',
             'content' => 'required',
         ]);
 
         // Update post
         $post->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title, '-'),
+            'title'   => $request->title,
+            'slug'    => Str::slug($request->title, '-'),
             'content' => $request->content,
         ]);
 
         // Sync categories if provided
-        if($request->has('categories')) {
+        if ($request->has('categories')) {
             $post->categories()->sync($request->categories);
         } else {
             $post->categories()->detach();

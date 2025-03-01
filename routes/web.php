@@ -30,6 +30,11 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.courses.destroy',
     ]);
 
+    // Courses Routes (Requires Authentication)
+    Route::resource('posts', PostController::class)->except(['show'])->names([
+        'index' => 'dashboard.posts.index',
+    ]);
+
 // Categories Routes (Requires Authentication)
     Route::resource('categories', CourseCategoriesController::class)->except(['show'])->names([
         'index'   => 'dashboard.categories.index',
@@ -39,10 +44,17 @@ Route::prefix('dashboard')->group(function () {
         'update'  => 'dashboard.categories.update',
         'destroy' => 'dashboard.categories.destroy',
     ]);
-});
 
-// Posts Routes (Requires Authentication)
-Route::resource('posts', PostController::class)->middleware('auth');
+    Route::resource('students', StudentController::class)->names([
+        'index'   => 'dashboard.students.index',
+        'create'  => 'dashboard.students.create',
+        'store'   => 'dashboard.students.store',
+        'show'    => 'dashboard.students.show',
+        'edit'    => 'dashboard.students.edit',
+        'update'  => 'dashboard.students.update',
+        'destroy' => 'dashboard.students.destroy',
+    ]);
+});
 
 // Profile Routes (Requires Authentication)
 Route::middleware('auth')->group(function () {
