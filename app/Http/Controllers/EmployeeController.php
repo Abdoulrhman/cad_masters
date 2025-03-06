@@ -69,50 +69,34 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Employee $employee)
     {
-        $employees = Employee::findOrFail($id);
-        return view('dashboard.employees.edit', compact('employees'));
+
+        return view('dashboard.employees.edit', compact('employee'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
-
-        // Manual validation
-        $validator = Validator::make($request->all(), [
-            'name'    => 'required|string|max:255',
-            'email'   => 'nullable|email|max:255|unique:employees,email,' . $employee->id,
-            'number'  => 'nullable|string|regex:/^\+?[0-9]{10,15}$/|unique:employees,number,' . $employee->id,
+        $request->validate([
+            'name'    => 'required|min:3',
+            'email'   => 'required|email|unique:students,email,' . $employee->id,
+            'number'  => 'nullable|string',
             'subject' => 'nullable|string|max:255',
             'pdf'     => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator) // Send validation errors to the view
-                ->withInput(); // Retain old input values
+        // Handle Image Upload
+        if ($request->file('pdf')) {
+            $pdfPath = $request->file('pdf')->store('pdfs', 'public');
+            $employee->update(['pdf' => $pdfPath]);
         }
 
-        $form_data = $validator->validated(); // Get validated data
+        $employee->update($request->except(['pdf']));
 
-        if ($request->hasFile('pdf')) {
-            // Delete old PDF if exists
-            if ($employee->pdf && Storage::disk('public')->exists($employee->pdf)) {
-                Storage::disk('public')->delete($employee->pdf);
-            }
-
-            // Store new PDF
-            $form_data['pdf'] = $request->file('pdf')->store('pdfs', 'public');
-        }
-
-        $employee->update($form_data);
-        return redirect()->route('dashboard.employees.index')
-            ->with('success', 'Employee updated successfully.');
+        return redirect()->route('dashboard.employees.index')->with('success', 'Employee updated successfully.');
     }
 
     /**

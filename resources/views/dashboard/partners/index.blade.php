@@ -13,6 +13,15 @@
                         <section class="tp-fact-wrapper">
                             <h1 align="center" class="jumbotron" align="center">New Partners</h1>
 
+
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            <div class="text-end mb-3">
+                                <a href="{{ route('dashboard.partners.create') }}" class="btn btn-primary">Add Partners</a>
+                            </div>
+
                             @include('partials.table', [
                             'headers' => ['id', 'name', 'image'],
                             'items' => $partners,

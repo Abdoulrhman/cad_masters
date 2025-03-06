@@ -33,8 +33,8 @@ class InstructorsController extends Controller
     {
         $validatedData = $request->validate([
             'name'    => 'required|string|max:255',
-            'title'   => 'nullable|string|max:255',
-            'image'  => 'nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048',
+            'title'   => 'required|string|max:255',
+            'image'   => 'nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048',
 
         ]);
 
@@ -63,49 +63,33 @@ class InstructorsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Instructor $instructor)
     {
-        $instructors = Instructor::findOrFail($id);
-        return view('dashboard.instructors.edit', compact('instructors'));
+
+        return view('dashboard.instructors.edit', compact('instructor'));
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Instructor $instructor)
     {
-        $instructors = Instructor::findOrFail($id);
-
-        // Manual validation
-        $validator = Validator::make($request->all(), [
-            'name'    => 'required|string|max:255',
-            'title'   => 'nullable|string|max:255',
-            'image'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        $request->validate([
+            'name'   => 'required|min:3',
+            'title'   => 'required|min:3',
+            'image'  => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator) // Send validation errors to the view
-                ->withInput(); // Retain old input values
+        // Handle Image Upload
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('instructors', 'public');
+            $instructor->update(['image' => $imagePath]);
         }
 
-        $form_data = $validator->validated(); // Get validated data
+        $instructor->update($request->except(['image']));
 
-        if ($request->hasFile('image')) {
-            // Delete old Image if exists
-            if ($instructors->image && Storage::disk('public')->exists($instructors->image)) {
-                Storage::disk('public')->delete($instructors->image);
-            }
-
-            // Store new Image
-            $form_data['image'] = $request->file('image')->store('images', 'public');
-        }
-
-        $instructors->update($form_data);
-        return redirect()->route('dashboard.instructors.index')
-            ->with('success', 'Instructors updated successfully.');
+        return redirect()->route('dashboard.instructors.index')->with('success', 'Instructors updated successfully.');
     }
 
     /**

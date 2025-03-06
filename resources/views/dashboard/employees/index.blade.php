@@ -11,7 +11,16 @@
                 <div class="col-lg-9">
                     <div class="tpd-content-layout">
                         <section class="tp-fact-wrapper">
-                            <h1 align="center" class="jumbotron" align="center">New employees</h1>
+                            <h1 align="center" class="jumbotron" align="center">New Employees</h1>
+
+
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            <div class="text-end mb-3">
+                                <a href="{{ route('dashboard.employees.create') }}" class="btn btn-primary">Add Employees</a>
+                            </div>
 
                             @include('partials.table', [
                             'headers' => ['id', 'name', 'number', 'email', 'subject'],

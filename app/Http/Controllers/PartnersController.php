@@ -60,48 +60,32 @@ class PartnersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Partner $partner)
     {
-        $partners = Partner::findOrFail($id);
-        return view('dashboard.partners.edit', compact('partners'));
+        return view('dashboard.partners.edit', compact('partner'));
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $partners = Partner::findOrFail($id);
+    public function update(Request $request, Partner $partner)
 
-        // Manual validation
-        $validator = Validator::make($request->all(), [
-            'name'    => 'required|string|max:255',
-            'image'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    {
+        $request->validate([
+            'name'   => 'required|min:3',
+            'image'  => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator) // Send validation errors to the view
-                ->withInput(); // Retain old input values
+        // Handle Image Upload
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('partners', 'public');
+            $partner->update(['image' => $imagePath]);
         }
 
-        $form_data = $validator->validated(); // Get validated data
+        $partner->update($request->except(['image']));
 
-        if ($request->hasFile('image')) {
-            // Delete old Image if exists
-            if ($partners->image && Storage::disk('public')->exists($partners->image)) {
-                Storage::disk('public')->delete($partners->image);
-            }
-
-            // Store new Image
-            $form_data['image'] = $request->file('image')->store('images', 'public');
-        }
-
-        $partners->update($form_data);
-        return redirect()->route('dashboard.partners.index')
-            ->with('success', 'Partners updated successfully.');
+        return redirect()->route('dashboard.partners.index')->with('success', 'Partners updated successfully.');
     }
 
     /**
