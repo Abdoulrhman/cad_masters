@@ -8,10 +8,10 @@ class Carousel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'image'];
+    protected $fillable = ['title', 'description'];
 
     public function images()
     {
-        return $this->hasMany(CarouselImage::class);
+        return $this->hasMany(CarouselImage::class, 'carousel_id'); // Ensure correct foreign key
     }
 }

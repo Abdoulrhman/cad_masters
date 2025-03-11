@@ -17,19 +17,28 @@ class CarouselController extends Controller
         $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image'       => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'images'      => 'required|array',                    // Expecting multiple images
+            'images.*'    => 'image|mimes:jpg,jpeg,png|max:2048', // Each file must be an image
         ]);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('carousel_images', 'public');
+        // Create Carousel record first
+        $carousel = Carousel::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+        ]);
 
-            Carousel::create([
-                'title'       => $request->title,
-                'description' => $request->description,
-                'image'       => $path,
-            ]);
+        // Handle multiple images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('carousel_images', 'public');
+
+                // Save each image to `carousel_images` table
+                $carousel->images()->create([
+                    'image' => $path,
+                ]);
+            }
         } else {
-            return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
+            return redirect()->back()->withErrors(['images' => 'Image upload failed.']);
         }
 
         return redirect()->route('dashboard.carousel.index')->with('success', 'Slider added successfully.');
@@ -37,12 +46,16 @@ class CarouselController extends Controller
 
     public function destroy(Carousel $carousel)
     {
+        // Delete all associated images from storage
         foreach ($carousel->images as $image) {
             Storage::disk('public')->delete($image->image);
             $image->delete();
         }
 
+        // Delete the carousel itself
         $carousel->delete();
+
         return redirect()->route('dashboard.carousel.index')->with('success', 'Slider deleted successfully.');
     }
+
 }
