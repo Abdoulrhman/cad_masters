@@ -12,124 +12,38 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></span>
-                            Courses
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.courses.index') }}">
-                                    <i class="fas fa-list"></i> All Courses
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.courses.create') }}">
-                                    <i class="fas fa-plus"></i> Add New Course
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></span>
-                            Category
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.categories.index') }}">
-                                    <i class="fas fa-list"></i> All Categories
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.categories.create') }}">
-                                    <i class="fas fa-plus"></i> Add New Category
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @php
+                    $modules = [
+                    ['name' => 'Courses', 'icon' => 'fa-book', 'route' => 'dashboard.courses'],
+                    ['name' => 'Category', 'icon' => 'fa-book', 'route' => 'dashboard.categories'],
+                    ['name' => 'Employees', 'icon' => 'fa-user-tie', 'route' => 'dashboard.employees'],
+                    ['name' => 'Clients', 'icon' => 'fa-users', 'route' => 'dashboard.clients'],
+                    ['name' => 'Partners', 'icon' => 'fa-handshake', 'route' => 'dashboard.partners'],
+                    ['name' => 'Instructors', 'icon' => 'fa-chalkboard-teacher', 'route' => 'dashboard.instructors'],
+                    ];
+                    @endphp
 
+                    @foreach ($modules as $module)
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></span>
-                            Employees
+                        <a class="nav-link dropdown-toggle" href="#" id="{{ strtolower($module['name']) }}Dropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas {{ $module['icon'] }}"></i></span>
+                            {{ $module['name'] }}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="{{ strtolower($module['name']) }}Dropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.employees.index') }}">
-                                    <i class="fas fa-list"></i> All Employees
+                                <a class="dropdown-item" href="{{ route($module['route'] . '.index') }}">
+                                    <i class="fas fa-list"></i> All {{ $module['name'] }}
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.employees.create') }}">
-                                    <i class="fas fa-plus"></i> Add New Employee
+                                <a class="dropdown-item" href="{{ route($module['route'] . '.create') }}">
+                                    <i class="fas fa-plus"></i> Add New {{ $module['name'] }}
                                 </a>
                             </li>
                         </ul>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></span>
-                            Clients
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.clients.index') }}">
-                                    <i class="fas fa-list"></i> All Clients
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.clients.create') }}">
-                                    <i class="fas fa-plus"></i> Add New Clients
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></span>
-                            Partners
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.partners.index') }}">
-                                    <i class="fas fa-list"></i> All Partners
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.partners.create') }}">
-                                    <i class="fas fa-plus"></i> Add New Partner
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></span>
-                            Instructors
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.instructors.index') }}">
-                                    <i class="fas fa-list"></i> All Instructors
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('dashboard.instructors.create') }}">
-                                    <i class="fas fa-plus"></i> Add New Instructor
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @endforeach
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="carouselDropdown" role="button"
@@ -151,7 +65,6 @@
                             </li>
                         </ul>
                     </li>
-
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
