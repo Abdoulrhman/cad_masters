@@ -18,32 +18,57 @@ class CourseController extends Controller
         $query = Course::query()->with('category');
 
         // Search filter
-        if ($request->has('search')) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                ->orWhere('description', 'like', '%' . $request->search . '%');
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('description', 'like', '%' . $request->search . '%');
+            });
         }
 
         // Category filter
-        if ($request->has('category')) {
-            $query->where('category_id', $request->category);
+        if ($request->filled('category')) {
+            $query->whereIn('category_id', $request->category);
         }
 
-        // Price filter
-        if ($request->has('price_min')) {
-            $query->where('price', '>=', $request->price_min);
-        }
-        if ($request->has('price_max')) {
-            $query->where('price', '<=', $request->price_max);
+        // Price range filter
+        if ($request->filled('price_range')) {
+            switch ($request->price_range) {
+                case 'free':
+                    $query->where('price', 0);
+                    break;
+                case 'paid':
+                    $query->where('price', '>', 0);
+                    break;
+            }
         }
 
         // Sorting
-        $sort      = $request->get('sort', 'name');
-        $direction = $request->get('direction', 'asc');
-        $query->orderBy($sort, $direction);
+        switch ($request->get('sort', 'latest')) {
+            case 'price_low':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_high':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'latest':
+            default:
+                $query->latest();
+                break;
+        }
 
-        $courses    = $query->paginate(12);
+        $courses    = $query->paginate(12)->withQueryString();
         $categories = CourseCategory::all();
 
+        // Check if we're accessing from dashboard
+        if ($request->route()->getName() === 'dashboard.courses.index') {
+            return view('dashboard.courses.index', [
+                'courses'    => $courses,
+                'categories' => $categories,
+                'filters'    => $request->all(),
+            ]);
+        }
+
+        // Return public view
         return view('courses.index', [
             'courses'    => $courses,
             'categories' => $categories,
@@ -78,7 +103,7 @@ class CourseController extends Controller
 
         Course::create($form_data);
 
-        return redirect()->route('dashboard.courses.index')
+        return redirect()->route('courses.index')
             ->with('success', 'Course added successfully.');
     }
 
@@ -100,7 +125,6 @@ class CourseController extends Controller
     {
         $form_data = $request->validated();
 
-        // Handle Image Upload
         if ($request->hasFile('image')) {
             // Delete old image if exists
             if ($course->image && Storage::disk('public')->exists($course->image)) {
@@ -109,12 +133,14 @@ class CourseController extends Controller
 
             // Store new image
             $form_data['image'] = $request->file('image')->store('courses', 'public');
+        } else {
+            // Keep existing image if no new one is uploaded
+            unset($form_data['image']);
         }
 
-        // Update Course
         $course->update($form_data);
 
-        return redirect()->route('dashboard.courses.index')
+        return redirect()->route('courses.index')
             ->with('success', 'Course updated successfully.');
     }
 
@@ -134,5 +160,10 @@ class CourseController extends Controller
 
         return redirect()->route('dashboard.courses.index')
             ->with('success', 'Course deleted successfully.');
+    }
+
+    public function show(Course $course)
+    {
+        return view('courses.show', compact('course'));
     }
 }

@@ -91,9 +91,9 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="image" class="form-label">Course Image (Optional)</label>
-                                        <input type="file" name="image" class="form-control" id="image"
-                                            accept="image/jpg,image/jpeg,image/png">
+                                        <label for="image" class="form-label">Course Image</label>
+                                        <input type="file" name="image" class="form-control" id="image" accept="image/*">
+                                        <small class="text-muted">Recommended size: 800x600px. Max size: 2MB</small>
                                     </div>
 
                                     <div class="col-12 text-center mt-4">

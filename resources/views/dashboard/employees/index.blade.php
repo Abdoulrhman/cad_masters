@@ -15,11 +15,12 @@
 
 
                             @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
+                            <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
 
                             <div class="text-end mb-3">
-                                <a href="{{ route('dashboard.employees.create') }}" class="btn btn-primary">Add Employees</a>
+                                <a href="{{ route('dashboard.employees.create') }}" class="btn btn-primary">Add
+                                    Employees</a>
                             </div>
 
                             @include('partials.table', [

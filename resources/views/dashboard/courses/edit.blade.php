@@ -119,19 +119,14 @@
                                         {{-- Upload Course Photo --}}
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
-                                                <label>Upload Course Photo</label>
-                                                <input type="file" name="image" class="form-control" accept="image/*">
-
-                                                {{-- Show Current Image Preview if Exists --}}
-                                                @if ($course->image)
-                                                <div class="mt-2">
-                                                    <img src="{{ asset('storage/images/' . $course->image) }}"
-                                                        class="img-thumbnail" width="150">
-                                                    <p>Current Image</p>
-                                                </div>
+                                                <label for="image">Course Image</label>
+                                                @if($course->image)
+                                                    <div class="mb-2">
+                                                        <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->name }}" class="img-thumbnail" style="max-height: 100px;">
+                                                    </div>
                                                 @endif
-
-                                                <input type="hidden" name="hidden_image" value="{{ $course->image }}" />
+                                                <input type="file" name="image" id="image" class="form-control" accept="image/*">
+                                                <small class="text-muted">Leave empty to keep the current image. Max size: 2MB</small>
                                             </div>
                                         </div>
 

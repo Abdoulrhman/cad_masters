@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Public Course Routes
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+
 // Authentication Routes
 require __DIR__ . '/auth.php';
 
@@ -123,5 +127,3 @@ Route::middleware('auth')->group(function () {
 Route::get('/debug-auth', function () {
     return response()->json(auth()->user());
 });
-
-Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
