@@ -10,16 +10,21 @@ class Course extends Model
 
     protected $fillable = [
         'name',
-        'description',
-        'category_id',
-        'start_date',
-        'end_date',
-        'hours',
-        'schedule_time',
-        'branch',
-        'image',
         'price',
         'price_offer',
+        'schedule_time',
+        'hours',
+        'branch',
+        'image',
+        'description',
+        'category_id',
+    ];
+
+    protected $casts = [
+        'price'         => 'decimal:2',
+        'price_offer'   => 'decimal:2',
+        'schedule_time' => 'datetime',
+        'hours'         => 'datetime',
     ];
 
     public function category()

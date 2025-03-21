@@ -123,3 +123,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/debug-auth', function () {
     return response()->json(auth()->user());
 });
+
+Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');

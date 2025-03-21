@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->nullable();
             $table->decimal('price_offer', 8, 2)->nullable();
             $table->time('schedule_time')->nullable();
-            $table->time('hours')->nullable();
+            $table->string('hours')->nullable();
             $table->string('branch')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();

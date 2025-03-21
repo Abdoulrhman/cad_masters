@@ -13,12 +13,42 @@ class CourseController extends Controller
     /**
      * Display a listing of the courses.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::latest()->paginate(10);
+        $query = Course::query()->with('category');
 
-        return view('dashboard.courses.index', compact('courses'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        // Search filter
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%');
+        }
+
+        // Category filter
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Price filter
+        if ($request->has('price_min')) {
+            $query->where('price', '>=', $request->price_min);
+        }
+        if ($request->has('price_max')) {
+            $query->where('price', '<=', $request->price_max);
+        }
+
+        // Sorting
+        $sort      = $request->get('sort', 'name');
+        $direction = $request->get('direction', 'asc');
+        $query->orderBy($sort, $direction);
+
+        $courses    = $query->paginate(12);
+        $categories = CourseCategory::all();
+
+        return view('courses.index', [
+            'courses'    => $courses,
+            'categories' => $categories,
+            'filters'    => $request->all(),
+        ]);
     }
 
     /**
