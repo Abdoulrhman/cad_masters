@@ -17,7 +17,26 @@
                         <nav class="tp-main-menu-content">
                             <ul>
                                 <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="{{ url('about') }}">About Us</a></li>
+                                <li class="has-dropdown">
+                                    <a href="">About Us</a>
+                                    <div class="tp-megamenu-main">
+                                        <div class="megamenu-demo-small p-relative">
+                                            <div class="tp-megamenu-small-content">
+                                                <div class="row tp-gx-50">
+                                                    <div class="col-xl-6">
+                                                        <div class="tp-megamenu-list yellow-color">
+                                                            <a href="{{ url('about') }}">About CAD Masters</a>
+                                                            <a href="university-admission-overview.html">Accreditation, Authorizations and membership</a>
+                                                            <a href="university-program.html">Certificate awards & Thanking</a>
+                                                            <a href="{{ url('clients') }}">Our Clients</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
                                 <li><a href="{{ url('courses') }}">Courses</a></li>
                                 <li><a href="{{ url('media') }}">Media</a></li>
                                 <li><a href="{{ url('careers') }}">Careers</a></li>

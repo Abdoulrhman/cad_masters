@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
+
+
+
+
+//---------------------------------------------
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\CourseCategoriesController;
@@ -17,6 +24,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('about', function () {
+    return view('about');
+});
+
+Route::get('/', [HomeController::class, 'index']);
+
+
+
 
 // Authentication Routes
 require __DIR__ . '/auth.php';

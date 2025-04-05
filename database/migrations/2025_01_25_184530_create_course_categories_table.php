@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->foreignId('category_id')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('course_categories')->onDelete('cascade'); // Foreign key
             $table->timestamps();
         });
     }
