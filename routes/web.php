@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\MediaController;
 
 
 
@@ -9,6 +13,9 @@ use App\Http\Controllers\AboutController;
 //---------------------------------------------
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\CertificatesController;
+use App\Http\Controllers\AuthorizationsController;
+use App\Http\Controllers\MediasController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -29,7 +36,18 @@ Route::get('about', function () {
     return view('about');
 });
 
+
+
+Route::get('client', function () {
+    return view('client');
+});
+
+
 Route::get('/', [HomeController::class, 'index']);
+Route::get('certificate', [CertificateController::class, 'index']);
+Route::get('client', [ClientController::class, 'index']);
+Route::get('authorization', [AuthorizationController::class, 'index']);
+Route::get('media', [MediaController::class, 'index']);
 
 
 
@@ -86,6 +104,36 @@ Route::prefix('dashboard')->group(function () {
         'edit'    => 'dashboard.clients.edit',
         'update'  => 'dashboard.clients.update',
         'destroy' => 'dashboard.clients.destroy',
+    ]);
+
+    // Certificates Routes (Required Authentication)
+    Route::resource('certificates', CertificatesController::class)->except(['show'])->names([
+        'index'   => 'dashboard.certificates.index',
+        'create'  => 'dashboard.certificates.create',
+        'store'   => 'dashboard.certificates.store',
+        'edit'    => 'dashboard.certificates.edit',
+        'update'  => 'dashboard.certificates.update',
+        'destroy' => 'dashboard.certificates.destroy',
+    ]);
+
+    // Authorization Routes (Required Authentication)
+    Route::resource('authorizations', AuthorizationsController::class)->except(['show'])->names([
+        'index'   => 'dashboard.authorizations.index',
+        'create'  => 'dashboard.authorizations.create',
+        'store'   => 'dashboard.authorizations.store',
+        'edit'    => 'dashboard.authorizations.edit',
+        'update'  => 'dashboard.authorizations.update',
+        'destroy' => 'dashboard.authorizations.destroy',
+    ]);
+
+    // Events Routes (Required Authentication)
+    Route::resource('medias', MediasController::class)->except(['show'])->names([
+        'index'   => 'dashboard.medias.index',
+        'create'  => 'dashboard.medias.create',
+        'store'   => 'dashboard.medias.store',
+        'edit'    => 'dashboard.medias.edit',
+        'update'  => 'dashboard.medias.update',
+        'destroy' => 'dashboard.medias.destroy',
     ]);
 
     // Instructors Routes (Required Authentication)

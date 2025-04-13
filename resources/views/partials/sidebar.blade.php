@@ -64,6 +64,29 @@
                                 </a>
                             </li>
                         </ul>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="carouselDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-file-certificate"></i></span>
+                            Certificates
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="carouselDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.certificates.index') }}">
+                                    <i class="fas fa-list"></i> All Certificates
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                   data-bs-target="#addCarouselModal">
+                                    <i class="fas fa-plus"></i> Add New Certificate
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
 
                     <li class="nav-item dropdown">
@@ -81,6 +104,44 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('dashboard.students.create') }}">
                                     <i class="fas fa-user-plus"></i> Add New Student
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-shield"></i></span>
+                            Authorizations
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="studentsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.authorizations.index') }}">
+                                    <i class="fas fa-list"></i> All Authorizations
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.authorizations.create') }}">
+                                    <i class="fas fa-user-plus"></i> Add New Authorizations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span><i class="fas fa-image"></i></span>
+                            Media
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="studentsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.medias.index') }}">
+                                    <i class="fas fa-list"></i> All Media
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.medias.create') }}">
+                                    <i class="fas fa-user-plus"></i> Add New Media
                                 </a>
                             </li>
                         </ul>

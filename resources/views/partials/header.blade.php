@@ -26,9 +26,9 @@
                                                     <div class="col-xl-6">
                                                         <div class="tp-megamenu-list yellow-color">
                                                             <a href="{{ url('about') }}">About CAD Masters</a>
-                                                            <a href="university-admission-overview.html">Accreditation, Authorizations and membership</a>
-                                                            <a href="university-program.html">Certificate awards & Thanking</a>
-                                                            <a href="{{ url('clients') }}">Our Clients</a>
+                                                            <a href="{{ url('authorization') }}">Accreditation, Authorizations and membership</a>
+                                                            <a href="{{ url('certificate') }}">Certificate awards & Thanking</a>
+                                                            <a href="{{ url('client') }}">Our Clients</a>
                                                         </div>
                                                     </div>
                                                 </div>
