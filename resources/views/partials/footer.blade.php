@@ -20,8 +20,9 @@
                         <div class="tp-footer-widget-link">
                             <ul>
                                 <li><a href="{{ url('about') }}">About</a></li>
-                                <li><a href="{{ url('authorization') }}">Accreditation and Authorizations</a></li>
-                                <li><a href="{{ url('certificate') }}">Certificate awards & Thanking</a></li>
+                                <li><a href="{{ url('courses') }}">Courses</a></li>
+                                <li><a href="{{ url('authorization') }}">Authorizations</a></li>
+                                <li><a href="{{ url('certificate') }}">Awards</a></li>
                                 <li><a href="{{ url('Client') }}">Our Clients</a></li>
                                 <li><a href="{{ url('Media') }}">Events</a></li>
                             </ul>
