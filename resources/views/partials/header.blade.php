@@ -17,10 +17,10 @@
                         <nav class="tp-main-menu-content">
                             <ul>
                                 <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="{{ url('about') }}">About Us</a></li>
+                                <li><a href="{{ route('about') }}">About</a></li>
                                 <li><a href="{{ url('courses') }}">Courses</a></li>
                                 <li><a href="{{ url('media') }}">Media</a></li>
-                                <li><a href="{{ url('careers') }}">Careers</a></li>
+                                <li><a href="{{ route('careers.index') }}">Careers</a></li>
                                 <li><a href="{{ url('contact') }}">Contact Us</a></li>
                             </ul>
                         </nav>

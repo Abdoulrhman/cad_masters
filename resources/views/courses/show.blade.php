@@ -24,7 +24,8 @@
                             <div class="course-details-banner mb-40">
                                 <div class="course-details-wrapper">
                                     <div class="course-details-thumb">
-                                        <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/default.jpg') }}" alt="{{ $course->title }}">
+                                        <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/default.jpg') }}"
+                                            alt="{{ $course->title }}">
                                     </div>
                                     <div class="course-details-banner-content">
                                         <div class="course-details-banner-top">
@@ -33,9 +34,9 @@
                                             </div>
                                             <div class="course-details-price">
                                                 @if($course->price > 0)
-                                                    <span>${{ number_format($course->price, 2) }}</span>
+                                                <span>${{ number_format($course->price, 2) }}</span>
                                                 @else
-                                                    <span>Free</span>
+                                                <span>Free</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -43,20 +44,28 @@
                                         <div class="course-details-banner-meta">
                                             <div class="course-details-banner-rating">
                                                 <div class="course-details-banner-rating-icon">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        <i class="fa-solid fa-star {{ $i <= $course->rating ? 'text-warning' : 'text-muted' }}"></i>
-                                                    @endfor
+                                                    @for($i = 1; $i <= 5; $i++) <i
+                                                        class="fa-solid fa-star {{ $i <= $course->rating ? 'text-warning' : 'text-muted' }}">
+                                                        </i>
+                                                        @endfor
                                                 </div>
                                                 <div class="course-details-banner-rating-text">
                                                     <span>{{ number_format($course->rating, 1) }} /5</span>
                                                 </div>
                                             </div>
                                             <div class="course-details-banner-enrolled">
-                                                <span><i class="fas fa-users"></i> {{ $course->students_count ?? 0 }} Students</span>
+                                                <span><i class="fas fa-users"></i> {{ $course->students_count ?? 0 }}
+                                                    Students</span>
                                             </div>
                                             <div class="course-details-banner-duration">
                                                 <span><i class="fas fa-book"></i> {{ $course->hours }} Hours</span>
                                             </div>
+                                        </div>
+                                        <!-- Register Button -->
+                                        <div class="course-details-banner-button mt-30">
+                                            <a href="{{ route('courses.register', $course) }}" class="tp-btn">
+                                                <i class="fas fa-user-plus"></i> Register for this Course
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +92,8 @@
                                 <h4 class="course-details-title">Course Instructor</h4>
                                 <div class="course-instructor-wrapper">
                                     <div class="course-instructor-img">
-                                        <img src="{{ $course->instructor_image ?? 'assets/img/teacher/default.png' }}" alt="{{ $course->instructor_name }}">
+                                        <img src="{{ $course->instructor_image ?? 'assets/img/teacher/default.png' }}"
+                                            alt="{{ $course->instructor_name }}">
                                     </div>
                                     <div class="course-instructor-content">
                                         <h4>{{ $course->instructor_name }}</h4>
@@ -214,6 +224,30 @@
 
 .course-instructor-content span {
     color: #666;
+}
+
+.course-details-banner-button {
+    text-align: center;
+}
+
+.course-details-banner-button .tp-btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-details-banner-button .tp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(81, 105, 241, 0.3);
+}
+
+.course-details-banner-button i {
+    font-size: 18px;
 }
 </style>
 @endpush

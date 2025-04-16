@@ -1,13 +1,19 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseRegistrationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Dashboard\CompanyProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
@@ -114,6 +120,27 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.carousel.destroy',
     ]);
 
+    Route::get('/company-profile', [CompanyProfileController::class, 'index'])
+        ->name('dashboard.company-profile.index');
+    Route::post('/company-profile', [CompanyProfileController::class, 'store'])
+        ->name('dashboard.company-profile.store');
+    Route::put('/company-profile/{companyProfile}', [CompanyProfileController::class, 'update'])
+        ->name('dashboard.company-profile.update');
+
+    // Job Applications Routes
+    Route::get('/job-applications', [CareerController::class, 'dashboard'])->name('dashboard.job-applications.index');
+    Route::get('/job-applications/{application}', [CareerController::class, 'show'])->name('dashboard.job-applications.show');
+    Route::put('/job-applications/{application}/status', [CareerController::class, 'updateStatus'])->name('dashboard.job-applications.update-status');
+
+    // Position Routes
+    Route::resource('positions', PositionController::class)->names([
+        'index'   => 'dashboard.positions.index',
+        'create'  => 'dashboard.positions.create',
+        'store'   => 'dashboard.positions.store',
+        'edit'    => 'dashboard.positions.edit',
+        'update'  => 'dashboard.positions.update',
+        'destroy' => 'dashboard.positions.destroy',
+    ]);
 });
 
 // Profile Routes (Requires Authentication)
@@ -127,3 +154,20 @@ Route::middleware('auth')->group(function () {
 Route::get('/debug-auth', function () {
     return response()->json(auth()->user());
 });
+
+// About Page Route
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+// Careers routes
+Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
+Route::post('/careers/apply', [CareerController::class, 'apply'])->name('careers.apply');
+
+// Contact routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('dashboard.contact');
+    Route::put('/dashboard/contact/settings', [ContactController::class, 'updateSettings'])->name('contact.settings.update');
+});
+
+// Course Registration Routes
+Route::get('/courses/{course}/register', [CourseRegistrationController::class, 'showForm'])->name('courses.register');
+Route::post('/courses/{course}/register', [CourseRegistrationController::class, 'submit'])->name('courses.register.submit');

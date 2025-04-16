@@ -114,6 +114,27 @@
                         </a>
                     </li>
 
+                    <li class="nav-item {{ request()->routeIs('dashboard.company-profile.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.company-profile.index') }}">
+                            <i class="fas fa-building"></i>
+                            <span>Company Profile</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ request()->routeIs('dashboard.job-applications.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.job-applications.index') }}">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Job Applications</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ request()->routeIs('dashboard.positions.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.positions.index') }}">
+                            <i class="fas fa-list"></i>
+                            <span>Job Positions</span>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="{{ route('logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
