@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseCategoriesController;
@@ -11,7 +14,9 @@ use App\Http\Controllers\CourseRegistrationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Dashboard\CompanyProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstructorsController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PostController;
@@ -20,13 +25,18 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Home Page
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 // Public Course Routes
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+
+// Public Pages
+Route::get('about', [AboutController::class, 'index'])->name('about');
+Route::get('client', [ClientController::class, 'index']);
+Route::get('certificate', [CertificateController::class, 'index']);
+Route::get('authorization', [AuthorizationController::class, 'index']);
+Route::get('media', [MediaController::class, 'index']);
 
 // Authentication Routes
 require __DIR__ . '/auth.php';
@@ -36,6 +46,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/analytics', [DashboardController::class, 'analytics'])->name('dashboard.analytics');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
+
     // Courses Routes (Requires Authentication)
     Route::resource('courses', CourseController::class)->except(['show'])->names([
         'index'   => 'dashboard.courses.index',
@@ -46,12 +57,12 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.courses.destroy',
     ]);
 
-    // Courses Routes (Requires Authentication)
+    // Posts Routes (Requires Authentication)
     Route::resource('posts', PostController::class)->except(['show'])->names([
         'index' => 'dashboard.posts.index',
     ]);
 
-// Categories Routes (Requires Authentication)
+    // Categories Routes (Requires Authentication)
     Route::resource('categories', CourseCategoriesController::class)->except(['show'])->names([
         'index'   => 'dashboard.categories.index',
         'create'  => 'dashboard.categories.create',
@@ -82,6 +93,36 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.clients.destroy',
     ]);
 
+    // Certificates Routes (Required Authentication)
+    Route::resource('certificates', CertificatesController::class)->except(['show'])->names([
+        'index'   => 'dashboard.certificates.index',
+        'create'  => 'dashboard.certificates.create',
+        'store'   => 'dashboard.certificates.store',
+        'edit'    => 'dashboard.certificates.edit',
+        'update'  => 'dashboard.certificates.update',
+        'destroy' => 'dashboard.certificates.destroy',
+    ]);
+
+    // Authorization Routes (Required Authentication)
+    Route::resource('authorizations', AuthorizationsController::class)->except(['show'])->names([
+        'index'   => 'dashboard.authorizations.index',
+        'create'  => 'dashboard.authorizations.create',
+        'store'   => 'dashboard.authorizations.store',
+        'edit'    => 'dashboard.authorizations.edit',
+        'update'  => 'dashboard.authorizations.update',
+        'destroy' => 'dashboard.authorizations.destroy',
+    ]);
+
+    // Media Routes (Required Authentication)
+    Route::resource('medias', MediasController::class)->except(['show'])->names([
+        'index'   => 'dashboard.medias.index',
+        'create'  => 'dashboard.medias.create',
+        'store'   => 'dashboard.medias.store',
+        'edit'    => 'dashboard.medias.edit',
+        'update'  => 'dashboard.medias.update',
+        'destroy' => 'dashboard.medias.destroy',
+    ]);
+
     // Instructors Routes (Required Authentication)
     Route::resource('instructors', InstructorsController::class)->except(['show'])->names([
         'index'   => 'dashboard.instructors.index',
@@ -102,6 +143,7 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.partners.destroy',
     ]);
 
+    // Student Routes (Required Authentication)
     Route::resource('students', StudentController::class)->names([
         'index'   => 'dashboard.students.index',
         'create'  => 'dashboard.students.create',
@@ -111,6 +153,8 @@ Route::prefix('dashboard')->group(function () {
         'update'  => 'dashboard.students.update',
         'destroy' => 'dashboard.students.destroy',
     ]);
+
+    // Carousel Routes (Required Authentication)
     Route::resource('carousel', CarouselController::class)->names([
         'index'   => 'dashboard.carousel.index',
         'create'  => 'dashboard.carousel.create',
@@ -120,6 +164,7 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.carousel.destroy',
     ]);
 
+    // Company Profile Routes (Required Authentication)
     Route::get('/company-profile', [CompanyProfileController::class, 'index'])
         ->name('dashboard.company-profile.index');
     Route::post('/company-profile', [CompanyProfileController::class, 'store'])
@@ -154,9 +199,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/debug-auth', function () {
     return response()->json(auth()->user());
 });
-
-// About Page Route
-Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // Careers routes
 Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');

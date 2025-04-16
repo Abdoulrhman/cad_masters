@@ -1079,6 +1079,8 @@
 	});
 
 
+
+
 	////////////////////////////////////////
 	// 28. Show more/ Show less js
 	if($('.show-more-button').length > 0){
