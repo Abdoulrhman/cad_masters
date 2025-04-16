@@ -8,27 +8,49 @@ class Course extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'name',
-        'price',
-        'price_offer',
-        'schedule_time',
-        'hours',
-        'branch',
-        'image',
+        'title',
         'description',
-        'category_id',
+        'duration',
+        'price',
+        'is_active',
+        'start_date',
+        'end_date',
+        'max_students',
+        'instructor_id',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
-        'price'         => 'decimal:2',
-        'price_offer'   => 'decimal:2',
-        'schedule_time' => 'datetime',
-        'hours'         => 'datetime',
+        'is_active'  => 'boolean',
+        'start_date' => 'datetime',
+        'end_date'   => 'datetime',
+        'price'      => 'decimal:2',
     ];
 
-    public function category()
+    /**
+     * Get the instructor that owns the course.
+     */
+    public function instructor()
     {
-        return $this->belongsTo(CourseCategory::class, 'category_id');
+        return $this->belongsTo(User::class, 'instructor_id');
+    }
+
+    /**
+     * Get the students enrolled in the course.
+     */
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'course_enrollments')
+            ->withTimestamps();
     }
 }

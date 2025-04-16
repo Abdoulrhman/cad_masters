@@ -3,15 +3,18 @@ namespace App\Policies;
 
 use App\Models\Course;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CoursePolicy
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,7 +22,7 @@ class CoursePolicy
      */
     public function view(User $user, Course $course): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +31,6 @@ class CoursePolicy
     public function create(User $user): bool
     {
         return $user->is_admin;
-
     }
 
     /**
@@ -36,7 +38,7 @@ class CoursePolicy
      */
     public function update(User $user, Course $course): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
@@ -44,7 +46,7 @@ class CoursePolicy
      */
     public function delete(User $user, Course $course): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
