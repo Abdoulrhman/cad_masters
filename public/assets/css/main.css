@@ -3441,6 +3441,7 @@ div.demo img {
     height: 100%;
     width: 100%;
     z-index: -1;
+    background-repeat: no-repeat;
 }
 .tp-breadcrumb__bg.overlay::after {
     position: absolute;
@@ -17563,6 +17564,8 @@ a.social-yout {
         display: none;
     }
 }
+
+
 .tp-testimonial-6-wrapper::after {
     position: absolute;
     content: "";

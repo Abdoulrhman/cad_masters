@@ -1,5 +1,5 @@
 <footer>{{--tp-footer-main tpd-dashboard-footer--}}
-    <div class="tp-footer-copyright pt-80 pb-55" data-bg-color="#0a1c3a">
+    <div class="tp-footer-main tpd-dashboard-footer pt-80 pb-55" data-bg-color="#0a1c3a">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-3 col-md-6">

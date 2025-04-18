@@ -7,7 +7,7 @@
                     <div class="tp-header-2-right d-flex align-items-center">
                         <div class="tp-header-inner-logo tp-header-logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('assets/img/logo/logo-black.png') }}" alt="logo">
+                                <img src="{{ asset('assets/img/logo/CAD Masters Drak.png') }}" alt="logo">
                             </a>
                         </div>
                     </div>

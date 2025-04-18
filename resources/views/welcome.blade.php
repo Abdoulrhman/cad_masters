@@ -894,7 +894,7 @@
                                   </svg>
                               </span>
                         </h3>
-                        <p>Our community is being called to reimagine the future. As the <br> only university where a renowned design school comes together <br> with premier colleges, we are making learning more relevant <br> and transformational.</p>
+                        <p>CAD MASTERS is a specialized company in training, technical support and services for engineering and graphics software. From 2007 till now CAD MASTERS adopted a new approach for the integrated solutions in CAD & BIM technology by implementing strategies based on commitment, quality, customer satisfaction and high return of investment. Along years ago CAD MASTERS has expanded its services in Egypt and Gulf. At 2013 CAD MASTERS opened its office at Kuwait to deliver the most updated services to its customers at Gulf area.</p>
                     </div>
                     <div class="tp-about-list">
                         <div class="tp-about-list-item d-flex align-items-center mb-35">
