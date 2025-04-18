@@ -1,9 +1,8 @@
 <?php
 namespace Database\Seeders;
 
-use Carbon\Carbon;
+use App\Models\CourseCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CourseCategorySeeder extends Seeder
 {
@@ -15,36 +14,28 @@ class CourseCategorySeeder extends Seeder
         $categories = [
             [
                 'name'        => 'AutoCAD',
-                'description' => 'Computer-aided design software courses',
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
+                'description' => 'Learn AutoCAD from basics to advanced techniques',
             ],
             [
                 'name'        => '3D Modeling',
-                'description' => 'Three-dimensional modeling and visualization courses',
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
+                'description' => 'Master 3D modeling and visualization',
             ],
             [
                 'name'        => 'BIM',
                 'description' => 'Building Information Modeling courses',
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
             ],
             [
-                'name'        => 'Civil Engineering',
-                'description' => 'Civil engineering and construction design courses',
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
+                'name'        => 'Revit',
+                'description' => 'Autodesk Revit training for architecture and construction',
             ],
             [
-                'name'        => 'Mechanical Design',
-                'description' => 'Mechanical engineering and product design courses',
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
+                'name'        => 'Civil 3D',
+                'description' => 'Civil engineering and infrastructure design',
             ],
         ];
 
-        DB::table('course_categories')->insert($categories);
+        foreach ($categories as $category) {
+            CourseCategory::create($category);
+        }
     }
 }

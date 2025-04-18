@@ -35,7 +35,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </li>
@@ -49,8 +48,8 @@
                 </div>
                 <div class="col-xxl-3 col-xl-2 col-lg-6 col-6">
                     <div class="tp-header-2-contact d-flex align-items-center justify-content-end">
+                        @auth
                         <div class="tp-header-inner-login tp-header-user-hover">
-                            @if(Auth::check())
                             <button><img src="{{ asset('assets/img/event/user.jpg') }}" alt=""></button>
                             <div class="tp-header-user-box">
                                 <div class="tp-header-user-content">
@@ -65,26 +64,22 @@
                                     </div>
                                     <div class="tp-header-user-list">
                                         <ul>
-                                            <li><a href="{{ url('dashboard') }}">My Dashboard</a></li>
-                                            <li><a href="{{ url('profile') }}">My Profile</a></li>
-                                            <li><a href="{{ url('enrollments') }}">Enrolled Courses</a></li>
+
                                             <li>
-                                                <form method="POST" action="{{ route('logout') }}">
-                                                    @csrf
-                                                    <button type="submit">Logout</button>
-                                                </form>
+                                                <a>
+                                                    <form method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+                                                        <button type="submit">Logout</button>
+                                                    </form>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            @else
-                            <a class="tp-btn-inner" href="{{ url('login') }}">Login</a>
-                            @endif
                         </div>
-                        <div class="offcanvas-btn d-xxl-none ml-30">
-                            <button class="offcanvas-open-btn"><i class="fa-solid fa-bars"></i></button>
-                        </div>
+                        @endauth
+
                     </div>
                 </div>
             </div>

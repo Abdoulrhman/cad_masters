@@ -14,7 +14,7 @@
                             <h1 align="center" class="jumbotron" align="center">New Courses</h1>
 
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'image', 'description', 'categoryid', 'price', 'price_offer',
+                            'headers' => ['id', 'name', 'image', 'description', 'category', 'price', 'price_offer',
                             'branch', 'hours'],
                             'items' => $courses,
                             'actions' => [

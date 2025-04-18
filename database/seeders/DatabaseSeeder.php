@@ -11,8 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // First seed the categories
-        $this->call(CourseCategorySeeder::class);
+        $this->call([
+            CourseCategorySeeder::class,
+        ]);
 
         // Then seed the courses that depend on categories
         $this->call(CourseSeeder::class);

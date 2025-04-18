@@ -22,6 +22,17 @@
                     <img src="{{ asset('storage/' . $item->image) }}" class="img-thumbnail" width="50">
                     @elseif($header === 'created_at' || $header === 'updated_at')
                     {{ $item->$header->diffForHumans() }}
+                    @elseif(str_contains($header, '_id'))
+                        @php
+                            $relation = str_replace('_id', '', $header);
+                            $relationObj = $item->$relation;
+                        @endphp
+                        {{ $relationObj->name ?? 'N/A' }}
+                    @elseif(method_exists($item, $header))
+                        @php
+                            $relation = $item->$header;
+                        @endphp
+                        {{ $relation ? $relation->name : 'N/A' }}
                     @else
                     {{ $item->$header ?? 'N/A' }}
                     @endif

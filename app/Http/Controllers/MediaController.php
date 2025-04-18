@@ -1,15 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Media;
-use Illuminate\Http\Request;
+use App\Models\MediaAlbum;
 
 class MediaController extends Controller
 {
     public function index()
     {
-        $medias    = Media::all();
-        return view('media', compact('medias'));
+        $albums = MediaAlbum::with(['media' => function ($query) {
+            $query->orderBy('order');
+        }])->latest()->get();
+
+        return view('media', compact('albums'));
+    }
+
+    public function show(MediaAlbum $album)
+    {
+        $album->load(['media' => function ($query) {
+            $query->orderBy('order');
+        }]);
+
+        return view('media.show', compact('album'));
     }
 }
