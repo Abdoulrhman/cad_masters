@@ -1,26 +1,23 @@
 <?php
 namespace App\Providers;
 
-use App\Models\Course;
-use App\Policies\CoursePolicy;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     /**
-     * The policy mappings for the application.
-     *
-     * @var array
+     * Register any application services.
      */
-    protected $policies = [
-        Course::class => CoursePolicy::class,
-    ];
+    public function register(): void
+    {
+        //
+    }
 
     /**
-     * Register any authentication / authorization services.
+     * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(): void
     {
-        $this->registerPolicies();
+        //
     }
 }

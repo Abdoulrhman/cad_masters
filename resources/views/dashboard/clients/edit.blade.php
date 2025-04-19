@@ -50,6 +50,7 @@
 
                                         <div class="col-12 text-center mt-4">
                                             <button type="submit" class="btn btn-primary">Update</button>
+                                            <a href="{{ route('dashboard.clients.index') }}" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
                                 </form>

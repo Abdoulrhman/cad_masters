@@ -13,8 +13,16 @@
                         <section class="tp-fact-wrapper">
                             <h1 align="center" class="jumbotron" align="center">New Courses</h1>
 
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            <div class="text-end mb-3">
+                                <a href="{{ route('dashboard.courses.create') }}" class="btn btn-primary">Add Courses</a>
+                            </div>
+
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'image', 'description', 'categoryid', 'price', 'price_offer',
+                            'headers' => ['id', 'name', 'image', 'description', 'category', 'price', 'price_offer',
                             'branch', 'hours'],
                             'items' => $courses,
                             'actions' => [
@@ -32,3 +40,4 @@
     </section>
 </main>
 @endsection
+

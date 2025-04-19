@@ -60,6 +60,7 @@
 
                                     <div class="col-12 text-center mt-4">
                                         <button type="submit" class="btn btn-primary">Create New Applicant</button>
+                                        <a href="{{ route('dashboard.employees.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </form>

@@ -6,12 +6,12 @@
 
         <!-- undergraduate breadcrumb start -->
 <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-    <div class="tp-breadcrumb__bg overlay" data-background="{{ asset('assets/img/breadcrumb/image.jpg') }}}"></div>
+    <div class="tp-breadcrumb__bg overlay" style="background: url('/assets/img/breadcrumb/Accreditation and Authorizations.png') center/cover no-repeat !important; "></div>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="tp-breadcrumb__content">
-                    <h3 class="tp-breadcrumb__title color">Accreditation, Authorizations and membership</h3>
+                    {{--<h3 class="tp-breadcrumb__title color">Accreditation, Authorizations and membership</h3>--}}
                 </div>
             </div>
         </div>

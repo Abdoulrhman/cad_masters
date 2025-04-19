@@ -5,7 +5,7 @@
                 <div class="col-xl-4 col-lg-3 col-md-6">
                     <div class="tp-footer-widget tp-footer-col-1 mb-30">
                         <div class="tp-footer-widget-logo mb-20 tp-header-logo">
-                            <a href="#"><img src="{{ asset('assets/img/logo/CAD Masters Drak.png') }}" alt="Logo"></a>
+                            <a href="#"><img src="{{ asset('assets/img/logo/CAD Masters White.png') }}" alt="Logo"></a>
                         </div>
                         <div class="tp-footer-widget-content">
                             <h4 class="tp-footer-widget-title mb-15">CAD Masters</h4>
@@ -47,23 +47,23 @@
                             </div>
                             <div class="tp-footer-contact-mail">
                                 <a href="mailto:info@cadmasters.org">
-                                <span>
-                                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
+                                    <span>
+                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
                                                 d="M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5"
                                                 stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
                                                 stroke-linecap="round" stroke-linejoin="round" />
-                                        <path
+                                            <path
                                                 d="M13 5.40039L10.496 7.40015C9.672 8.05607 8.32 8.05607 7.496 7.40015L5 5.40039"
                                                 stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
                                                 stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1 11.4004H5.8" stroke="currentColor" stroke-width="1.5"
-                                              stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1 8.19922H3.4" stroke="currentColor" stroke-width="1.5"
-                                              stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
+                                            <path d="M1 11.4004H5.8" stroke="currentColor" stroke-width="1.5"
+                                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1 8.19922H3.4" stroke="currentColor" stroke-width="1.5"
+                                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
                                     info@cadmasters.org
                                 </a>
                             </div>

@@ -23,8 +23,7 @@
                             </div>
                             @endif
 
-                            <form action="{{ route('dashboard.clients.store') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('dashboard.clients.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
@@ -42,6 +41,7 @@
 
                                     <div class="col-12 text-center mt-4">
                                         <button type="submit" class="btn btn-primary">Create Clients</button>
+                                        <a href="{{ route('dashboard.clients.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </form>

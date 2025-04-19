@@ -1,66 +1,63 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\AuthorizationController;
-use App\Http\Controllers\MediaController;
-
-
-
-
-//---------------------------------------------
-use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\ClientsController;
-use App\Http\Controllers\CertificatesController;
-use App\Http\Controllers\AuthorizationsController;
-use App\Http\Controllers\MediasController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseRegistrationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthorizationsController;
+use App\Http\Controllers\Dashboard\CarouselController as DashboardCarouselController;
+use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\CertificatesController;
+use App\Http\Controllers\Dashboard\CompanyProfileController;
+use App\Http\Controllers\Dashboard\CoursesController;
+//use App\Http\Controllers\Dashboard\EmployeesController;
+use App\Http\Controllers\Dashboard\MediaAlbumController;
+use App\Http\Controllers\Dashboard\MediasController;
+use App\Http\Controllers\Dashboard\StudentsController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstructorsController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 // Home Page
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('about', function () {
-    return view('about');
-});
-
-
-
-Route::get('client', function () {
-    return view('client');
-});
-
-
 Route::get('/', [HomeController::class, 'index']);
-Route::get('certificate', [CertificateController::class, 'index']);
+
+// Public Course Routes
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+
+// Public Pages
+Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('client', [ClientController::class, 'index']);
+Route::get('certificate', [CertificateController::class, 'index']);
 Route::get('authorization', [AuthorizationController::class, 'index']);
-Route::get('media', [MediaController::class, 'index']);
-
-
-
+Route::get('media', [MediaController::class, 'index'])->name('media.index');
+Route::get('media/albums/{album:slug}', [MediaController::class, 'show'])->name('media.albums.show');
 
 // Authentication Routes
 require __DIR__ . '/auth.php';
 
-// Dashboard Routes (No Authentication Required)
-Route::prefix('dashboard')->group(function () {
+// Dashboard Routes (Authentication Required)
+Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/analytics', [DashboardController::class, 'analytics'])->name('dashboard.analytics');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
-    // Courses Routes (Requires Authentication)
+
+    // Courses Routes
     Route::resource('courses', CourseController::class)->except(['show'])->names([
         'index'   => 'dashboard.courses.index',
         'create'  => 'dashboard.courses.create',
@@ -70,12 +67,12 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.courses.destroy',
     ]);
 
-    // Courses Routes (Requires Authentication)
+    // Posts Routes (Requires Authentication)
     Route::resource('posts', PostController::class)->except(['show'])->names([
         'index' => 'dashboard.posts.index',
     ]);
 
-// Categories Routes (Requires Authentication)
+    // Categories Routes (Requires Authentication)
     Route::resource('categories', CourseCategoriesController::class)->except(['show'])->names([
         'index'   => 'dashboard.categories.index',
         'create'  => 'dashboard.categories.create',
@@ -126,7 +123,7 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.authorizations.destroy',
     ]);
 
-    // Events Routes (Required Authentication)
+    // Media Routes (Required Authentication)
     Route::resource('medias', MediasController::class)->except(['show'])->names([
         'index'   => 'dashboard.medias.index',
         'create'  => 'dashboard.medias.create',
@@ -156,6 +153,7 @@ Route::prefix('dashboard')->group(function () {
         'destroy' => 'dashboard.partners.destroy',
     ]);
 
+    // Student Routes (Required Authentication)
     Route::resource('students', StudentController::class)->names([
         'index'   => 'dashboard.students.index',
         'create'  => 'dashboard.students.create',
@@ -165,7 +163,9 @@ Route::prefix('dashboard')->group(function () {
         'update'  => 'dashboard.students.update',
         'destroy' => 'dashboard.students.destroy',
     ]);
-    Route::resource('carousel', CarouselController::class)->names([
+
+    // Carousel Routes
+    Route::resource('carousel', DashboardCarouselController::class)->names([
         'index'   => 'dashboard.carousel.index',
         'create'  => 'dashboard.carousel.create',
         'store'   => 'dashboard.carousel.store',
@@ -173,7 +173,31 @@ Route::prefix('dashboard')->group(function () {
         'update'  => 'dashboard.carousel.update',
         'destroy' => 'dashboard.carousel.destroy',
     ]);
+    Route::post('carousel/update-order', [DashboardCarouselController::class, 'updateOrder'])
+        ->name('dashboard.carousel.updateOrder');
 
+    // Company Profile Routes (Required Authentication)
+    Route::get('/company-profile', [CompanyProfileController::class, 'index'])
+        ->name('dashboard.company-profile.index');
+    Route::post('/company-profile', [CompanyProfileController::class, 'store'])
+        ->name('dashboard.company-profile.store');
+    Route::put('/company-profile/{companyProfile}', [CompanyProfileController::class, 'update'])
+        ->name('dashboard.company-profile.update');
+
+    // Job Applications Routes
+    Route::get('/job-applications', [CareerController::class, 'dashboard'])->name('dashboard.job-applications.index');
+    Route::get('/job-applications/{application}', [CareerController::class, 'show'])->name('dashboard.job-applications.show');
+    Route::put('/job-applications/{application}/status', [CareerController::class, 'updateStatus'])->name('dashboard.job-applications.update-status');
+
+    // Position Routes
+    Route::resource('positions', PositionController::class)->names([
+        'index'   => 'dashboard.positions.index',
+        'create'  => 'dashboard.positions.create',
+        'store'   => 'dashboard.positions.store',
+        'edit'    => 'dashboard.positions.edit',
+        'update'  => 'dashboard.positions.update',
+        'destroy' => 'dashboard.positions.destroy',
+    ]);
 });
 
 // Profile Routes (Requires Authentication)
@@ -186,4 +210,68 @@ Route::middleware('auth')->group(function () {
 // Debug Route (Check Authentication Status)
 Route::get('/debug-auth', function () {
     return response()->json(auth()->user());
+});
+
+// Careers routes
+Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
+Route::post('/careers/apply', [CareerController::class, 'apply'])->name('careers.apply');
+
+// Contact routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('dashboard.contact');
+    Route::put('/dashboard/contact/settings', [ContactController::class, 'updateSettings'])->name('contact.settings.update');
+});
+
+// Course Registration Routes
+Route::get('/courses/{course}/register', [CourseRegistrationController::class, 'showForm'])->name('courses.register');
+Route::post('/courses/{course}/register', [CourseRegistrationController::class, 'submit'])->name('courses.register.submit');
+
+// Test Mail Route
+Route::get('/test-mail', function () {
+    try {
+        Mail::raw('Test email from CAD Masters', function ($message) {
+            $message->to('asemghazal24@gmail.com')
+                ->subject('Test Email');
+        });
+        return 'Email sent successfully!';
+    } catch (\Exception $e) {
+        return 'Error sending email: ' . $e->getMessage();
+    }
+});
+
+// Media Album Routes
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        // Media Albums
+        Route::get('media/albums', [MediaAlbumController::class, 'index'])->name('media.albums.index');
+        Route::get('media/albums/create', [MediaAlbumController::class, 'create'])->name('media.albums.create');
+        Route::post('media/albums', [MediaAlbumController::class, 'store'])->name('media.albums.store');
+        Route::get('media/albums/{album}', [MediaAlbumController::class, 'show'])->name('media.albums.show');
+        Route::get('media/albums/{album}/edit', [MediaAlbumController::class, 'edit'])->name('media.albums.edit');
+        Route::put('media/albums/{album}', [MediaAlbumController::class, 'update'])->name('media.albums.update');
+        Route::delete('media/albums/{album}', [MediaAlbumController::class, 'destroy'])->name('media.albums.destroy');
+
+        // Media Items
+        Route::post('media/albums/{album}/media', [App\Http\Controllers\Dashboard\MediaController::class, 'store'])->name('media.store');
+        Route::put('media/{media}', [App\Http\Controllers\Dashboard\MediaController::class, 'update'])->name('media.update');
+        Route::delete('media/{media}', [App\Http\Controllers\Dashboard\MediaController::class, 'destroy'])->name('media.destroy');
+        Route::post('media/albums/{album}/reorder', [App\Http\Controllers\Dashboard\MediaController::class, 'reorder'])->name('media.reorder');
+
+        // Legacy Media Routes (to be deprecated)
+        Route::resource('medias', MediasController::class);
+
+        // Main Resources
+        Route::resource('courses', CoursesController::class);
+        Route::resource('categories', CategoriesController::class);
+        Route::resource('employees', EmployeeController::class);
+        Route::resource('clients', ClientsController::class);
+        Route::resource('partners', PartnersController::class);
+        Route::resource('instructors', InstructorsController::class);
+        Route::resource('students', StudentsController::class);
+        Route::resource('certificates', CertificatesController::class);
+        Route::resource('carousel', DashboardCarouselController::class);
+
+        // Authorizations
+        Route::resource('authorizations', AuthorizationsController::class);
+    });
 });
