@@ -15,5 +15,6 @@ class Student extends Model
         'dob',
         'gender',
         'image',
+        'address',
     ];
 }

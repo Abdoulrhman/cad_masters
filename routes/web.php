@@ -29,7 +29,6 @@ use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -154,7 +153,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     ]);
 
     // Student Routes (Required Authentication)
-    Route::resource('students', StudentController::class)->names([
+    Route::resource('students', StudentsController::class)->names([
         'index'   => 'dashboard.students.index',
         'create'  => 'dashboard.students.create',
         'store'   => 'dashboard.students.store',

@@ -35,9 +35,9 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="image" class="form-label">Certificates Image (Optional)</label>
+                                        <label for="image" class="form-label">Certificates Image</label>
                                         <input type="file" name="image" class="form-control" id="image"
-                                            accept="image/jpg,image/jpeg,image/png">
+                                            accept="image/jpg,image/jpeg,image/png" required>
                                     </div>
 
                                     <div class="col-12 text-center mt-4">

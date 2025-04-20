@@ -1,150 +1,91 @@
 @extends('layouts.dashboard')
 
 @section('content')
-{{--<div class="container-fluid px-4">
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="mt-4">Carousel Management</h1>
-        <a href="{{ route('dashboard.carousel.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Add New Slide
-        </a>
-    </div>
-
-    @if(session('success'))
-    <div class="alert alert-success mt-4">
-        {{ session('success') }}
-    </div>
-    @endif
-
-    <div class="card mt-4">
-        <div class="card-body">
-            <table class="table table-striped" id="carouselTable">
-                <thead>
-                    <tr>
-                        <th style="width: 50px;">Order</th>
-                        <th style="width: 150px;">Image</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th style="width: 150px;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="sortable">
-                    @foreach($carousels as $carousel)
-                    <tr data-id="{{ $carousel->id }}">
-                        <td class="handle" style="cursor: move;">
-                            <i class="fas fa-grip-vertical"></i>
-                            <span class="order-number">{{ $carousel->order }}</span>
-                        </td>
-                        <td>
-                            <img src="{{ asset('storage/' . $carousel->image) }}" alt="{{ $carousel->title }}"
-                                class="img-thumbnail" style="max-height: 50px;">
-                        </td>
-                        <td>{{ $carousel->title }}</td>
-                        <td>{{ Str::limit($carousel->description, 100) }}</td>
-                        <td>
-                            <span class="badge {{ $carousel->is_active ? 'bg-success' : 'bg-danger' }}">
-                                {{ $carousel->is_active ? 'Active' : 'Inactive' }}
-                            </span>
-                        </td>
-                        <td>
-                            <a href="{{ route('dashboard.carousel.edit', $carousel) }}" class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form action="{{ route('dashboard.carousel.destroy', $carousel) }}" method="POST"
-                                class="d-inline"
-                                onsubmit="return confirm('Are you sure you want to delete this slide?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>--}}
-
-
-
 <main class="tp-dashboard-body-bg">
     <section class="tpd-main pb-75 pt-75">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    @include('partials.sidebar') {{-- Sidebar --}}
+                    @include('partials.sidebar')
                 </div>
                 <div class="col-lg-9">
                     <div class="tpd-content-layout">
                         <section class="tp-fact-wrapper">
-                            <h1 align="center" class="jumbotron" align="center">All Sliders</h1>
+                            <h1 class="text-center mb-4">Carousel Management</h1>
 
                             @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
                             @endif
 
                             <div class="text-end mb-3">
-                                <a href="{{ route('dashboard.clients.create') }}" class="btn btn-primary">Add New Slide</a>
+                                <a href="{{ route('dashboard.carousel.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Add New Slide
+                                </a>
                             </div>
-                            <table class="table table-striped" id="carouselTable">
-                                <thead>
-                                <tr>
-                                    <th style="width: 50px;">Order</th>
-                                    <th style="width: 150px;">Image</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th style="width: 150px;">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody id="sortable">
-                                @foreach($carousels as $carousel)
-                                    <tr data-id="{{ $carousel->id }}">
-                                        <td class="handle" style="cursor: move;">
-                                            <i class="fas fa-grip-vertical"></i>
-                                            <span class="order-number">{{ $carousel->order }}</span>
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset('storage/' . $carousel->image) }}" alt="{{ $carousel->title }}"
-                                                 class="img-thumbnail" style="max-height: 50px;">
-                                        </td>
-                                        <td>{{ $carousel->title }}</td>
-                                        <td>{{ Str::limit($carousel->description, 100) }}</td>
-                                        <td>
-                            <span class="badge {{ $carousel->is_active ? 'bg-success' : 'bg-danger' }}">
-                                {{ $carousel->is_active ? 'Active' : 'Inactive' }}
-                            </span>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('dashboard.carousel.edit', $carousel) }}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('dashboard.carousel.destroy', $carousel) }}" method="POST"
-                                                  class="d-inline"
-                                                  onsubmit="return confirm('Are you sure you want to delete this slide?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-striped" id="carouselTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 50px;">Order</th>
+                                                <th style="width: 150px;">Image</th>
+                                                <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                                <th style="width: 150px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sortable">
+                                            @foreach($carousels as $carousel)
+                                            <tr data-id="{{ $carousel->id }}">
+                                                <td class="handle" style="cursor: move;">
+                                                    <i class="fas fa-grip-vertical"></i>
+                                                    <span class="order-number">{{ $carousel->order }}</span>
+                                                </td>
+                                                <td>
+                                                    <img src="{{ asset('storage/' . $carousel->image) }}"
+                                                        alt="{{ $carousel->title }}" class="img-thumbnail"
+                                                        style="max-height: 50px;">
+                                                </td>
+                                                <td>{{ $carousel->title }}</td>
+                                                <td>{{ Str::limit($carousel->description, 100) }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $carousel->is_active ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $carousel->is_active ? 'Active' : 'Inactive' }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('dashboard.carousel.edit', $carousel) }}"
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form action="{{ route('dashboard.carousel.destroy', $carousel) }}"
+                                                        method="POST" class="d-inline"
+                                                        onsubmit="return confirm('Are you sure you want to delete this slide?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </section>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 </main>
-
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
