@@ -11,8 +11,7 @@
                 <div class="col-lg-9">
                     <div class="tpd-content-layout">
                         <section class="tp-fact-wrapper">
-                            <h1 align="center" class="jumbotron" align="center">New Employees</h1>
-
+                            <h1 class="text-center mb-4">Employees</h1>
 
                             @if(session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
@@ -20,22 +19,21 @@
 
                             <div class="text-end mb-3">
                                 <a href="{{ route('dashboard.employees.create') }}" class="btn btn-primary">Add
-                                    Employees</a>
+                                    Employee</a>
                             </div>
 
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'number', 'email', 'subject'],
+                            'headers' => ['name', 'phone', 'email', 'position', 'image'],
                             'items' => $employees,
                             'actions' => [
                             'edit' => 'dashboard.employees.edit',
-                            'delete' => 'dashboard.employees.destroy',
-                            'pdf' => true // Adding the PDF action
+                            'delete' => 'dashboard.employees.destroy'
                             ]
                             ])
                         </section>
                     </div>
 
-                    @include('partials.pagination', ['items' => $employees])
+                    {{ $employees->links() }}
                 </div>
             </div>
         </div>

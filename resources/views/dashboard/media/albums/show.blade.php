@@ -1,99 +1,112 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="container-fluid px-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mt-4">{{ $album->title }}</h1>
-        <div>
-            <a href="{{ route('dashboard.media.albums.index') }}" class="btn btn-secondary">Back to Albums</a>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadMediaModal">
-                Upload Media
-            </button>
-        </div>
-    </div>
-
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Album Details</h5>
-                    <p class="card-text">{{ $album->description }}</p>
-                    @if($album->cover_image)
-                        <img src="{{ asset('storage/' . $album->cover_image) }}"
-                             alt="{{ $album->title }}"
-                             class="img-fluid mb-3">
-                    @endif
-                    <div class="d-grid gap-2">
-                        <a href="{{ route('dashboard.media.albums.edit', $album) }}"
-                           class="btn btn-primary">
-                            Edit Album
-                        </a>
-                    </div>
+<main class="tp-dashboard-body-bg">
+    <section class="tpd-main pb-75 pt-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    @include('partials.sidebar') {{-- Sidebar --}}
                 </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Media Files</h5>
-                    <div class="row" id="mediaGrid">
-                        @foreach($media as $item)
-                            <div class="col-md-4 mb-4" data-id="{{ $item->id }}">
+                <div class="col-lg-9">
+                    <div class="tpd-content-layout">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="tp-contact-from-title">{{ $album->title }}</h1>
+                            <div>
+                                <a href="{{ route('dashboard.media.albums.index') }}" class="btn btn-secondary">Back to Albums</a>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadMediaModal">
+                                    Upload Media
+                                </button>
+                            </div>
+                        </div>
+
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        <div class="row mb-4">
+                            <div class="col-md-4">
                                 <div class="card">
-                                    @if(str_starts_with($item->mime_type, 'image/'))
-                                        <img src="{{ asset('storage/' . $item->file_path) }}"
-                                             class="card-img-top"
-                                             alt="{{ $item->title }}"
-                                             style="height: 150px; object-fit: cover;">
-                                    @else
-                                        <div class="card-img-top bg-light text-center p-4" style="height: 150px;">
-                                            <i class="fas fa-file fa-3x text-secondary mt-3"></i>
-                                        </div>
-                                    @endif
                                     <div class="card-body">
-                                        <h6 class="card-title">{{ $item->title }}</h6>
-                                        <p class="card-text small">{{ Str::limit($item->description, 50) }}</p>
-                                        <div class="btn-group w-100">
-                                            <button type="button"
-                                                    class="btn btn-sm btn-outline-primary"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#editMediaModal"
-                                                    data-media-id="{{ $item->id }}"
-                                                    data-media-title="{{ $item->title }}"
-                                                    data-media-description="{{ $item->description }}">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <form action="{{ route('dashboard.media.destroy', $item) }}"
-                                                  method="POST"
-                                                  class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                        class="btn btn-sm btn-outline-danger"
-                                                        onclick="return confirm('Are you sure you want to delete this media?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
+                                        <h5 class="card-title">Album Details</h5>
+                                        <p class="card-text">{{ $album->description }}</p>
+                                        @if($album->cover_image)
+                                            <img src="{{ asset('storage/' . $album->cover_image) }}"
+                                                alt="{{ $album->title }}"
+                                                class="img-fluid mb-3">
+                                        @endif
+                                        <div class="d-grid gap-2">
+                                            <a href="{{ route('dashboard.media.albums.edit', $album) }}"
+                                            class="btn btn-primary">
+                                                Edit Album
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $media->links() }}
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Media Files</h5>
+                                        <div class="row" id="mediaGrid">
+                                            @foreach($media as $item)
+                                                <div class="col-md-4 mb-4" data-id="{{ $item->id }}">
+                                                    <div class="card">
+                                                        @if(str_starts_with($item->mime_type, 'image/'))
+                                                            <img src="{{ asset('storage/' . $item->file_path) }}"
+                                                                class="card-img-top"
+                                                                alt="{{ $item->title }}"
+                                                                style="height: 150px; object-fit: cover;">
+                                                        @else
+                                                            <div class="card-img-top bg-light text-center p-4" style="height: 150px;">
+                                                                <i class="fas fa-file fa-3x text-secondary mt-3"></i>
+                                                            </div>
+                                                        @endif
+                                                        <div class="card-body">
+                                                            <h6 class="card-title">{{ $item->title }}</h6>
+                                                            <p class="card-text small">{{ Str::limit($item->description, 50) }}</p>
+                                                            <div class="btn-group w-100">
+                                                                <button type="button"
+                                                                        class="btn btn-sm btn-outline-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#editMediaModal"
+                                                                        data-media-id="{{ $item->id }}"
+                                                                        data-media-title="{{ $item->title }}"
+                                                                        data-media-description="{{ $item->description }}">
+                                                                    <i class="fas fa-edit"></i>
+                                                                </button>
+                                                                <form action="{{ route('dashboard.media.destroy', $item) }}"
+                                                                    method="POST"
+                                                                    class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                            class="btn btn-sm btn-outline-danger"
+                                                                            onclick="return confirm('Are you sure you want to delete this media?')">
+                                                                        <i class="fas fa-trash"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            {{ $media->links() }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</main>
 
 <!-- Upload Media Modal -->
 <div class="modal fade" id="uploadMediaModal" tabindex="-1">

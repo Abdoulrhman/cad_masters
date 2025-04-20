@@ -8,7 +8,7 @@
             @foreach($sliders as $slider)
             <div class="swiper-slide">
                 <div class="tp-hero-item"
-                    style="background-image: url('{{ asset('storage/' . $slider->image) }}'); background-size: cover; background-position: center;">
+                    style="background-image: url('{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}'); background-size: cover; background-position: center;">
                     <div class="tp-hero-overlay"></div>
                     <div class="container">
                         <div class="row">
