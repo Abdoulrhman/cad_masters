@@ -21,9 +21,10 @@
         <div class="row">
             @foreach($partners as $partner)
             <div class="col-lg-3 col-sm-6">
-                <div class="tp-shop-author-item text-center mb-30">
-                    <div class="tp-shop-author-thumb">
-                        <img src="{{ asset('storage/' . $partner->image) }}" alt="">
+                <div class="tp-shop-author-item text-center mb-30"
+                    style="display: flex;flex-direction: column;align-items: center;">
+                    <div class="tp-shop-author-thumb" style="width: 200px;height: 200px;">
+                        <img src="{{ asset('storage/' . $partner->image) }}" alt="" style="height: 100%">
                     </div>
                     <div class="tp-shop-author-content">
                         <h4 class="tp-shop-author-item-title"><a href="my-profile.html">{{$partner->name}}</a></h4>
