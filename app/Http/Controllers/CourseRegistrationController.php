@@ -16,16 +16,6 @@ class CourseRegistrationController extends Controller
 
     public function submit(Request $request, Course $course)
     {
-        $request->validate([
-            'first_name'      => 'required|string|max:255',
-            'last_name'       => 'required|string|max:255',
-            'email'           => 'required|email|max:255',
-            'phone'           => 'required|string|max:20',
-            'education_level' => 'required|string|in:High School,Bachelor\'s Degree,Master\'s Degree,PhD',
-            'message'         => 'required|string',
-            'cv'              => 'required|file|mimes:pdf|max:5120', // 5MB max
-        ]);
-
         // Store the CV file
         $cvPath = $request->file('cv')->store('course-registrations/cv', 'public');
 

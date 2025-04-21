@@ -10,20 +10,30 @@
                     <div class="tp-about-tutor-heading mb-60">
                         <div class="tp-about-tutor-subtitle d-flex align-items-center">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M1 10H19" stroke="#2D4CFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#2D4CFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path d="M1 10H19" stroke="#2D4CFF" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z"
+                                        stroke="#2D4CFF" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                             </span>
                             <p>About CAD Masters</p>
                         </div>
                         <h3 class="tp-about-tutor-title">Ensuring Engineering Success. Together.</h3>
-                        <p class="mt-30">CAD Masters is a leading engineering and design firm, recognized by Autodesk as a trusted partner in the industry. As an Autodesk Gold Partner, Autodesk Authorized Training Center, a Civil 3D Implementation Certified Expert, and a member of the Autodesk Developer Network, we have been recognized by Autodesk for our expertise and commitment to our clients.</p>
+                        <p class="mt-30">CAD Masters is a leading engineering and design firm, recognized by Autodesk as
+                            a trusted partner in the industry. As an Autodesk Gold Partner, Autodesk Authorized Training
+                            Center, a Civil 3D Implementation Certified Expert, and a member of the Autodesk Developer
+                            Network, we have been recognized by Autodesk for our expertise and commitment to our
+                            clients.</p>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="tp-about-tutor-thumb">
-                        <img src="{{ asset('assets/img/about/autodesk-gold-partner.png') }}" alt="Autodesk Gold Partner">
+                        <img src="{{ asset('assets/img/about/autodesk-gold-partner.png') }}"
+                            alt="Autodesk Gold Partner">
                     </div>
                 </div>
             </div>
@@ -41,7 +51,9 @@
                             <i class="fas fa-laptop-code fa-3x text-primary"></i>
                         </div>
                         <h4 class="tp-service-title">Software Solutions</h4>
-                        <p>CAD Masters specializes in the AEC and GIS marketplaces. Our dedicated account representatives, registered engineers, and CAD experts guide you in the purchase and maintenance of your Autodesk subscription software.</p>
+                        <p>CAD Masters specializes in the AEC and GIS marketplaces. Our dedicated account
+                            representatives, registered engineers, and CAD experts guide you in the purchase and
+                            maintenance of your Autodesk subscription software.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -50,7 +62,9 @@
                             <i class="fas fa-chalkboard-teacher fa-3x text-primary"></i>
                         </div>
                         <h4 class="tp-service-title">Professional CAD Training</h4>
-                        <p>We offer 36 different in-person and online professional CAD training courses, from beginner to advanced topics. Courses cover Autodesk's AEC Industry Collection software, including AutoCAD, Civil 3D, Revit, and more.</p>
+                        <p>We offer 36 different in-person and online professional CAD training courses, from beginner
+                            to advanced topics. Courses cover Autodesk's AEC Industry Collection software, including
+                            AutoCAD, Civil 3D, Revit, and more.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -59,7 +73,9 @@
                             <i class="fas fa-cogs fa-3x text-primary"></i>
                         </div>
                         <h4 class="tp-service-title">Engineering & Consulting</h4>
-                        <p>Our engineers help with project planning and setup in BIM environments of Civil 3D or Revit. We provide training and project support, either continuously as project managers or as needed for specific issues.</p>
+                        <p>Our engineers help with project planning and setup in BIM environments of Civil 3D or Revit.
+                            We provide training and project support, either continuously as project managers or as
+                            needed for specific issues.</p>
                     </div>
                 </div>
             </div>
@@ -73,13 +89,15 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="tp-counter-item mb-30">
-                        <h4 class="tp-counter-number text-white"><span class="purecounter" data-purecounter-duration="1" data-purecounter-end="36">0</span>+</h4>
+                        <h4 class="tp-counter-number text-white"><span class="purecounter" data-purecounter-duration="1"
+                                data-purecounter-end="36">0</span>+</h4>
                         <p class="text-white">Training Courses</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="tp-counter-item mb-30">
-                        <h4 class="tp-counter-number text-white"><span class="purecounter" data-purecounter-duration="1" data-purecounter-end="2">0</span></h4>
+                        <h4 class="tp-counter-number text-white"><span class="purecounter" data-purecounter-duration="1"
+                                data-purecounter-end="2">0</span></h4>
                         <p class="text-white">Training Locations</p>
                     </div>
                 </div>
@@ -107,13 +125,17 @@
                 <div class="col-lg-6">
                     <div class="tp-feature-content mb-30">
                         <h3 class="tp-feature-title">CAD Workstations</h3>
-                        <p>Through our experience in training, technical support, and engineering work, CAD Masters has developed deep knowledge of the hardware necessary for engineers, architects, surveyors, and drafters to do their best work.</p>
+                        <p>Through our experience in training, technical support, and engineering work, CAD Masters has
+                            developed deep knowledge of the hardware necessary for engineers, architects, surveyors, and
+                            drafters to do their best work.</p>
                         <div class="tp-feature-list">
                             <ul>
                                 <li><i class="fas fa-check"></i> Standard Workstation for AutoCAD users</li>
-                                <li><i class="fas fa-check"></i> Premium Workstation for AutoCAD, Civil 3D, and Revit users</li>
+                                <li><i class="fas fa-check"></i> Premium Workstation for AutoCAD, Civil 3D, and Revit
+                                    users</li>
                                 <li><i class="fas fa-check"></i> Premium+ Workstation for all Autodesk products</li>
-                                <li><i class="fas fa-check"></i> Ultimate Workstation for drone and Lidar data processing</li>
+                                <li><i class="fas fa-check"></i> Ultimate Workstation for drone and Lidar data
+                                    processing</li>
                             </ul>
                         </div>
                     </div>
@@ -121,7 +143,8 @@
                 <div class="col-lg-6">
                     <div class="tp-feature-content mb-30">
                         <h3 class="tp-feature-title">Technical Support</h3>
-                        <p>Our award-winning technical support via phone, email, or remote web assistance is free with any Autodesk software subscription, and includes:</p>
+                        <p>Our award-winning technical support via phone, email, or remote web assistance is free with
+                            any Autodesk software subscription, and includes:</p>
                         <div class="tp-feature-list">
                             <ul>
                                 <li><i class="fas fa-check"></i> Installation and licensing assistance</li>
@@ -161,7 +184,8 @@
                 <div class="col-lg-6">
                     @if($companyProfile)
                     <div class="tp-contact-btn text-center">
-                        <a href="{{ asset('storage/' . $companyProfile->file_path) }}" class="tp-btn" download="{{ $companyProfile->file_name }}">
+                        <a href="{{ asset('storage/' . $companyProfile->file_path) }}" class="tp-btn"
+                            download="{{ $companyProfile->file_name }}">
                             <i class="fas fa-download me-2"></i> Download Company Profile
                         </a>
                     </div>
