@@ -7,6 +7,7 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ConatctUsController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseRegistrationController;
@@ -44,6 +45,7 @@ Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('client', [ClientController::class, 'index']);
 Route::get('certificate', [CertificateController::class, 'index']);
 Route::get('authorization', [AuthorizationController::class, 'index']);
+Route::get('contact-us', [ConatctUsController::class, 'index']);
 Route::get('media', [MediaController::class, 'index'])->name('media.index');
 Route::get('media/albums/{album:slug}', [MediaController::class, 'show'])->name('media.albums.show');
 
