@@ -72,7 +72,8 @@ class CoursesController extends Controller
     public function create()
     {
         $courseCategories = CourseCategory::all();
-        return view('dashboard.courses.create', compact('courseCategories'));
+        $instructors      = \App\Models\Instructor::all();
+        return view('dashboard.courses.create', compact('courseCategories', 'instructors'));
     }
 
     /**

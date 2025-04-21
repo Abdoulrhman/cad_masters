@@ -67,20 +67,20 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="hours" class="form-label">Hours</label>
-                                        <input type="number" name="hours" class="form-control" id="hours"
-                                            min="1" value="{{ old('hours') }}">
+                                        <input type="number" name="hours" class="form-control" id="hours" min="1"
+                                            value="{{ old('hours') }}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="start_date" class="form-label">Start Date</label>
-                                        <input type="datetime-local" name="start_date" class="form-control" id="start_date"
-                                            required value="{{ old('start_date') }}">
+                                        <input type="datetime-local" name="start_date" class="form-control"
+                                            id="start_date" required value="{{ old('start_date') }}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="end_date" class="form-label">End Date</label>
-                                        <input type="datetime-local" name="end_date" class="form-control" id="end_date" required
-                                            value="{{ old('end_date') }}">
+                                        <input type="datetime-local" name="end_date" class="form-control" id="end_date"
+                                            required value="{{ old('end_date') }}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -93,7 +93,7 @@
                                         <label for="instructor_id" class="form-label">Instructor</label>
                                         <select name="instructor_id" id="instructor_id" class="form-control" required>
                                             <option value="">Select an instructor</option>
-                                            @foreach (\App\Models\User::where('role', 'instructor')->get() as $instructor)
+                                            @foreach ($instructors as $instructor)
                                             <option value="{{ $instructor->id }}"
                                                 {{ old('instructor_id') == $instructor->id ? 'selected' : '' }}>
                                                 {{ $instructor->name }}
@@ -105,14 +105,17 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="is_active" class="form-label">Status</label>
                                         <select name="is_active" id="is_active" class="form-control" required>
-                                            <option value="1" {{ old('is_active', '1') == '1' ? 'selected' : '' }}>Active</option>
-                                            <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>Inactive</option>
+                                            <option value="1" {{ old('is_active', '1') == '1' ? 'selected' : '' }}>
+                                                Active</option>
+                                            <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>Inactive
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="image" class="form-label">Course Image</label>
-                                        <input type="file" name="image" class="form-control" id="image" accept="image/*">
+                                        <input type="file" name="image" class="form-control" id="image"
+                                            accept="image/*">
                                         <small class="text-muted">Recommended size: 800x600px. Max size: 2MB</small>
                                     </div>
 

@@ -49,7 +49,8 @@
                     <div class="tp-about-list">
                         <div class="tp-about-list-item d-flex align-items-center mb-35">
                             <div class="tp-about-list-icon">
-                                <span><img src="assets/img/icon/about/about-icon-1.svg" alt="about-icon"></span>
+                                <span style="display: flex;justify-content: center;align-items: center;"><img
+                                        src="assets/img/icon/about/about-icon-1.svg" alt="about-icon"></span>
                             </div>
                             <div class="tp-about-list-content">
                                 <h5 class="tp-about-list-title">Building Trust</h5>
@@ -58,7 +59,8 @@
                         </div>
                         <div class="tp-about-list-item d-flex align-items-center mb-35">
                             <div class="tp-about-list-icon">
-                                <span><img src="assets/img/icon/about/about-icon-2.svg" alt="about-icon"></span>
+                                <span style="display: flex;justify-content: center;align-items: center;"><img
+                                        src="assets/img/icon/about/about-icon-2.svg" alt="about-icon"></span>
                             </div>
                             <div class="tp-about-list-content">
                                 <h5 class="tp-about-list-title">Trusted by Students</h5>
