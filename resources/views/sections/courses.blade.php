@@ -63,7 +63,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="tp-course-item p-relative fix mb-30">
                                     <div class="tp-course-thumb">
-                                        <a href="course-details-2.html"><img class="course-pink"
+                                        <a href="{{ route('courses.show', $course) }}"><img class="course-pink"
                                                 src="{{ asset('storage/' . $course->image) }}" alt=""></a>
                                     </div>
                                     <div class="tp-course-content">
@@ -104,7 +104,7 @@
                                             </span>
                                         </div>
                                         <h4 class="tp-course-title">
-                                            <a href="course-details-2.html">{{$course->name}}</a>
+                                            <a href="{{ route('courses.show', $course) }}">{{$course->name}}</a>
                                         </h4>
                                         <div class="tp-course-rating d-flex align-items-end justify-content-between">
                                             <div class="tp-course-rating-star">
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="tp-course-btn home-2">
-                                        <a href="course-details-2.html">Preview this Course</a>
+                                        <a href="{{ route('courses.show', $course) }}">Preview this Course</a>
                                     </div>
                                 </div>
                             </div>
