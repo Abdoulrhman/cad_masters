@@ -5,7 +5,7 @@
                 <div class="col-xl-4 col-lg-3 col-md-6">
                     <div class="tp-footer-widget tp-footer-col-1 mb-30">
                         <div class="tp-footer-widget-logo mb-20 tp-header-logo">
-                            <a href="#"><img src="{{ asset('assets/img/logo/CAD Masters Drak.png') }}" alt="Logo"></a>
+                            <a href="#"><img src="{{ asset('assets/img/logo/CAD Masters white.png') }}" alt="Logo"></a>
                         </div>
                         <div class="tp-footer-widget-content">
                             <h4 class="tp-footer-widget-title mb-15 text-white">CAD Masters</h4>
@@ -36,12 +36,7 @@
                         <div class="tp-footer-widget-link">
                             <div class="tp-footer-contact">
                                 <h6 class="text-white">Nasr City Branch</h6>
-                                <p class="text-white-50"> <i class="fa fa-location-dot"></i> 2 Hassan Afify St.-Makram
-                                    Ebeid, Nasr City</p>
-                                <h6 class="text-white">Dokki Branch</h6>
-                                <p class="text-white-50"> <i class="fa fa-location-dot"></i> 48 Sharl De Gool – Al Giza,
-                                    Al Dokki.</p>
-
+                                <p class="text-white-50"> <i class="fa fa-location-dot"></i> 2 Hassan Afify St.-Makram Ebeid, Nasr City</p>
                             </div>
                             <div class="tp-footer-contact">
                                 <span class="text-white-50">Got Questions? Call us</span>
@@ -90,7 +85,13 @@
                                 </div>
                             </form>
                             <div class="tp-footer-newsletter-social d-flex gap-3 mt-4 justify-content-center">
-                                <a class="social-fb text-white" href="#"><i style="line-height:2;"
+                                <a class="social-fb" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a class="social-twit" href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a class="social-lnkd" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a class="social-insta" href="#"><i class="fa-brands fa-instagram"></i></a>
+                                <a class="social-yout" href="#"><i class="fa-brands fa-youtube"></i></a>
+                                <a class="social-tik" href="#"><i class="fa-brands fa-tiktok"></i></a>
+                                {{--<a class="social-fb text-white" href="#"><i style="line-height:2;"
                                         class="fa-brands fa-facebook-f"></i></a>
                                 <a class="social-twit text-white" href="#"><i style="line-height:2;"
                                         class="fa-brands fa-twitter"></i></a>
@@ -99,7 +100,7 @@
                                 <a class="social-yout text-white" href="#"><i style="line-height:2;"
                                         class="fa-brands fa-youtube"></i></a>
                                 <a class="social-tik text-white" href="#"><i style="line-height:2;"
-                                        class="fa-brands fa-tiktok"></i></a>
+                                        class="fa-brands fa-tiktok"></i></a>--}}
                             </div>
                         </div>
                     </div>

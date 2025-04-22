@@ -11678,17 +11678,39 @@ a:hover.social-lnkd {
 a:hover.social-yout {
     border-color: #ff3000;
 }
+
+a:hover.social-tik {
+    border-color: #100e10;
+}
+
+a:hover.social-insta {
+    border-color: #f5126c;
+}
 a.social-fb {
+    background-color: white;
     color: #337fff;
 }
 a.social-twit {
+    background-color: white;
     color: #33ccff;
 }
 a.social-lnkd {
+    background-color: white;
     color: #006699;
 }
 a.social-yout {
+    background-color: white;
     color: #ff3000;
+}
+
+a.social-tik {
+    background-color: white;
+    color: black;
+}
+
+a.social-insta {
+    background-color: white;
+    color: #f5126c;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -15929,7 +15951,10 @@ a.social-yout {
     color: var(--tp-heading-2);
 }
 .tp-contact-map-content {
-    width: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+    width: 80%;
     height: 500px;
 }
 .tp-contact-map-content iframe {

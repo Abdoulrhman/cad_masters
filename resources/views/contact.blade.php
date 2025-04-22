@@ -1,194 +1,96 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<main class="tp-dashboard-body-bg">
-    <section class="tpd-main pb-75 pt-75">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    @include('partials.sidebar')
-                </div>
-                <div class="col-lg-9">
-                    <div class="tpd-content-layout">
-                        <section class="tp-fact-wrapper">
-                            <h1 align="center" class="jumbotron">Contact Information</h1>
+        <!-- undergraduate breadcrumb start -->
+<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
+    <div class="tp-breadcrumb__bg overlay" style="background: url('{{ asset('/assets/img/breadcrumb/Contact-Us.PNG') }}') no-repeat center / cover !important"></div>
+</section>
+<!-- undergraduate breadcrumb end -->
 
-                            @if(session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            @endif
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="contact-info-item mb-40">
-                                        <div class="contact-info-text">
-                                            <h4 class="contact-info-title">Walnut Creek Office</h4>
-                                            <p><i class="fas fa-map-marker-alt"></i> 201 N. Civic Dr. Suite 182</p>
-                                            <p>Walnut Creek, CA 94596</p>
-                                            <p><i class="fas fa-phone"></i> <a href="tel:9259391378">(925) 939-1378</a></p>
+<!-- contact area start -->
+<section class="tp-contact-area tp-contact-p fix p-relative pt-150 pb-125">
+    <div class="tp-contact-bg" data-background="assets/img/live/contact-bg.png"></div>
+    <div class="tp-contact-shape">
+               <span>
+                  <svg width="1920" height="559" viewBox="0 0 1920 559" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1958.7 6.55286C1332.03 310.106 2369.35 119.238 2232.58 220.873C2018.48 379.976 692.5 607.75 254.5 538.145C-27.1058 493.393 1387 130.595 -280 395.595" stroke="url(#paint0_linear_2756_1168)" stroke-width="14"/>
+                      <defs>
+                          <linearGradient id="paint0_linear_2756_1168" x1="92.1912" y1="171.542" x2="1827.4" y2="294.717" gradientUnits="userSpaceOnUse">
+                          </linearGradient>
+                      </defs>
+                  </svg>
+               </span>
+    </div>
+    <div class="tp-contact-shape-2">
+        <img src="assets/img/live/contact-shape-2.svg" alt="">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="tp-contact-wrap p-relative">
+                    <div class="tp-contact-heading text-center">
+                        <h3 class="tp-contact-title">Get in Touch</h3>
+                        <p>We are here to answer any question you may have.</p>
+                    </div>
+                    <div class="tp-contact-from-box">
+                        <h3 class="tp-contact-from-title">Send a Message 👍🏻</h3>
+                        <form id="contact-form" action="assets/mail.php" method="post">
+                            <div class="tp-contact-input-form">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Your Name</label>
+                                            <input type="text" name="name">
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="contact-info-item mb-40">
-                                        <div class="contact-info-text">
-                                            <h4 class="contact-info-title">Sacramento Office</h4>
-                                            <p><i class="fas fa-map-marker-alt"></i> 1451 River Park Dr. Suite 126</p>
-                                            <p>Sacramento, CA 95815</p>
-                                            <p><i class="fas fa-phone"></i> <a href="tel:9166410100">(916) 641-0100</a></p>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Email Address</label>
+                                            <input type="email" name="email">
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="contact-info-item">
-                                        <div class="contact-info-text">
-                                            <h4 class="contact-info-title">Sales & Support Hours</h4>
-                                            <div class="contact-info-list">
-                                                <div class="info-item">
-                                                    <span class="info-title">Monday</span>
-                                                    <span class="info-text">8:30am – 5:30pm</span>
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="info-title">Tuesday</span>
-                                                    <span class="info-text">8:30am – 5:30pm</span>
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="info-title">Wednesday</span>
-                                                    <span class="info-text">8:30am – 5:30pm</span>
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="info-title">Thursday</span>
-                                                    <span class="info-text">8:30am – 5:30pm</span>
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="info-title">Friday</span>
-                                                    <span class="info-text">8:30am – 5:30pm</span>
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="info-title">Saturday</span>
-                                                    <span class="info-text">Closed</span>
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="info-title">Sunday</span>
-                                                    <span class="info-text">Closed</span>
-                                                </div>
-                                            </div>
+                                    <div class="col-xl-12 col-lg-12">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Subject</label>
+                                            <input type="text" name="subject">
                                         </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="tp-contact-input p-relative">
+                                            <label>Your message</label>
+                                            <textarea name="message"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="tp-contact-input-remeber">
+                                            <input id="remeber" type="checkbox">
+                                            <label for="remeber">Save my name, email, and website in this browser for the next time I comment.</label>
+                                        </div>
+                                    </div>
+                                    <div class="tp-contact-btn">
+                                        <button type="submit" class="tp-btn-inner">Send message</button>
+                                        <p style="display: none;" class="ajax-response text-danger mt-1 mb-0"></p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="mt-4">
-                                <h4 class="mb-3">Contact Form Settings</h4>
-                                <form action="{{ route('contact.settings.update') }}" method="POST" class="contact-form">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="sales_email" class="form-label">Sales Email</label>
-                                                <input type="email" name="sales_email" id="sales_email"
-                                                       class="form-control @error('sales_email') is-invalid @enderror"
-                                                       value="{{ old('sales_email', $settings->sales_email ?? '') }}">
-                                                @error('sales_email')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="support_email" class="form-label">Support Email</label>
-                                                <input type="email" name="support_email" id="support_email"
-                                                       class="form-control @error('support_email') is-invalid @enderror"
-                                                       value="{{ old('support_email', $settings->support_email ?? '') }}">
-                                                @error('support_email')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="webmaster_email" class="form-label">Webmaster Email</label>
-                                                <input type="email" name="webmaster_email" id="webmaster_email"
-                                                       class="form-control @error('webmaster_email') is-invalid @enderror"
-                                                       value="{{ old('webmaster_email', $settings->webmaster_email ?? '') }}">
-                                                @error('webmaster_email')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button type="submit" class="tp-btn">Update Settings</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </section>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</main>
+    </div>
+</section>
+<!-- contact area end -->
+
+<!-- map area start -->
+<div class="tp-map-area">
+    <div class="tp-contact-map-content">
+        <iframe class="align-content-center" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.265097446932!2d31.35307646511229!3d30.057934799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583e4352897419%3A0x4a2dfe8c6ca9a700!2z2YPYp9ivINmF2KfYs9iq2LHYsiDZhNmE2YPZiNix2LPYp9iqINin2YTZh9mG2K_Ys9mK2Kkg2YjYp9mE2KzYsdin2YHZitmD!5e0!3m2!1sar!2seg!4v1745277500856!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<!-- map area end -->
+
+
 @endsection
 
-@push('styles')
-<style>
-.contact-info-list .info-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
 
-.contact-info-list .info-item:last-child {
-    border-bottom: none;
-}
-
-.contact-info-item {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-.contact-info-title {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.contact-info-text p {
-    margin-bottom: 8px;
-}
-
-.contact-info-text i {
-    margin-right: 10px;
-    color: var(--tp-theme-primary);
-}
-
-.contact-info-text a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.contact-info-text a:hover {
-    color: var(--tp-theme-primary);
-}
-
-.info-title {
-    font-weight: 500;
-}
-
-.info-text {
-    color: #666;
-}
-</style>
-@endpush

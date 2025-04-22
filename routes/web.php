@@ -45,7 +45,7 @@ Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('client', [ClientController::class, 'index']);
 Route::get('certificate', [CertificateController::class, 'index']);
 Route::get('authorization', [AuthorizationController::class, 'index']);
-Route::get('contact-us', [ConatctUsController::class, 'index']);
+Route::get('contact', [ConatctUsController::class, 'index']);
 Route::get('media', [MediaController::class, 'index'])->name('media.index');
 Route::get('media/albums/{album:slug}', [MediaController::class, 'show'])->name('media.albums.show');
 
