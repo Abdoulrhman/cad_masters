@@ -6,6 +6,7 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ConatctUsController;
 use App\Http\Controllers\CourseCategoriesController;
@@ -152,6 +153,16 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         'edit'    => 'dashboard.partners.edit',
         'update'  => 'dashboard.partners.update',
         'destroy' => 'dashboard.partners.destroy',
+    ]);
+
+    // Partner Routes (Required Authentication)
+    Route::resource('branches', BranchesController::class)->except(['show'])->names([
+        'index'   => 'dashboard.branches.index',
+        'create'  => 'dashboard.branches.create',
+        'store'   => 'dashboard.branches.store',
+        'edit'    => 'dashboard.branches.edit',
+        'update'  => 'dashboard.branches.update',
+        'destroy' => 'dashboard.branches.destroy',
     ]);
 
     // Student Routes (Required Authentication)

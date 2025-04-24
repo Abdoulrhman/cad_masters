@@ -59,11 +59,6 @@ class Course extends Model
         return $this->belongsTo(User::class, 'instructor_id')->where('role', 'instructor');
     }
 
-    public function branch()
-    {
-        return $this->belongsTo(User::class, 'branch_id')->where('role', 'branch');
-    }
-
     /**
      * Get the students enrolled in the course.
      */

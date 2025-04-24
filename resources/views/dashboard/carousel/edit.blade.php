@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('content')
 <main class="tp-dashboard-body-bg">
     <section class="tpd-main pb-75 pt-75">

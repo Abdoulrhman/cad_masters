@@ -1,7 +1,19 @@
 @extends('layouts.dashboard')
 
+@section('title')
+    Careers
+@endsection
+
 @section('content')
 <main>
+
+
+    <!-- undergraduate breadcrumb start -->
+    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
+        <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/Careers.PNG') }}') no-repeat center / cover !important;max-width: 100%"></div>
+    </section>
+    <!-- undergraduate breadcrumb end -->
+
     <!-- Hero section start -->
     <section class="tp-about-tutor-area pt-110 pb-90">
         <div class="container">

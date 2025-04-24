@@ -1,5 +1,10 @@
-@include('partials.head')
-@include('partials.header')
+@extends('layouts.dashboard')
+
+@section('title')
+    Home
+@endsection
+
+@section('content')
 
 <!-- hero-area-start -->
 <section class="tp-hero-area">
@@ -195,7 +200,7 @@
 @include('sections.partners')
 <!-- partners-area-end -->
 
-@include('partials.footer')
+
 
 <!-- JS here -->
 <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
@@ -233,3 +238,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+@endsection

@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('content')
 <main class="tp-dashboard-body-bg">
     <section class="tpd-main pb-75 pt-75">
@@ -18,21 +22,21 @@
                             @endif
 
                             <div class="text-end mb-3">
-                                <a href="{{ route('dashboard.clients.create') }}" class="btn btn-primary">Add Client</a>
+                                <a href="{{ route('dashboard.branches.create') }}" class="btn btn-primary">Add Branch</a>
                             </div>
 
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'image'],
-                            'items' => $clients,
+                            'headers' => ['id', 'name'],
+                            'items' => $branches,
                             'actions' => [
-                            'edit' => 'dashboard.clients.edit',
-                            'delete' => 'dashboard.clients.destroy'
+                            'edit' => 'dashboard.branches.edit',
+                            'delete' => 'dashboard.branches.destroy'
                             ]
                             ])
                         </section>
                     </div>
 
-                    @include('partials.pagination', ['items' => $clients])
+                    @include('partials.pagination', ['items' => $branches])
                 </div>
             </div>
         </div>

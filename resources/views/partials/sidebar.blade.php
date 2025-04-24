@@ -85,6 +85,18 @@
                     </li>
 
                     <li class="sidebar-item">
+                        <a href="#branchesSubmenu" data-bs-toggle="collapse" class="sidebar-link">
+                            <i class="fas fa-code-branch"></i>
+                            <span>Branches</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse sidebar-dropdown" id="branchesSubmenu">
+                            <li><a href="{{ route('dashboard.branches.index') }}">All Branches</a></li>
+                            <li><a href="{{ route('dashboard.branches.create') }}">Add New Branches</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
                         <a href="#carouselSubmenu" data-bs-toggle="collapse" class="sidebar-link">
                             <i class="fas fa-images"></i>
                             <span>Carousel</span>

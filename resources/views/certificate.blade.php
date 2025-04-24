@@ -1,5 +1,8 @@
-@include('partials.head')
-@include('partials.header')
+@extends('layouts.dashboard')
+
+@section('title')
+    Certificates
+@endsection
 
 @section('content')
 

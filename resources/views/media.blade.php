@@ -1,5 +1,10 @@
-@include('partials.head')
-@include('partials.header')
+@extends('layouts.dashboard')
+
+@section('title')
+   Media & Events
+@endsection
+
+@section('content')
 
 <!-- breadcrumb start -->
 <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
@@ -59,5 +64,4 @@
     </div>
 </section>
 <!-- media gallery area end -->
-
-@include('partials.footer')
+@endsection

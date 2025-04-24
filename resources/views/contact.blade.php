@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('title')
+    Contact Us
+@endsection
+
 @section('content')
         <!-- undergraduate breadcrumb start -->
 <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">

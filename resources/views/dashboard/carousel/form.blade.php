@@ -1,5 +1,9 @@
 @extends('dashboard.layout')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('content')
 <div class="container-fluid px-4">
     <div class="d-flex justify-content-between align-items-center">

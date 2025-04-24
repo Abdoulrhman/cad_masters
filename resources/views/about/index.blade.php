@@ -1,5 +1,11 @@
 @extends('layouts.dashboard')
 
+
+
+@section('title')
+    About US
+@endsection
+
 @section('content')
 
         <!-- undergraduate breadcrumb start -->
