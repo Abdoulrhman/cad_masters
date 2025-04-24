@@ -43,9 +43,9 @@
                                 <p class="text-white"><i class="fa fa-mobile"></i> +2 01 000 050300 </p>
 
                             </div>
-                            <div class="tp-footer-contact-mail">
+                            <div class="tp-footer-contact-mail" style="color: white;">
                                 <a href="mailto:info@cadmasters.org">
-                                    <span>
+                                    <span style="color: white!important;">
                                         <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path

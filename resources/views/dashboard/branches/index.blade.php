@@ -11,29 +11,28 @@
                 <div class="col-lg-9">
                     <div class="tpd-content-layout">
                         <section class="tp-fact-wrapper">
-                            <h1 align="center" class="jumbotron" align="center">New Courses</h1>
+                            <h1 align="center" class="jumbotron" align="center">New Clients</h1>
 
                             @if(session('success'))
                                 <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
 
                             <div class="text-end mb-3">
-                                <a href="{{ route('dashboard.courses.create') }}" class="btn btn-primary">Add Course</a>
+                                <a href="{{ route('dashboard.clients.create') }}" class="btn btn-primary">Add Client</a>
                             </div>
 
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'image', 'description', 'category', 'price', 'price_offer',
-                            'branch', 'hours'],
-                            'items' => $courses,
+                            'headers' => ['id', 'name', 'image'],
+                            'items' => $clients,
                             'actions' => [
-                            'edit' => 'dashboard.courses.edit',
-                            'delete' => 'dashboard.courses.destroy'
+                            'edit' => 'dashboard.clients.edit',
+                            'delete' => 'dashboard.clients.destroy'
                             ]
                             ])
                         </section>
                     </div>
 
-                    @include('partials.pagination', ['items' => $courses])
+                    @include('partials.pagination', ['items' => $clients])
                 </div>
             </div>
         </div>

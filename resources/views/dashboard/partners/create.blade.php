@@ -42,6 +42,7 @@
 
                                     <div class="col-12 text-center mt-4">
                                         <button type="submit" class="btn btn-primary">Create Partner</button>
+                                        <a href="{{ route('dashboard.partners.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </form>

@@ -1,4 +1,4 @@
-<div class="tpd-user-sidebar">
+<div {{--class="tpd-user-sidebar"--}}>
     <div class="tp-user-wrap">
         <div class="tp-user-menu">
             <nav>

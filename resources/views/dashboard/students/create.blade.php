@@ -70,6 +70,7 @@
 
                                     <div class="col-12 text-center mt-4">
                                         <button type="submit" class="btn btn-primary">Save</button>
+                                        <a href="{{ route('dashboard.students.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </form>

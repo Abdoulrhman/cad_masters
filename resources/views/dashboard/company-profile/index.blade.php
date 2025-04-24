@@ -5,21 +5,19 @@
     <section class="tpd-main pb-75 pt-75">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-3">
+                    @include('partials.sidebar') {{-- Sidebar --}}
+                </div>
+                <div class="col-lg-9">
                     <div class="tpd-content-layout">
-                        <div class="tp-breadcrumb__content-filter mb-50">
-                            <div class="tp-breadcrumb__list">
-                                <span><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></span>
-                                <span class="color">Company Profile</span>
-                            </div>
-                            <h3 class="tp-breadcrumb__title">Manage Company Profile</h3>
-                        </div>
+                        <div class="container">
+                            <h3 class="tp-contact-from-title">Manage Company Profile 👍🏻</h3>
 
-                        @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                        @endif
+                            @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            @endif
 
                         <div class="card">
                             <div class="card-body">

@@ -13,6 +13,14 @@
                         <section class="tp-fact-wrapper">
                             <h1 align="center" class="jumbotron" align="center">New Category</h1>
 
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            <div class="text-end mb-3">
+                                <a href="{{ route('dashboard.categories.create') }}" class="btn btn-primary">Add Category</a>
+                            </div>
+
                             @include('partials.table', [
                             'headers' => ['id', 'name','description'],
                             'items' => $categories,

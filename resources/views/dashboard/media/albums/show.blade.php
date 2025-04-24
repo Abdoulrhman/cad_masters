@@ -130,7 +130,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="file" class="form-label">File</label>
-                        <input type="file" class="form-control" id="file" name="file" required>
+                        <input type="file" class="form-control" id="file" name="file" required multiple>
                     </div>
                 </div>
                 <div class="modal-footer">

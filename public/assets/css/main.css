@@ -11863,7 +11863,7 @@ a.social-insta {
     color: var(--tp-theme-3);
 }
 .tp-footer-3 .tp-footer-contact-mail a:hover span {
-    color: var(--tp-theme-3);
+    color: var(--tp-theme-3)!important;
 }
 .tp-footer-3 .tp-footer-copyright {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -24630,7 +24630,7 @@ span.dark-border {
     top: 120px;
     margin-bottom: 20px;
     filter: grayscale(1);
-    margin-bottom: 200px;
+    margin-bottom: 50px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
     only screen and (max-width: 767px) {

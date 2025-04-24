@@ -10,14 +10,12 @@
                     </div>
                     <div class="col-lg-9">
                         <div class="tpd-content-layout">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Edit Employee</h3>
-                                </div>
-                                <div class="card-body">
+                            <div class="container">
+                                <h3 class="tp-contact-from-title">Edit Client 👍🏻</h3>
+
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
-                                            <ul class="mb-0">
+                                            <ul>
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
                                                 @endforeach
@@ -64,9 +62,9 @@
                                                     </div>
                                                 @endif
                                             </div>
-
                                             <div class="col-12 text-center mt-4">
                                                 <button type="submit" class="btn btn-primary">Update Employee</button>
+                                                <a href="{{ route('dashboard.employees.index') }}" class="btn btn-secondary">Cancel</a>
                                             </div>
                                         </div>
                                     </form>
