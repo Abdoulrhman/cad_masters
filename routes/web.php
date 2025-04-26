@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CoursesListController;
 use App\Http\Controllers\ConatctUsController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
@@ -44,6 +45,13 @@ Route::get('/courses/{course}', [CourseController::class, 'show'])->name('course
 // Public Pages
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('client', [ClientController::class, 'index']);
+Route::get('architecture', [CoursesListController::class, 'architecture']);
+Route::get('structure', [CoursesListController::class, 'structure']);
+Route::get('mechanical', [CoursesListController::class, 'mechanical']);
+Route::get('management', [CoursesListController::class, 'management']);
+Route::get('electrical', [CoursesListController::class, 'electrical']);
+Route::get('graphics', [CoursesListController::class, 'graphics']);
+Route::get('bim', [CoursesListController::class, 'bim']);
 Route::get('certificate', [CertificateController::class, 'index']);
 Route::get('authorization', [AuthorizationController::class, 'index']);
 Route::get('contact', [ConatctUsController::class, 'index']);

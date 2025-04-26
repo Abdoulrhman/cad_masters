@@ -18,7 +18,7 @@
                             <ul>
                                 <li><a href="{{ url('/') }}">Home</a></li>
                                 <li class="has-dropdown">
-                                    <a href="">About Us</a>
+                                    <a href="{{ url('about') }}">About Us</a>
                                     <div class="tp-megamenu-main">
                                         <div class="megamenu-demo-small p-relative">
                                             <div class="tp-megamenu-small-content">
@@ -31,6 +31,28 @@
                                                             <a href="{{ url('certificate') }}">Certificate awards &
                                                                 Thanking</a>
                                                             <a href="{{ url('client') }}">Our Clients</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="{{ url('courses') }}"> courses</a>
+                                    <div class="tp-megamenu-main">
+                                        <div class="megamenu-demo-small p-relative">
+                                            <div class="tp-megamenu-small-content">
+                                                <div class="row tp-gx-50">
+                                                    <div class="col-xl-6">
+                                                        <div class="tp-megamenu-list yellow-color">
+                                                            <a href="{{ url('architecture') }}">Architecture</a>
+                                                            <a href="{{ url('structure') }}">Structure & Civil</a>
+                                                            <a href="{{ url('mechanical') }}"> Mechanical & MEP</a>
+                                                            <a href="{{ url('mechanical') }}"> Management & Site</a>
+                                                            <a href="{{ url('management') }}"> Electrical</a>
+                                                            <a href="{{ url('bim') }}">Bim Tracks</a>
+                                                            <a href="{{ url('graphics') }}">Graphics</a>
                                                         </div>
                                                     </div>
                                                 </div>

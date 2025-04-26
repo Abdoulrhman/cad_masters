@@ -348,7 +348,7 @@
         </div>
     </section>
 </main>
-@endsection
+
 
 @push('styles')
 <style>
@@ -530,3 +530,4 @@
 }
 </style>
 @endpush
+@endsection

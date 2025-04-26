@@ -14,6 +14,7 @@
                             <h3 class="tp-contact-from-title">Edit Course 👍🏻</h3>
 
                             @if($errors->any())
+
                             <div class="alert alert-danger">
                                 <ul>
                                     <li>The course name field is required.</li>
