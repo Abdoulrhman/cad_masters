@@ -60,9 +60,15 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="branch" class="form-label">Branch</label>
-                                        <input type="text" name="branch" class="form-control" id="branch"
-                                            value="{{ old('branch') }}">
+                                        <label for="branch_id" class="form-label">Branch</label>
+                                        <select name="branch_id" id="branch_id" class="form-control" required>
+                                            <option value="">Select a branch</option>
+                                            @foreach ($branches as $branch)
+                                            <option value="{{ $branch->id }}"
+                                                {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
+                                                {{ $branch->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -71,17 +77,7 @@
                                             value="{{ old('hours') }}">
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label for="start_date" class="form-label">Start Date</label>
-                                        <input type="datetime-local" name="start_date" class="form-control"
-                                            id="start_date" required value="{{ old('start_date') }}">
-                                    </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label for="end_date" class="form-label">End Date</label>
-                                        <input type="datetime-local" name="end_date" class="form-control" id="end_date"
-                                            required value="{{ old('end_date') }}">
-                                    </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="max_students" class="form-label">Maximum Students</label>
@@ -125,6 +121,39 @@
                                             required>{{ old('description') }}</textarea>
                                     </div>
 
+                                    <div class="col-md-6 mb-3">
+                                        <label for="outline_link" class="form-label">Outline Link</label>
+                                        <input type="url" name="outline_link" class="form-control" id="outline_link"
+                                            value="{{ old('outline_link') }}">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="youtube_link" class="form-label">YouTube Link</label>
+                                        <input type="url" name="youtube_link" class="form-control" id="youtube_link"
+                                            value="{{ old('youtube_link') }}">
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Course Sessions (Start/End Dates)</label>
+                                        <div id="sessions-wrapper">
+                                            <div class="row mb-2 session-row">
+                                                <div class="col-md-5">
+                                                    <input type="datetime-local" name="sessions[0][start_date]"
+                                                        class="form-control" placeholder="Start Date">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input type="datetime-local" name="sessions[0][end_date]"
+                                                        class="form-control" placeholder="End Date">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="button" class="btn btn-danger remove-session"
+                                                        style="display:none;">Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" id="add-session">Add
+                                            Session</button>
+                                    </div>
+
                                     <div class="col-12 text-center mt-4">
                                         <button type="submit" class="btn btn-primary">Create Course</button>
                                     </div>
@@ -138,3 +167,32 @@
     </section>
 </main>
 @endsection
+
+@push('scripts')
+<script>
+let sessionIndex = 1;
+document.getElementById('add-session').addEventListener('click', function() {
+    const wrapper = document.getElementById('sessions-wrapper');
+    const row = document.createElement('div');
+    row.className = 'row mb-2 session-row';
+    row.innerHTML = `
+        <div class="col-md-5">
+            <input type="datetime-local" name="sessions[${sessionIndex}][start_date]" class="form-control" placeholder="Start Date">
+        </div>
+        <div class="col-md-5">
+            <input type="datetime-local" name="sessions[${sessionIndex}][end_date]" class="form-control" placeholder="End Date">
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger remove-session">Remove</button>
+        </div>
+    `;
+    wrapper.appendChild(row);
+    sessionIndex++;
+});
+document.getElementById('sessions-wrapper').addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove-session')) {
+        e.target.closest('.session-row').remove();
+    }
+});
+</script>
+@endpush

@@ -31,20 +31,11 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="tp-contact-input mb-20">
-                                    <input type="text" name="first_name" placeholder="First Name *"
+                                    <input type="text" name="first_name" placeholder="Your name *"
                                         value="{{ old('first_name') }}" required>
                                     @error('first_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="tp-contact-input mb-20">
-                                    <input type="text" name="last_name" placeholder="Last Name *"
-                                        value="{{ old('last_name') }}" required>
-                                    @error('last_name')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -60,7 +51,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="tp-contact-input mb-20">
-                                    <input type="tel" name="phone" placeholder="Phone Number *"
+                                    <input type="tel" name="phone" placeholder="Mobile Number *"
                                         value="{{ old('phone') }}" required>
                                     @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
@@ -90,8 +81,8 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="tp-contact-input mb-20">
-                                    <textarea name="message" placeholder="Why are you interested in this course? *"
-                                        required>{{ old('message') }}</textarea>
+                                    <textarea name="message"
+                                        placeholder="Why are you interested in this course?">{{ old('message') }}</textarea>
                                     @error('message')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

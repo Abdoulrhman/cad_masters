@@ -30,6 +30,8 @@
     <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    @stack('scripts')
+
 </body>
 
 </html>

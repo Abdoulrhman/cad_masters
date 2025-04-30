@@ -20,13 +20,14 @@ class Course extends Model
         'category_id',
         'price',
         'price_offer',
-        'branch',
+        'branch_id',
         'hours',
         'is_active',
-        'start_date',
-        'end_date',
         'max_students',
         'instructor_id',
+        'duration',
+        'outline_link',
+        'youtube_link',
     ];
 
     /**
@@ -74,5 +75,21 @@ class Course extends Model
     public function getImageUrlAttribute()
     {
         return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
+    /**
+     * Get the sessions for the course.
+     */
+    public function sessions()
+    {
+        return $this->hasMany(\App\Models\CourseSession::class);
+    }
+
+    /**
+     * Get the branch that owns the course.
+     */
+    public function branch()
+    {
+        return $this->belongsTo(\App\Models\Branch::class, 'branch_id');
     }
 }

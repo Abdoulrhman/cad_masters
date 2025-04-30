@@ -14,7 +14,7 @@
                             <h1 align="center" class="jumbotron" align="center">New Courses</h1>
 
                             @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
+                            <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
 
                             <div class="text-end mb-3">

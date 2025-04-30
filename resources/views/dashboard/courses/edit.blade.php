@@ -30,7 +30,8 @@
                             </div>
                             @endif
 
-                            <form method="POST" action="{{ route('dashboard.courses.update', $course->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('dashboard.courses.update', $course->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
@@ -39,7 +40,9 @@
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="name">Course Name</label>
-                                                <input type="text" name="name" id="name" value="{{ old('name', $course->name) }}" class="form-control" required>
+                                                <input type="text" name="name" id="name"
+                                                    value="{{ old('name', $course->name) }}" class="form-control"
+                                                    required>
                                             </div>
                                         </div>
 
@@ -49,7 +52,8 @@
                                                 <select name="category_id" id="category_id" class="form-control">
                                                     <option value="">Select a Category</option>
                                                     @foreach ($courseCategories as $category)
-                                                    <option value="{{ $category->id }}" {{ old('category_id', $course->category_id) == $category->id ? 'selected' : '' }}>
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category_id', $course->category_id) == $category->id ? 'selected' : '' }}>
                                                         {{ $category->name }}
                                                     </option>
                                                     @endforeach
@@ -60,49 +64,52 @@
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="price">Price</label>
-                                                <input type="number" name="price" id="price" value="{{ old('price', $course->price) }}" class="form-control" required min="0" step="0.01">
+                                                <input type="number" name="price" id="price"
+                                                    value="{{ old('price', $course->price) }}" class="form-control"
+                                                    required min="0" step="0.01">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="price_offer">Offer Price</label>
-                                                <input type="number" name="price_offer" id="price_offer" value="{{ old('price_offer', $course->price_offer) }}" class="form-control" min="0" step="0.01">
+                                                <input type="number" name="price_offer" id="price_offer"
+                                                    value="{{ old('price_offer', $course->price_offer) }}"
+                                                    class="form-control" min="0" step="0.01">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
-                                                <label for="branch">Branch</label>
-                                                <input type="text" name="branch" id="branch" value="{{ old('branch', $course->branch) }}" class="form-control">
+                                                <label for="branch_id">Branch</label>
+                                                <select name="branch_id" id="branch_id" class="form-control" required>
+                                                    <option value="">Select a branch</option>
+                                                    @foreach($branches as $branch)
+                                                    <option value="{{ $branch->id }}"
+                                                        {{ old('branch_id', $course->branch_id) == $branch->id ? 'selected' : '' }}>
+                                                        {{ $branch->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="hours">Hours</label>
-                                                <input type="number" name="hours" id="hours" value="{{ old('hours', $course->hours) }}" class="form-control" min="1">
+                                                <input type="number" name="hours" id="hours"
+                                                    value="{{ old('hours', $course->hours) }}" class="form-control"
+                                                    min="1">
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-6 col-lg-6">
-                                            <div class="tp-contact-input p-relative">
-                                                <label for="start_date">Start Date</label>
-                                                <input type="datetime-local" name="start_date" id="start_date" value="{{ old('start_date', date('Y-m-d\TH:i', strtotime($course->start_date))) }}" class="form-control" required>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-xl-6 col-lg-6">
-                                            <div class="tp-contact-input p-relative">
-                                                <label for="end_date">End Date</label>
-                                                <input type="datetime-local" name="end_date" id="end_date" value="{{ old('end_date', date('Y-m-d\TH:i', strtotime($course->end_date))) }}" class="form-control" required>
-                                            </div>
-                                        </div>
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="max_students">Maximum Students</label>
-                                                <input type="number" name="max_students" id="max_students" value="{{ old('max_students', $course->max_students) }}" class="form-control" required min="1">
+                                                <input type="number" name="max_students" id="max_students"
+                                                    value="{{ old('max_students', $course->max_students) }}"
+                                                    class="form-control" required min="1">
                                             </div>
                                         </div>
 
@@ -111,10 +118,10 @@
                                                 <label for="instructor_id">Instructor</label>
                                                 <select name="instructor_id" id="instructor_id" class="form-control">
                                                     <option value="">Select an Instructor</option>
-                                                    @foreach (\App\Models\User::where('role', 'instructor')->get() as $instructor)
-                                                    <option value="{{ $instructor->id }}" {{ old('instructor_id', $course->instructor_id) == $instructor->id ? 'selected' : '' }}>
-                                                        {{ $instructor->name }}
-                                                    </option>
+                                                    @foreach($instructors as $instructor)
+                                                    <option value="{{ $instructor->id }}"
+                                                        {{ old('instructor_id', $course->instructor_id) == $instructor->id ? 'selected' : '' }}>
+                                                        {{ $instructor->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -124,8 +131,12 @@
                                             <div class="tp-contact-input p-relative">
                                                 <label for="is_active">Status</label>
                                                 <select name="is_active" id="is_active" class="form-control" required>
-                                                    <option value="1" {{ old('is_active', $course->is_active) ? 'selected' : '' }}>Active</option>
-                                                    <option value="0" {{ old('is_active', $course->is_active) ? '' : 'selected' }}>Inactive</option>
+                                                    <option value="1"
+                                                        {{ old('is_active', $course->is_active) ? 'selected' : '' }}>
+                                                        Active</option>
+                                                    <option value="0"
+                                                        {{ old('is_active', $course->is_active) ? '' : 'selected' }}>
+                                                        Inactive</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -135,19 +146,70 @@
                                                 <label for="image">Course Image</label>
                                                 @if($course->image)
                                                 <div class="mb-2">
-                                                    <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->name }}" class="img-thumbnail" style="max-height: 100px;">
+                                                    <img src="{{ asset('storage/' . $course->image) }}"
+                                                        alt="{{ $course->name }}" class="img-thumbnail"
+                                                        style="max-height: 100px;">
                                                 </div>
                                                 @endif
-                                                <input type="file" name="image" id="image" class="form-control" accept="image/*">
-                                                <small class="text-muted">Leave empty to keep the current image. Max size: 2MB</small>
+                                                <input type="file" name="image" id="image" class="form-control"
+                                                    accept="image/*">
+                                                <small class="text-muted">Leave empty to keep the current image. Max
+                                                    size: 2MB</small>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="description">Description</label>
-                                                <textarea name="description" id="description" class="form-control" rows="4" required>{{ old('description', $course->description) }}</textarea>
+                                                <textarea name="description" id="description" class="form-control"
+                                                    rows="4"
+                                                    required>{{ old('description', $course->description) }}</textarea>
                                             </div>
+                                        </div>
+
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="tp-contact-input p-relative">
+                                                <label for="outline_link">Outline Link</label>
+                                                <input type="url" name="outline_link" id="outline_link"
+                                                    value="{{ old('outline_link', $course->outline_link) }}"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="tp-contact-input p-relative">
+                                                <label for="youtube_link">YouTube Link</label>
+                                                <input type="url" name="youtube_link" id="youtube_link"
+                                                    value="{{ old('youtube_link', $course->youtube_link) }}"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <label class="form-label">Course Sessions (Start/End Dates)</label>
+                                            <div id="sessions-wrapper">
+                                                @foreach($course->sessions as $i => $session)
+                                                <div class="row mb-2 session-row">
+                                                    <div class="col-md-5">
+                                                        <input type="datetime-local"
+                                                            name="sessions[{{ $i }}][start_date]" class="form-control"
+                                                            value="{{ old('sessions.'.$i.'.start_date', $session->start_date ? $session->start_date->format('Y-m-d\TH:i') : '') }}"
+                                                            placeholder="Start Date">
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <input type="datetime-local" name="sessions[{{ $i }}][end_date]"
+                                                            class="form-control"
+                                                            value="{{ old('sessions.'.$i.'.end_date', $session->end_date ? $session->end_date->format('Y-m-d\TH:i') : '') }}"
+                                                            placeholder="End Date">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button type="button" class="btn btn-danger remove-session"
+                                                            {{ $i == 0 ? 'style=display:none;' : '' }}>Remove</button>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <button type="button" class="btn btn-secondary" id="add-session">Add
+                                                Session</button>
                                         </div>
 
                                         <div class="tp-contact-btn mt-3">
@@ -164,3 +226,36 @@
     </section>
 </main>
 @endsection
+
+@push('scripts')
+<script>
+let sessionIndex = {
+    {
+        $course - > sessions - > count()
+    }
+};
+document.getElementById('add-session').addEventListener('click', function() {
+    const wrapper = document.getElementById('sessions-wrapper');
+    const row = document.createElement('div');
+    row.className = 'row mb-2 session-row';
+    row.innerHTML = `
+            <div class="col-md-5">
+                <input type="datetime-local" name="sessions[${sessionIndex}][start_date]" class="form-control" placeholder="Start Date">
+            </div>
+            <div class="col-md-5">
+                <input type="datetime-local" name="sessions[${sessionIndex}][end_date]" class="form-control" placeholder="End Date">
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger remove-session">Remove</button>
+            </div>
+        `;
+    wrapper.appendChild(row);
+    sessionIndex++;
+});
+document.getElementById('sessions-wrapper').addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove-session')) {
+        e.target.closest('.session-row').remove();
+    }
+});
+</script>
+@endpush

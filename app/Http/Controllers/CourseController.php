@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseRequest;
+use App\Models\Branch;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use Illuminate\Http\Request;
@@ -82,8 +83,8 @@ class CourseController extends Controller
     public function create()
     {
         $courseCategories = CourseCategory::all();
-
-        return view('dashboard.courses.create', compact('courseCategories'));
+        $branches         = Branch::all();
+        return view('dashboard.courses.create', compact('courseCategories', 'branches'));
     }
 
     /**
@@ -97,11 +98,23 @@ class CourseController extends Controller
             $form_data['image'] = $request->file('image')->store('courses', 'public');
         }
 
-        Log::info("Course created by user: " . auth()->user()->name);
-        // log the request data with message
-        Log::info("Course created with data: " . json_encode($form_data));
+        // Save the course
+        $course = Course::create($form_data);
 
-        Course::create($form_data);
+        // Save course sessions if provided
+        if ($request->has('sessions')) {
+            foreach ($request->sessions as $session) {
+                if (! empty($session['start_date']) && ! empty($session['end_date'])) {
+                    $course->sessions()->create([
+                        'start_date' => $session['start_date'],
+                        'end_date'   => $session['end_date'],
+                    ]);
+                }
+            }
+        }
+
+        Log::info("Course created by user: " . auth()->user()->name);
+        Log::info("Course created with data: " . json_encode($form_data));
 
         return redirect()->route('courses.index')
             ->with('success', 'Course added successfully.');

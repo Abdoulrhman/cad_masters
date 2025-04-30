@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
+use App\Models\Branch;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use Illuminate\Http\Request;
@@ -73,7 +74,8 @@ class CoursesController extends Controller
     {
         $courseCategories = CourseCategory::all();
         $instructors      = \App\Models\Instructor::all();
-        return view('dashboard.courses.create', compact('courseCategories', 'instructors'));
+        $branches         = Branch::all();
+        return view('dashboard.courses.create', compact('courseCategories', 'instructors', 'branches'));
     }
 
     /**
@@ -87,7 +89,25 @@ class CoursesController extends Controller
             $form_data['image'] = $request->file('image')->store('courses', 'public');
         }
 
-        Course::create($form_data);
+        // Ensure branch_id is set if present in the request
+        if ($request->has('branch_id')) {
+            $form_data['branch_id'] = $request->branch_id;
+        }
+
+        // Save the course
+        $course = Course::create($form_data);
+
+        // Save course sessions if provided
+        if ($request->has('sessions')) {
+            foreach ($request->sessions as $session) {
+                if (! empty($session['start_date']) && ! empty($session['end_date'])) {
+                    $course->sessions()->create([
+                        'start_date' => $session['start_date'],
+                        'end_date'   => $session['end_date'],
+                    ]);
+                }
+            }
+        }
 
         return redirect()->route('dashboard.courses.index')
             ->with('success', 'Course created successfully.');
@@ -100,8 +120,9 @@ class CoursesController extends Controller
     {
         $course           = Course::findOrFail($id);
         $courseCategories = CourseCategory::all();
-
-        return view('dashboard.courses.edit', compact('course', 'courseCategories'));
+        $branches         = Branch::all();
+        $instructors      = \App\Models\Instructor::all();
+        return view('dashboard.courses.edit', compact('course', 'courseCategories', 'branches', 'instructors'));
     }
 
     /**

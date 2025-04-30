@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('duration');
             $table->decimal('price', 10, 2);
             $table->boolean('is_active')->default(true);
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->string('outline_link')->nullable();
+            $table->string('youtube_link')->nullable();
             $table->integer('max_students');
             $table->foreignId('instructor_id')->constrained('users');
             $table->timestamps();

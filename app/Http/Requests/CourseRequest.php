@@ -16,8 +16,6 @@ class CourseRequest extends FormRequest
             'name'          => 'required|string|max:255',
             'description'   => 'required|string',
             'price'         => 'required|numeric|min:0',
-            'start_date'    => 'required|date',
-            'end_date'      => 'required|date|after:start_date',
             'max_students'  => 'required|integer|min:1',
             'is_active'     => 'boolean',
             // Optional fields
@@ -36,9 +34,6 @@ class CourseRequest extends FormRequest
             'name.required'         => 'The course name field is required.',
             'description.required'  => 'The description field is required.',
             'price.required'        => 'The price field is required.',
-            'start_date.required'   => 'The start date field is required.',
-            'end_date.required'     => 'The end date field is required.',
-            'end_date.after'        => 'The end date must be after the start date.',
             'max_students.required' => 'The maximum students field is required.',
             'image.image'           => 'The file must be an image.',
             'image.mimes'           => 'The image must be a file of type: jpeg, png, jpg.',
