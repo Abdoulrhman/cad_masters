@@ -34,7 +34,25 @@
                                             value="{{ old('name') }}">
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
+                                    {{--<div class="col-md-6 mb-3">
+                                        <label class="form-label">Categories</label>
+                                        <div class="d-flex flex-wrap gap-3">
+                                            @foreach ($courseCategories as $category)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="category_ids[]"
+                                                           id="category_{{ $category->id }}"
+                                                           value="{{ $category->id }}"
+                                                            {{ in_array($category->id, old('category_ids', [])) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="category_{{ $category->id }}">
+                                                        {{ $category->name }}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>--}}
+
+                               <div class="col-md-6 mb-3">
                                         <label for="category_id" class="form-label">Category</label>
                                         <select name="category_id" id="category_id" class="form-control" required>
                                             <option value="">Select a category</option>

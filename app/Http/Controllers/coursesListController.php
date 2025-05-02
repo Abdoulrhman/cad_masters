@@ -12,11 +12,12 @@ class coursesListController extends Controller
        /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
         return view('architecture', compact('courses'));*/
 
-        $courses = Course::whereHas('category', function($query) {
+       /* $courses = Course::whereHas('category', function($query) {
             $query->where('name', 'Architecture'); // Filter by category name
-        })->get();
+        })->get();*/
 
-        return view('architecture', compact('courses'));
+        $courses    = Course::latest()->paginate(5);
+        return view('architecture', compact('courses'))->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
