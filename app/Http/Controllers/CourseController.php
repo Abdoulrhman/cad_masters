@@ -179,4 +179,17 @@ class CourseController extends Controller
     {
         return view('courses.show', compact('course'));
     }
+
+    /**
+     * AJAX search for courses by name.
+     */
+    public function search(Request $request)
+    {
+        $q       = $request->get('q');
+        $courses = Course::where('name', 'like', "%{$q}%")
+            ->orderBy('name')
+            ->limit(10)
+            ->get(['id', 'name']);
+        return response()->json($courses);
+    }
 }
