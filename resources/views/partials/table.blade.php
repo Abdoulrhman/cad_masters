@@ -20,6 +20,10 @@
                 <td>
                     @if($header === 'image' && !empty($item->image))
                     <img src="{{ asset('storage/' . $item->image) }}" class="img-thumbnail" width="50">
+                    @elseif($header === 'outline_link' && !empty($item->outline_link))
+                    <a href="{{ $item->outline_link }}" target="_blank">Outline</a>
+                    @elseif($header === 'youtube_link' && !empty($item->youtube_link))
+                    <a href="{{ $item->youtube_link }}" target="_blank">YouTube</a>
                     @elseif($header === 'created_at' || $header === 'updated_at')
                     {{ $item->$header->diffForHumans() }}
                     @elseif(str_contains($header, '_id'))

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Careers
+Careers
 @endsection
 
 @section('content')
@@ -10,7 +10,9 @@
 
     <!-- undergraduate breadcrumb start -->
     <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-        <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/Careers.PNG') }}') no-repeat center / cover !important;max-width: 100%"></div>
+        <div class="tp-breadcrumb__bg"
+            style="background: url('{{ asset('/assets/img/breadcrumb/Careers.PNG') }}') no-repeat center / cover !important;max-width: 100%">
+        </div>
     </section>
     <!-- undergraduate breadcrumb end -->
 
@@ -151,27 +153,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label for="skills" class="form-label">Skills *</label>
-                                        <textarea class="form-control @error('skills') is-invalid @enderror" id="skills"
-                                            name="skills" rows="4" required>{{ old('skills') }}</textarea>
-                                        @error('skills')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label for="cover_letter" class="form-label">Cover Letter</label>
-                                        <textarea class="form-control @error('cover_letter') is-invalid @enderror"
-                                            id="cover_letter" name="cover_letter"
-                                            rows="6">{{ old('cover_letter') }}</textarea>
-                                        @error('cover_letter')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+
+
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="resume" class="form-label">Resume/CV *</label>

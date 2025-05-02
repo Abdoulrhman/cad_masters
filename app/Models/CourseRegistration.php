@@ -10,13 +10,11 @@ class CourseRegistration extends Model
 
     protected $fillable = [
         'course_id',
+        'course_name',
         'first_name',
-        'last_name',
         'email',
         'phone',
-        'education_level',
         'message',
-        'cv_path',
     ];
 
     public function course()

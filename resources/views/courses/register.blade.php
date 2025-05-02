@@ -8,7 +8,7 @@
                 <div class="tp-contact-form">
                     <div class="tp-section-title text-center mb-50">
                         <h3 class="tp-title">Register for Course</h3>
-                        <p>{{ $course->title }}</p>
+                        <p>{{ $course->name }}</p>
                     </div>
 
                     @if(session('success'))
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="tp-contact-input mb-20">
-                                    <input type="text" name="first_name" placeholder="Your name *"
+                                    <input type="text" name="first_name" placeholder="Your Name *"
                                         value="{{ old('first_name') }}" required>
                                     @error('first_name')
                                     <span class="text-danger">{{ $message }}</span>
@@ -60,39 +60,14 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="tp-contact-input mb-20">
-                                    <select name="education_level" class="form-select" required>
-                                        <option value="">Select Education Level *</option>
-                                        <option value="High School"
-                                            {{ old('education_level') == 'High School' ? 'selected' : '' }}>High School
-                                        </option>
-                                        <option value="Bachelor's Degree"
-                                            {{ old('education_level') == "Bachelor's Degree" ? 'selected' : '' }}>
-                                            Bachelor's Degree</option>
-                                        <option value="Master's Degree"
-                                            {{ old('education_level') == "Master's Degree" ? 'selected' : '' }}>Master's
-                                            Degree</option>
-                                        <option value="PhD" {{ old('education_level') == 'PhD' ? 'selected' : '' }}>PhD
-                                        </option>
-                                    </select>
-                                    @error('education_level')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <input type="text" value="{{ $course->name }}" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="tp-contact-input mb-20">
                                     <textarea name="message"
-                                        placeholder="Why are you interested in this course?">{{ old('message') }}</textarea>
+                                        placeholder="Your message (optional)">{{ old('message') }}</textarea>
                                     @error('message')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="tp-contact-input mb-20">
-                                    <label for="cv" class="form-label">Upload your CV (PDF only) *</label>
-                                    <input type="file" name="cv" id="cv" class="form-control" accept=".pdf" required>
-                                    @error('cv')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

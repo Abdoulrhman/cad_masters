@@ -23,7 +23,7 @@ class CareerController extends Controller
             'phone'        => 'required|string|max:20',
             'position'     => 'required|string|max:255',
             'experience'   => 'required|string',
-            'skills'       => 'required|string',
+            'skills'       => 'nullable|string',
             'cover_letter' => 'nullable|string',
             'resume'       => 'required|file|mimes:pdf,doc,docx|max:5120', // 5MB max
         ]);

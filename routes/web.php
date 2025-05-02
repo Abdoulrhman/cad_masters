@@ -2,17 +2,17 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientsController;
-use App\Http\Controllers\BranchesController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CoursesListController;
 use App\Http\Controllers\ConatctUsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseCategoriesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseRegistrationController;
+use App\Http\Controllers\CoursesListController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Dashboard\AuthorizationsController;
 use App\Http\Controllers\Dashboard\CarouselController as DashboardCarouselController;
@@ -40,6 +40,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 // Public Course Routes
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/search', [CourseController::class, 'search'])->name('courses.search');
 Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
 // Public Pages
