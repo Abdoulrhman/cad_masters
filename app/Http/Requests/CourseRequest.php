@@ -24,7 +24,10 @@ class CourseRequest extends FormRequest
             'price_offer'   => 'nullable|numeric|min:0',
             'branch'        => 'nullable|string|max:255',
             'hours'         => 'nullable|integer|min:1',
-            'instructor_id' => 'nullable|exists:users,id',
+            'instructor_id' => 'nullable|exists:instructors,id',
+            'branch_id'     => 'nullable|exists:branches,id',
+            'outline_link'  => 'nullable|string|max:255',
+            'youtube_link'  => 'nullable|string|max:255',
         ];
     }
 

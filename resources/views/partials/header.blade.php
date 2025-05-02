@@ -70,6 +70,12 @@
                 </div>
                 <div class="col-xxl-3 col-xl-2 col-lg-6 col-6">
                     <div class="tp-header-2-contact d-flex align-items-center justify-content-end">
+                        <div class="tp-header-search" style="margin-right: 20px; position: relative;">
+                            <input type="text" id="course-search" class="form-control" placeholder="Search courses..."
+                                autocomplete="off" style="width: 220px;">
+                            <div id="course-search-results" class="list-group"
+                                style="position: absolute; z-index: 1000; width: 100%; display: none;"></div>
+                        </div>
                         @auth
                         <div class="tp-header-inner-login tp-header-user-hover">
                             <button><img src="{{ asset('assets/img/event/user.jpg') }}" alt=""></button>
@@ -109,3 +115,53 @@
     </div>
 </header>
 <!-- header-area-end -->
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('course-search');
+    const resultsBox = document.getElementById('course-search-results');
+    let timeout = null;
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(timeout);
+        const query = this.value.trim();
+        if (query.length < 2) {
+            resultsBox.style.display = 'none';
+            resultsBox.innerHTML = '';
+            return;
+        }
+        timeout = setTimeout(() => {
+            fetch(`/courses/search?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    resultsBox.innerHTML = '';
+                    if (data.length > 0) {
+                        data.forEach(course => {
+                            const item = document.createElement('a');
+                            item.className =
+                                'list-group-item list-group-item-action';
+                            item.textContent = course.name;
+                            item.href = `/courses/${course.id}`;
+                            item.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                window.location.href = this.href;
+                            });
+                            resultsBox.appendChild(item);
+                        });
+                        resultsBox.style.display = 'block';
+                    } else {
+                        resultsBox.style.display = 'none';
+                    }
+                });
+        }, 300);
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !resultsBox.contains(e.target)) {
+            resultsBox.style.display = 'none';
+        }
+    });
+});
+</script>
+@endpush

@@ -80,11 +80,12 @@
                                     </div>
 
                                     <!-- Filter Dropdown Area -->
-                                    <div id="filters" class="tp-filter-dropdown-area tp-filter-dropdown-wrapper {{ request()->hasAny(['category', 'price_range', 'sort']) ? '' : 'd-none' }}">
+                                    <div id="filters"
+                                        class="tp-filter-dropdown-area tp-filter-dropdown-wrapper {{ request()->hasAny(['category', 'price_range', 'sort']) ? '' : 'd-none' }}">
                                         <form action="{{ route('courses.index') }}" method="GET">
                                             <!-- Preserve search query if exists -->
                                             @if(request('search'))
-                                                <input type="hidden" name="search" value="{{ request('search') }}">
+                                            <input type="hidden" name="search" value="{{ request('search') }}">
                                             @endif
 
                                             <!-- Preserve view type -->
@@ -99,12 +100,12 @@
                                                                 @foreach($categories as $category)
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="checkbox"
-                                                                               name="category[]"
-                                                                               value="{{ $category->id }}"
-                                                                               {{ in_array($category->id, (array)request('category')) ? 'checked' : '' }}
-                                                                               class="form-check-input">
-                                                                        <label class="form-check-label">{{ $category->name }}</label>
+                                                                        <input type="checkbox" name="category[]"
+                                                                            value="{{ $category->id }}"
+                                                                            {{ in_array($category->id, (array)request('category')) ? 'checked' : '' }}
+                                                                            class="form-check-input">
+                                                                        <label
+                                                                            class="form-check-label">{{ $category->name }}</label>
                                                                     </div>
                                                                 </li>
                                                                 @endforeach
@@ -119,35 +120,32 @@
                                                             <ul>
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="radio"
-                                                                               name="price_range"
-                                                                               value="all"
-                                                                               class="form-check-input"
-                                                                               id="price_all"
-                                                                               {{ request('price_range', 'all') === 'all' ? 'checked' : '' }}>
-                                                                        <label class="form-check-label" for="price_all">All</label>
+                                                                        <input type="radio" name="price_range"
+                                                                            value="all" class="form-check-input"
+                                                                            id="price_all"
+                                                                            {{ request('price_range', 'all') === 'all' ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="price_all">All</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="radio"
-                                                                               name="price_range"
-                                                                               value="free"
-                                                                               class="form-check-input"
-                                                                               id="price_free"
-                                                                               {{ request('price_range') === 'free' ? 'checked' : '' }}>
-                                                                        <label class="form-check-label" for="price_free">Free</label>
+                                                                        <input type="radio" name="price_range"
+                                                                            value="free" class="form-check-input"
+                                                                            id="price_free"
+                                                                            {{ request('price_range') === 'free' ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="price_free">Free</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="radio"
-                                                                               name="price_range"
-                                                                               value="paid"
-                                                                               class="form-check-input"
-                                                                               id="price_paid"
-                                                                               {{ request('price_range') === 'paid' ? 'checked' : '' }}>
-                                                                        <label class="form-check-label" for="price_paid">Paid</label>
+                                                                        <input type="radio" name="price_range"
+                                                                            value="paid" class="form-check-input"
+                                                                            id="price_paid"
+                                                                            {{ request('price_range') === 'paid' ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="price_paid">Paid</label>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -161,35 +159,33 @@
                                                             <ul>
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="radio"
-                                                                               name="sort"
-                                                                               value="latest"
-                                                                               class="form-check-input"
-                                                                               id="sort_latest"
-                                                                               {{ request('sort', 'latest') === 'latest' ? 'checked' : '' }}>
-                                                                        <label class="form-check-label" for="sort_latest">Latest</label>
+                                                                        <input type="radio" name="sort" value="latest"
+                                                                            class="form-check-input" id="sort_latest"
+                                                                            {{ request('sort', 'latest') === 'latest' ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="sort_latest">Latest</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="radio"
-                                                                               name="sort"
-                                                                               value="price_low"
-                                                                               class="form-check-input"
-                                                                               id="sort_price_low"
-                                                                               {{ request('sort') === 'price_low' ? 'checked' : '' }}>
-                                                                        <label class="form-check-label" for="sort_price_low">Price: Low to High</label>
+                                                                        <input type="radio" name="sort"
+                                                                            value="price_low" class="form-check-input"
+                                                                            id="sort_price_low"
+                                                                            {{ request('sort') === 'price_low' ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="sort_price_low">Price: Low to
+                                                                            High</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="radio"
-                                                                               name="sort"
-                                                                               value="price_high"
-                                                                               class="form-check-input"
-                                                                               id="sort_price_high"
-                                                                               {{ request('sort') === 'price_high' ? 'checked' : '' }}>
-                                                                        <label class="form-check-label" for="sort_price_high">Price: High to Low</label>
+                                                                        <input type="radio" name="sort"
+                                                                            value="price_high" class="form-check-input"
+                                                                            id="sort_price_high"
+                                                                            {{ request('sort') === 'price_high' ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="sort_price_high">Price: High to
+                                                                            Low</label>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -201,7 +197,8 @@
                                             <div class="row mt-4">
                                                 <div class="col-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Apply Filters</button>
-                                                    <a href="{{ route('courses.index') }}" class="btn btn-secondary">Clear Filters</a>
+                                                    <a href="{{ route('courses.index') }}"
+                                                        class="btn btn-secondary">Clear Filters</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -227,7 +224,7 @@
                                                 </div>
                                                 <div class="tp-course-content">
                                                     <div class="tp-course-tag mb-10">
-                                                        <span>{{ $course->category->name }}</span>
+                                                        <span>{{ optional($course->category)->name ?? 'Uncategorized' }}</span>
                                                     </div>
                                                     <div class="tp-course-meta">
                                                         <span>
@@ -287,7 +284,8 @@
                                         <div class="tp-course-filter-content">
                                             <div
                                                 class="tp-course-filter-tag d-flex align-items-center justify-content-between mb-10">
-                                                <span class="tag-span">{{ $course->category->name }}</span>
+                                                <span
+                                                    class="tag-span">{{ optional($course->category)->name ?? 'Uncategorized' }}</span>
                                                 <div class="tp-course-rating-star">
                                                     <p>{{ number_format($course->rating, 1) }}<span> /5</span></p>
                                                     <div class="tp-course-rating-icon">

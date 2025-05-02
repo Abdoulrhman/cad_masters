@@ -17,18 +17,16 @@ class CourseRegistrationController extends Controller
     public function submit(Request $request, Course $course)
     {
         // Store the CV file
-        $cvPath = $request->file('cv')->store('course-registrations/cv', 'public');
+        // $cvPath = $request->file('cv')->store('course-registrations/cv', 'public');
 
         // Create registration record
         $registration = CourseRegistration::create([
-            'course_id'       => $course->id,
-            'first_name'      => $request->first_name,
-            'last_name'       => $request->last_name,
-            'email'           => $request->email,
-            'phone'           => $request->phone,
-            'education_level' => $request->education_level,
-            'message'         => $request->message,
-            'cv_path'         => $cvPath,
+            'course_id'   => $course->id,
+            'course_name' => $course->name,
+            'first_name'  => $request->first_name,
+            'email'       => $request->email,
+            'phone'       => $request->phone,
+            'message'     => $request->message,
         ]);
 
         // Send email notification

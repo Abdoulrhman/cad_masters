@@ -57,7 +57,7 @@ class Course extends Model
      */
     public function instructor()
     {
-        return $this->belongsTo(User::class, 'instructor_id')->where('role', 'instructor');
+        return $this->belongsTo(\App\Models\Instructor::class, 'instructor_id');
     }
 
     /**
