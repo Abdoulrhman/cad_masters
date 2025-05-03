@@ -22,10 +22,9 @@ class CourseRequest extends FormRequest
             'image'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'category_id'   => 'nullable|exists:course_categories,id',
             'price_offer'   => 'nullable|numeric|min:0',
-            'branch'        => 'nullable|string|max:255',
             'hours'         => 'nullable|integer|min:1',
             'instructor_id' => 'nullable|exists:instructors,id',
-            'branch_id'     => 'nullable|exists:branches,id',
+            'branch_id'     => 'required|exists:branches,id',
             'outline_link'  => 'nullable|string|max:255',
             'youtube_link'  => 'nullable|string|max:255',
         ];
