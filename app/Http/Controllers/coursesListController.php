@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 
-class coursesListController extends Controller
+class CoursesListController extends Controller
 {
     public function architecture()
     {
