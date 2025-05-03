@@ -34070,3 +34070,21 @@ span.common-pale-purple {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+
+/* My Style & Editing*/
+
+
+ .dropdown-full-width {
+     width: 100%!important;
+     position: relative!important;
+ }
+.dropdown-full-width select {
+    width: 100%!important;
+}
+.dropdown-full-width option {
+    white-space: normal!important;
+    padding: 8px!important;
+}
+
+
