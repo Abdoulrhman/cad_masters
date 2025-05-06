@@ -15958,7 +15958,7 @@ a.social-insta {
     height: 500px;
 }
 .tp-contact-map-content iframe {
-    height: 100%;
+    height: 250px;
     width: 100%;
 }
 
@@ -21900,12 +21900,12 @@ a .course-sky {
 }
 .tp-course-details-2-text .content {
     position: relative;
-    max-height: 160px;
+    /*max-height: 160px;*/
     overflow: hidden;
     margin-bottom: 20px;
     transition: max-height 0.3s ease;
 }
-.tp-course-details-2-text .content::after {
+/*.tp-course-details-2-text .content::after {
     position: absolute;
     content: "";
     bottom: 0;
@@ -21917,7 +21917,7 @@ a .course-sky {
         #fff 37.73%,
         rgba(255, 255, 255, 0) 99.32%
     );
-}
+}*/
 .tp-course-details-2-text .content.show {
     max-height: 500px;
 }
@@ -30811,10 +30811,27 @@ span.common-pale-purple {
     only screen and (min-width: 768px) and (max-width: 991px),
     only screen and (min-width: 576px) and (max-width: 767px),
     only screen and (max-width: 767px) {
-    .tpd-table {
+    /*.tpd-table {
         overflow-x: scroll;
-    }
+    }*/
 }
+
+.tpd-table-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tpd-table-list li {
+    padding: 0 20px; /* Top/Bottom: 0, Left/Right: 20px */
+
+}
+
+.tpd-table-row {
+    padding: 15px 0; /* Top/Bottom padding inside each row */
+}
+.tp-course-details-2-text .content
+
 @media only screen and (min-width: 768px) and (max-width: 991px),
     only screen and (min-width: 576px) and (max-width: 767px) {
     .tpd-table {
@@ -30829,7 +30846,6 @@ span.common-pale-purple {
 .tpd-table-row {
     display: flex;
     align-items: center;
-    margin-left: 20px;
 }
 .tpd-table-title {
     color: #4a4e68;
@@ -30839,7 +30855,7 @@ span.common-pale-purple {
 }
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
     .tpd-table > ul {
-        width: 900px;
+        width: 700px;
         padding-right: 30px;
     }
 }
@@ -30879,7 +30895,7 @@ span.common-pale-purple {
 }
 .tpd-table ul li.tpd-table-head {
     border-radius: 8px;
-    background: #f4f5fa;
+    background: #b0b0b0!important;
 }
 .tpd-action-btn button,
 .tpd-action-btn a {
@@ -32253,25 +32269,25 @@ span.common-pale-purple {
 /*  7.5 Dashboard Quiz
 /*----------------------------------------*/
 .tpd-quiz-info {
-    width: 270px;
+    width: 130px;
     flex: 0 0 auto;
 }
 .tpd-quiz-info-sub {
-    width: 340px;
+    width: 130px;
     flex: 0 0 auto;
 }
 .tpd-quiz-ques {
     margin-left: 15px;
-    width: 68px;
+    width: 130px;
     flex: 0 0 auto;
 }
 .tpd-quiz-tm {
     margin-left: 15px;
-    width: 63px;
+    width: 130px;
     flex: 0 0 auto;
 }
 .tpd-quiz-no {
-    width: 65px;
+    width: 130px;
     flex: 0 0 auto;
 }
 .tpd-quiz-no-2 {
@@ -32399,7 +32415,7 @@ span.common-pale-purple {
     flex: 0 0 auto;
 }
 .tpd-quiz-ca {
-    width: 90px;
+    width: 130px;
     flex: 0 0 auto;
     margin-left: 15px;
 }

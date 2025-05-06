@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- course details breadcrumb start -->
-<section class="tp-breadcrumb__area pt-25 pb-55 p-relative z-index-1 fix">
+<section class="tp-breadcrumb__area pt-25 pb-15 p-relative z-index-1 fix">
     <div class="tp-breadcrumb__bg" data-background="assets/img/breadcrumb/breadcrumb-bg-2.jpg"></div>
     <div class="container">
         <div class="row align-items-center">
@@ -14,40 +14,6 @@
                         <span
                             class="tp-course-details-2-category">{{ $course->category ? $course->category->name : 'Uncategorized' }}</span>
                         <h3 class="tp-course-details-2-title">{{ $course->name }}</h3>
-                        <div class="tp-course-details-2-meta-wrapper d-flex align-items-center flex-wrap">
-                            <div class="tp-course-details-2-meta ">
-                                <div class="tp-course-details-2-author d-flex align-items-center">
-                                    <div class="tp-course-details-2-author-avater">
-                                        <img src="{{ $course->instructor && $course->instructor->image ? asset('storage/' . $course->instructor->image) : asset('assets/img/teacher/default.png') }}"
-                                            alt="{{ $course->instructor ? $course->instructor->name : 'Instructor' }}">
-                                    </div>
-                                    <div class="tp-course-details-2-author-content">
-                                        <span class="tp-course-details-2-author-designation">Instructor</span>
-                                        <h3 class="tp-course-details-2-meta-title">
-                                            {{ $course->instructor?->name ?? 'No Instructor' }}
-                                            {{--{{ $course->instructor ? $course->instructor->name : 'Instructor' }}--}}
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tp-course-details-2-meta">
-                                <span class="tp-course-details-2-meta-subtitle">Category</span>
-                                <h3 class="tp-course-details-2-meta-title">
-                                    {{ $course->category ? $course->category->name : 'Uncategorized' }}</h3>
-                            </div>
-                            <div class="tp-course-details-2-meta text-end">
-                                <div class="tp-course-details-2-meta-rating-wrapper">
-                                    <div class="tp-course-rating-icon">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <span class="tp-course-details-2-meta-subtitle">Review</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -58,7 +24,7 @@
 
 
 <!-- course details area start -->
-<section class="tp-course-details-2-area pt-50 pb-80">
+<section class="tp-course-details-2-area pb-80">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -79,28 +45,14 @@
                             <h4 class="tp-course-details-2-main-title">About Course</h4>
                             <div class="tp-course-details-2-text mb-60">
                                 <div class="content">
-                                    <p>This course is aimed at people interested in UI/UX Design. We’ll start from the
-                                        very <br>
-                                        beginning and work all the way through, step by step. If you already have some
-                                        UI/UX <br>
-                                        Design experience but want to get up to speed using Adobe XD then this course is
-                                        perfect <br>
-                                        for you too!</p>
-                                    <p>First, we will go over the differences between UX and UI Design. We will look at
-                                        what our <br>
-                                        brief for this real-world project is, then we will learn about low-fidelity
-                                        wireframes and how <br>
-                                        to make use of existing UI design kits.</p>
+                                    <p>{{$course->description}}</p>
                                 </div>
-                                <a class="tp-course-details-showmore show-more-button"><span class="svg-icon">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 1V11" stroke="#3C66F9" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M1 6H11" stroke="#3C66F9" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                    </span> Show more</a>
+                                {{--<a class="tp-course-details-showmore show-more-button"><span class="svg-icon">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 1V11" stroke="#3C66F9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M1 6H11" stroke="#3C66F9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                  </span> Show more</a>--}}
                             </div>
                             <h4 class="tp-course-details-2-main-title">What will you Learn?</h4>
                             <div class="tp-course-details-2-list">
@@ -123,32 +75,6 @@
                             <h4 class="tp-course-details-2-main-title">Course Content</h4>
                             <div class="tp-course-details-2-faq">
                                 <div class="accordion" id="accordionPanelsStayOpenExample">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                            <button class="accordion-button d-flex justify-content-between"
-                                                type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-                                                aria-controls="panelsStayOpen-collapseOne">
-                                                <span class="span">Intro to Course and Histudy</span>
-                                                <span class="lesson"></span>
-                                                <span class="accordion-btn"></span>
-                                            </button>
-                                        </h2>
-                                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                            aria-labelledby="panelsStayOpen-headingOne">
-                                            <div class="accordion-body">
-                                                <div
-                                                    class="tp-course-details-2-faq-item d-flex justify-content-between">
-                                                    <div class="left"><span> <svg width="18" height="18"
-                                                                viewBox="0 0 18 18" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-
-                                                            </svg>{!! nl2br(e($course->description)) !!} </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                             <button class="accordion-button collapsed d-flex justify-content-between"
@@ -191,6 +117,152 @@
                             </div>
                         </div>
 
+
+                        <br>
+                        <!-- course-area-start -->
+
+                        <ul class="tpd-table-list">
+                            <!-- Table Header -->
+                            <li class="tpd-table-head" style="background: #4fb469!important;">
+                                <div class="tpd-table-row">
+                                    <div class="tpd-quiz-info">
+                                        <h4 class="tpd-table-title">Start & End Date</h4>
+                                    </div>
+                                    <div class="tpd-quiz-ques">
+                                        <h4 class="tpd-table-title">Schedule</h4>
+                                    </div>
+                                    <div class="tpd-quiz-tm">
+                                        <h4 class="tpd-table-title">Branch</h4>
+                                    </div>
+                                    <div class="tpd-quiz-ca">
+                                        <h4 class="tpd-table-title">Price / Offer</h4>
+                                    </div>
+                                    <div class="tpd-quiz-details">
+                                        <h4 class="tpd-table-title">Register NOW</h4>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Table Rows - Dynamic -->
+                            @forelse($course->sessions as $session)
+                            <li>
+                                <div class="tpd-table-row">
+                                    <div class="tpd-quiz-info">
+                                        <span class="tpd-common-date">
+                                            {{ $session->start_date->format('F j, Y') }}
+                                        </span>
+                                        <br>
+                                        <span class="tpd-common-date">
+                                            {{ $session->end_date->format('F j, Y') }}
+                                        </span>
+                                    </div>
+                                    <div class="tpd-quiz-ques">
+                                        <span class="tpd-common-text">
+                                            {{ $session->schedule ?? 'Not specified' }}
+                                        </span>
+                                    </div>
+                                    <div class="tpd-quiz-tm">
+                                        <h4 class="tpd-table-title">
+                                            {{ $course->branch->name ?? 'Online' }}
+                                        </h4>
+                                    </div>
+                                    <div class="tpd-quiz-ca">
+                                        <h4 class="tpd-table-title">
+                                            @if($course->price_offer)
+                                            <del>${{ number_format($course->price, 2) }}</del>
+                                            <br>
+                                            <span style="font-size: 12px"> Contact us for discount </span>
+                                            @else
+                                            ${{ number_format($course->price, 2) }}
+                                            @endif
+                                        </h4>
+                                    </div>
+                                    <div class="tpd-quiz-details">
+                                        <div class="tpd-quiz-details-box d-flex">
+                                            <div class="tpd-quiz-details-btn mr-15">
+                                                <a class="tpd-border-btn"
+                                                    href="{{ route('courses.register', $course) }}" target="_blank">
+                                                    Register
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @empty
+                            <li>
+                                <div class="tpd-table-row">
+                                    <div class="tpd-quiz-info" colspan="5">
+                                        <span class="tpd-common-text">No sessions available yet</span>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforelse
+                        </ul>
+
+
+
+                        {{--<div class="tpd-course-area">
+                            <div class="col-lg-12">
+                                <div class="tpd-table mb-25">
+                                    <ul>
+                                        <li class="tpd-table-head">
+                                            <div class="tpd-table-row">
+                                                <div class="tpd-quiz-info">
+                                                    <h4 class="tpd-table-title">Start & End Date </h4>
+                                                </div>
+                                                <div class="tpd-quiz-ques">
+                                                    <h4 class="tpd-table-title">Schedule</h4>
+                                                </div>
+                                                <div class="tpd-quiz-tm">
+                                                    <h4 class="tpd-table-title">Branch</h4>
+                                                </div>
+                                                <div class="tpd-quiz-ca">
+                                                    <h4 class="tpd-table-title">Price / Offer</h4>
+                                                </div>
+                                                <div class="tpd-quiz-details">
+                                                    <h4 class="tpd-table-title">Register NOW</h4>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tpd-table-row">
+                                                <div class="tpd-quiz-info">
+                                                    <span class="tpd-common-date">March 26, 2024</span>
+                                                    <span class="tpd-common-date">March 26, 2024</span>
+                                                </div>
+                                                <div class="tpd-quiz-ques">
+                                                    <span class="tpd-common-text">2</span>
+                                                </div>
+                                                <div class="tpd-quiz-tm">
+                                                    <h4 class="tpd-table-title">1</h4>
+                                                </div>
+                                                <div class="tpd-quiz-ca">
+                                                    <h4 class="tpd-table-title">0</h4>
+                                                </div>
+                                                <div class="tpd-quiz-details">
+                                                    <div class="tpd-quiz-details-box d-flex">
+                                                        <div class="tpd-quiz-details-btn mr-15">
+                                                            <a class="tpd-border-btn" href="instructor-quiz-attempts.html">Register</a>
+                                                        </div>
+                                                        <div class="tpd-action-inexact-btn">
+                                                            <button class="border-bg">
+
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div
+                                >
+                            </div>
+
+
+                        </div>--}}
+                        <!-- course-area-start-end -->
+
                         <div id="instructors" class="pt-100">
                             <h4 class="tp-course-details-2-main-title">Your Instructors</h4>
                             <div class="tp-course-details-2-instructor d-flex">
@@ -217,7 +289,7 @@
                         </div>
 
                         <div id="reviews">
-                            <h4 class="tp-course-details-2-main-title">Ratings & Reviews</h4>
+                            <h4 class="tp-course-details-2-main-title"> Reviews</h4>
                             <div class="tp-course-details-2-review-rating">
                                 <div class="row gx-2">
                                     <div class="col-lg-12 justify-content-center">
@@ -253,8 +325,8 @@
                     </div>
                     <div class="tp-course-details-2-widget-content">
                         <div class="tp-course-details-2-widget-price">
-                            <del>${{$course->price}} </del>
-                            <span>Contact us for current discount </span>
+
+                            <span> {{ $course->name }} </span>
                         </div>
                         <div class="tp-course-details-2-widget-btn">
                             <a class="active" href="{{ route('courses.register', $course) }}"
@@ -292,92 +364,22 @@
                                     <span>Beginner</span>
                                 </div>
 
-
-
-
-                                @if($course->sessions && count($course->sessions) > 0)
-                                @foreach($course->sessions as $session)
-                                <!-- Start Date -->
                                 <div
                                     class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
                                     <span>
-                                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.4" d="M1.06836 6.18286H13.5451" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M10.4102 8.91675H10.4194" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M7.30273 8.91675H7.312" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M4.1875 8.91675H4.19676" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M10.4102 11.6375H10.4194" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M7.30273 11.6375H7.312" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M4.1875 11.6375H4.19676" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.1289 1V3.30355" stroke="#4F5158" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M4.47656 1V3.30355" stroke="#4F5158" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M10.2668 2.10535H4.33967C2.28399 2.10535 1 3.2505 1 5.35547V11.6902C1 13.8283 2.28399 14.9999 4.33967 14.9999H10.2603C12.3225 14.9999 13.6 13.8481 13.6 11.7432V5.35547C13.6065 3.2505 12.329 2.10535 10.2668 2.10535Z"
-                                                stroke="#4F5158" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                        Start {{ $loop->iteration }} Date
+                                        @if($course->outline_link)
+                                        <a href="{!! $course->outline_link !!}" target="_blank">
+                                            <img src="{{ asset('assets/img/breadcrumb/pdf-bg.png') }}"
+                                                style="width: 50px!important;height: 50px!important;" alt=""> <a
+                                                href="{!! $course->outline_link !!}" target="_blank"
+                                                style="color: #0a53be"> Download Course Content </a>
+                                        </a>
+                                        @else
+                                        <p>Course Outline will be available soon.</p>
+                                        @endif
                                     </span>
-                                    <span>{{ \Carbon\Carbon::parse($session->start_date)->format('d M Y') }}</span>
                                 </div>
 
-                                <!-- End Date -->
-                                <div
-                                    class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span>
-                                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.4" d="M1.06836 6.18286H13.5451" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M10.4102 8.91675H10.4194" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M7.30273 8.91675H7.312" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M4.1875 8.91675H4.19676" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M10.4102 11.6375H10.4194" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M7.30273 11.6375H7.312" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path opacity="0.4" d="M4.1875 11.6375H4.19676" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.1289 1V3.30355" stroke="#4F5158" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M4.47656 1V3.30355" stroke="#4F5158" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M10.2668 2.10535H4.33967C2.28399 2.10535 1 3.2505 1 5.35547V11.6902C1 13.8283 2.28399 14.9999 4.33967 14.9999H10.2603C12.3225 14.9999 13.6 13.8481 13.6 11.7432V5.35547C13.6065 3.2505 12.329 2.10535 10.2668 2.10535Z"
-                                                stroke="#4F5158" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                        End {{ $loop->iteration }} Date
-                                    </span>
-                                    <span>{{ \Carbon\Carbon::parse($session->end_date)->format('d M Y') }}</span>
-                                </div>
-                                @endforeach
-                                @else
-                                <div
-                                    class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span>
-                                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <!-- Your SVG calendar icon -->
-                                        </svg>
-                                        Start Date
-                                    </span>
-                                    <span>No sessions scheduled</span>
-                                </div>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -401,7 +403,6 @@
             </div>
         </div>
         @if($relatedCourses->count() > 0)
-
         <div class="row">
             @foreach($relatedCourses as $relatedCourse)
             <div class="col-lg-4 col-md-6">
@@ -431,15 +432,37 @@
             @endforeach
         </div>
         @else
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert alert-info text-center">
-                    No related courses available at the moment.
-                </div>
-            </div>
-
+        <div class="alert alert-info text-center py-4">
+            <i class="fas fa-info-circle me-2"></i> No related courses found in this category.
         </div>
         @endif
+        {{--<div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="tp-course-item p-relative fix mb-30">
+                    <div class="tp-course-thumb">
+                        <a href="{{ route('courses.show', $relatedCourse->id) }}">
+        <img class="course-pink"
+            src="{{ $relatedCourse->image ? asset('storage/'.$relatedCourse->image) : asset('assets/img/course/course-thumb-5.jpg') }}"
+            alt="{{ $relatedCourse->name }}">
+        </a>
+    </div>
+    <div class="tp-course-content">
+        <div class="tp-course-tag mb-10">
+            <span>{{ $relatedCourse->category ? $relatedCourse->category->name : 'Uncategorized' }}</span>
+        </div>
+        <h4 class="tp-course-title">
+            <a href="{{ route('courses.show', $relatedCourse->id) }}">
+                {{ $relatedCourse->name }}
+            </a>
+        </h4>
+    </div>
+    <div class="tp-course-btn">
+        <a href="{{ route('courses.show', $relatedCourse->id) }}">Preview this Course</a>
+    </div>
+    </div>
+    </div>
+    </div>--}}
+    </div>
 </section>
 <!-- course details area end -->
 
