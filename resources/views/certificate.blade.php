@@ -56,6 +56,4 @@
     </div>
 </section>
 <!-- shop product area end -->
-
-
-    @include('partials.footer')
+@endsection

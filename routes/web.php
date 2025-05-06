@@ -47,6 +47,7 @@ Route::get('/courses/{course}', [CourseController::class, 'show'])->name('course
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('client', [ClientController::class, 'index']);
 Route::get('architecture', [CoursesListController::class, 'architecture']);
+Route::get('courses/{course}', [CoursesListController::class, 'show'])->name('courses.show');
 Route::get('structure', [CoursesListController::class, 'structure']);
 Route::get('mechanical', [CoursesListController::class, 'mechanical']);
 Route::get('management', [CoursesListController::class, 'management']);
@@ -58,6 +59,7 @@ Route::get('authorization', [AuthorizationController::class, 'index']);
 Route::get('contact', [ConatctUsController::class, 'index']);
 Route::get('media', [MediaController::class, 'index'])->name('media.index');
 Route::get('media/albums/{album:slug}', [MediaController::class, 'show'])->name('media.albums.show');
+
 
 // Authentication Routes
 require __DIR__ . '/auth.php';

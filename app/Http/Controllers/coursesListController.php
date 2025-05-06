@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
-class coursesListController extends Controller
+class CoursesListController extends Controller
 {
     public function architecture()
     {
@@ -100,13 +100,16 @@ class coursesListController extends Controller
     {
         $course = Course::with('category')->findOrFail($id);
 
-        // Get related courses (same category, excluding current course)
         $relatedCourses = Course::where('category_id', $course->category_id)
-            ->where('id', '!=', $course->id)
-            ->take(3) // Limit to 3 related courses
+            ->where('id', '!=', $id)
+            ->with('category')
+            ->limit(3)
             ->get();
 
-        return view('courses.show', compact('course', 'relatedCourses'));
+        return view('courses.show', [
+            'course' => $course,
+            'relatedCourses' => $relatedCourses
+        ]);
     }
 
 }

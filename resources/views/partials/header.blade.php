@@ -60,7 +60,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="{{ url('courses') }}">Courses</a></li>
                                 <li><a href="{{ url('media') }}">Media</a></li>
                                 <li><a href="{{ route('careers.index') }}">Careers</a></li>
                                 <li><a href="{{ url('contact') }}">Contact Us</a></li>

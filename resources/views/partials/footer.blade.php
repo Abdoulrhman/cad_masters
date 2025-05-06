@@ -35,7 +35,7 @@
                         <h4 class="tp-footer-widget-title mb-15 text-white">Contact us</h4>
                         <div class="tp-footer-widget-link">
                             <div class="tp-footer-contact">
-                                <h6 class="text-white">Nasr City Branch</h6>
+                                <h6 class="text-white">Head Branch</h6>
                                 <p class="text-white-50"> <i class="fa fa-location-dot"></i> 2 Hassan Afify St.-Makram Ebeid, Nasr City</p>
                             </div>
                             <div class="tp-footer-contact">
