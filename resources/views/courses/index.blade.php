@@ -253,11 +253,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="tp-course-pricing">
-                                                            @if($course->price > 0)
+                                                            {{--@if($course->price > 0)
                                                             <span>${{ number_format($course->price, 2) }}</span>
                                                             @else
                                                             <span>Free</span>
-                                                            @endif
+                                                            @endif--}}
                                                         </div>
                                                     </div>
                                                 </div>

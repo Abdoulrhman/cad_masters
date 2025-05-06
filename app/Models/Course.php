@@ -17,7 +17,7 @@ class Course extends Model
         'name',
         'image',
         'description',
-        'category_id',
+        //'category_id',
         'price',
         'price_offer',
         'branch_id',

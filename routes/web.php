@@ -52,6 +52,7 @@ Route::get('mechanical', [CoursesListController::class, 'mechanical']);
 Route::get('management', [CoursesListController::class, 'management']);
 Route::get('electrical', [CoursesListController::class, 'electrical']);
 Route::get('graphics', [CoursesListController::class, 'graphics']);
+Route::get('/courses/{course}', [CoursesListController::class, 'show'])->name('courses.show');
 Route::get('bim', [CoursesListController::class, 'bim']);
 Route::get('certificate', [CertificateController::class, 'index']);
 Route::get('authorization', [AuthorizationController::class, 'index']);
