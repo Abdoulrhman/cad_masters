@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('authorizations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name');              // Required field (matches your form)
+            $table->string('category');          // Changed from 'type' to 'category'
             $table->string('image')->nullable();
             $table->timestamps();
         });

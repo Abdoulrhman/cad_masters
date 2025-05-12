@@ -61,6 +61,18 @@
                     </li>
 
                     <li class="sidebar-item">
+                        <a href="#awardsSubmenu" data-bs-toggle="collapse" class="sidebar-link">
+                            <i class="fa-solid fa-award"></i>
+                            <span>Awards</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse sidebar-dropdown" id="awardsSubmenu">
+                            <li><a href="{{ route('dashboard.awards.index') }}">All Awards</a></li>
+                            <li><a href="{{ route('dashboard.awards.create') }}">Add New Awards</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
                         <a href="#partnersSubmenu" data-bs-toggle="collapse" class="sidebar-link">
                             <i class="fas fa-handshake"></i>
                             <span>Partners</span>

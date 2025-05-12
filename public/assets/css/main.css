@@ -22246,7 +22246,7 @@ a .course-sky {
 @media only screen and (min-width: 576px) and (max-width: 767px),
     only screen and (max-width: 767px) {
     .tp-course-details-2-instructor-thumb {
-        margin-right: 20px;
+        margin-right: 10px;
         margin-bottom: 20px;
     }
 }
@@ -30897,6 +30897,11 @@ span.common-pale-purple {
     border-radius: 8px;
     background: #b0b0b0!important;
 }
+
+.tbd-color {
+    color: white!important;
+}
+
 .tpd-action-btn button,
 .tpd-action-btn a {
     position: relative;

@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\AboutController;
+use
+    App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\AwardsController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ConatctUsController;
@@ -57,6 +60,7 @@ Route::get('/courses/{course}', [CoursesListController::class, 'show'])->name('c
 Route::get('bim', [CoursesListController::class, 'bim']);
 Route::get('certificate', [CertificateController::class, 'index']);
 Route::get('authorization', [AuthorizationController::class, 'index']);
+Route::get('award', [AwardController::class, 'index']);
 Route::get('contact', [ConatctUsController::class, 'index']);
 Route::get('media', [MediaController::class, 'index'])->name('media.index');
 Route::get('media/albums/{album:slug}', [MediaController::class, 'show'])->name('media.albums.show');
@@ -115,6 +119,16 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         'edit'    => 'dashboard.clients.edit',
         'update'  => 'dashboard.clients.update',
         'destroy' => 'dashboard.clients.destroy',
+    ]);
+
+    // Clients Routes (Required Authentication)
+    Route::resource('awards', AwardsController::class)->except(['show'])->names([
+        'index'   => 'dashboard.awards.index',
+        'create'  => 'dashboard.awards.create',
+        'store'   => 'dashboard.awards.store',
+        'edit'    => 'dashboard.awards.edit',
+        'update'  => 'dashboard.awards.update',
+        'destroy' => 'dashboard.awards.destroy',
     ]);
 
     // Certificates Routes (Required Authentication)
