@@ -1,4 +1,9 @@
 <footer class="text-white">{{--tp-footer-main tpd-dashboard-footer--}}
+   {{-- <x-whatsapp-button
+            :phoneNumber="config('whatsapp.number')"
+            :message="config('whatsapp.default_message')" />--}}
+    @include('partials.social-buttons')
+
     <div class="tp-footer-copyright pt-80 pb-55" data-bg-color="#0a1c3a">
         <div class="container">
             <div class="row">

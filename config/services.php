@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'whatsapp' => [
+        'number' => env('WHATSAPP_NUMBER', '01141469149'),
+        'default_message' => env('WHATSAPP_DEFAULT_MESSAGE', 'Hello, I have a question about...'),
+    ],
+
+    'messenger' => [
+        'username' => env('MESSENGER_USERNAME', 'yourpage'),
+        'default_message' => env('MESSENGER_DEFAULT_MESSAGE', 'Hello, I have a question about...'),
+    ],
 ];
