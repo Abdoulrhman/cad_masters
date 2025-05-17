@@ -1,8 +1,9 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\Branch;
 use App\Models\Course;
-use App\Models\User;
+use App\Models\CourseCategory;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -12,71 +13,66 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create a default instructor if none exists
-        $instructor = User::firstOrCreate(
-            ['email' => 'instructor@example.com'],
+        // Get categories
+        $autocadCategory      = CourseCategory::where('name', 'AutoCAD')->first();
+        $sketchupCategory     = CourseCategory::where('name', 'SketchUp')->first();
+        $modelingCategory     = CourseCategory::where('name', '3D Modeling')->first();
+        $architectureCategory = CourseCategory::where('name', 'Architecture')->first();
+
+        // Create a default branch if none exists
+        $branch = Branch::firstOrCreate(
+            ['name' => 'Main Branch'],
             [
-                'name'     => 'Default Instructor',
-                'password' => bcrypt('password'),
-                'role'     => 'instructor',
+                'address' => '123 Main St',
+                'phone'   => '555-1234',
+                'email'   => 'main@example.com',
             ]
         );
 
         $courses = [
             [
-                'title'         => 'AutoCAD Fundamentals',
-                'description'   => 'Learn the basics of AutoCAD, including 2D drawing, editing, and annotation tools.',
-                'duration'      => '40 hours',
-                'price'         => 299.99,
-                'is_active'     => true,
-                'start_date'    => '2025-04-24 09:00:00',
-                'end_date'      => '2025-05-24 17:00:00',
-                'max_students'  => 20,
-                'instructor_id' => $instructor->id,
+                'name'         => 'AutoCAD 2D Professional',
+                'description'  => 'Learn the basics of AutoCAD, including 2D drawing, editing, and annotation tools.',
+                'category_id'  => $autocadCategory->id,
+                'price'        => 197.00,
+                'price_offer'  => 26.00,
+                'branch_id'    => $branch->id,
+                'hours'        => 11,
+                'is_active'    => true,
+                'max_students' => 20,
             ],
             [
-                'title'         => '3D Studio Max Essential Training',
-                'description'   => 'Master 3D modeling, texturing, lighting, and rendering in 3ds Max.',
-                'duration'      => '60 hours',
-                'price'         => 399.99,
-                'is_active'     => true,
-                'start_date'    => '2025-05-01 09:00:00',
-                'end_date'      => '2025-06-15 17:00:00',
-                'max_students'  => 15,
-                'instructor_id' => $instructor->id,
+                'name'         => 'AutoCAD 2D Advanced',
+                'description'  => 'About Course SketchUp is a powerful free graphics modeling program',
+                'category_id'  => $sketchupCategory->id,
+                'price'        => 9000.00,
+                'price_offer'  => 8000.00,
+                'branch_id'    => $branch->id,
+                'hours'        => 9,
+                'is_active'    => true,
+                'max_students' => 15,
             ],
             [
-                'title'         => 'Revit Architecture Complete',
-                'description'   => 'Comprehensive training in Revit for architectural design and BIM workflows.',
-                'duration'      => '80 hours',
-                'price'         => 499.99,
-                'is_active'     => true,
-                'start_date'    => '2025-05-15 09:00:00',
-                'end_date'      => '2025-07-15 17:00:00',
-                'max_students'  => 18,
-                'instructor_id' => $instructor->id,
+                'name'         => '3D Studio Max Essential Training',
+                'description'  => 'Master 3D modeling, texturing, lighting, and rendering in 3ds Max.',
+                'category_id'  => $modelingCategory->id,
+                'price'        => 399.99,
+                'price_offer'  => 350.00,
+                'branch_id'    => $branch->id,
+                'hours'        => 60,
+                'is_active'    => true,
+                'max_students' => 12,
             ],
             [
-                'title'         => 'Civil 3D for Infrastructure Design',
-                'description'   => 'Learn Civil 3D for infrastructure and civil engineering projects.',
-                'duration'      => '70 hours',
-                'price'         => 449.99,
-                'is_active'     => true,
-                'start_date'    => '2025-06-01 09:00:00',
-                'end_date'      => '2025-07-30 17:00:00',
-                'max_students'  => 16,
-                'instructor_id' => $instructor->id,
-            ],
-            [
-                'title'         => 'BIM Project Management',
-                'description'   => 'Master BIM project coordination, clash detection, and team collaboration.',
-                'duration'      => '90 hours',
-                'price'         => 599.99,
-                'is_active'     => true,
-                'start_date'    => '2025-06-15 09:00:00',
-                'end_date'      => '2025-08-15 17:00:00',
-                'max_students'  => 12,
-                'instructor_id' => $instructor->id,
+                'name'         => 'Architecture Fundamentals',
+                'description'  => 'Comprehensive training in architecture design fundamentals.',
+                'category_id'  => $architectureCategory->id,
+                'price'        => 499.99,
+                'price_offer'  => 450.00,
+                'branch_id'    => $branch->id,
+                'hours'        => 80,
+                'is_active'    => true,
+                'max_students' => 18,
             ],
         ];
 

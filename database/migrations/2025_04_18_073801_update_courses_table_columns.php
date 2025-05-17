@@ -14,6 +14,18 @@ return new class extends Migration
         Schema::table('courses', function (Blueprint $table) {
             //
         });
+        Schema::create('course_instructor', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('instructor_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
+        Schema::create('certificate_course', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('certificate_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -97,6 +97,23 @@ class CoursesController extends Controller
         // Save the course
         $course = Course::create($form_data);
 
+        // Attach instructors (many-to-many)
+        if ($request->has('instructors')) {
+            $course->instructors()->sync($request->instructors);
+        }
+
+        // Handle certificate images (many-to-many)
+        if ($request->hasFile('certificates')) {
+            foreach ($request->file('certificates') as $file) {
+                $path        = $file->store('certificates', 'public');
+                $certificate = \App\Models\Certificate::create([
+                    'name'  => $file->getClientOriginalName(),
+                    'image' => $path,
+                ]);
+                $course->certificates()->attach($certificate->id);
+            }
+        }
+
         // Save course sessions if provided
         if ($request->has('sessions')) {
             foreach ($request->sessions as $session) {
@@ -134,18 +151,32 @@ class CoursesController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete old image if exists
-            if ($course->image && Storage::disk('public')->exists($course->image)) {
-                Storage::disk('public')->delete($course->image);
+            if ($course->image && \Storage::disk('public')->exists($course->image)) {
+                \Storage::disk('public')->delete($course->image);
             }
-
-            // Store new image
             $form_data['image'] = $request->file('image')->store('courses', 'public');
         } else {
-            // Keep existing image if no new one is uploaded
             unset($form_data['image']);
         }
 
         $course->update($form_data);
+
+        // Sync instructors (many-to-many)
+        if ($request->has('instructors')) {
+            $course->instructors()->sync($request->instructors);
+        }
+
+        // Handle certificate images (many-to-many)
+        if ($request->hasFile('certificates')) {
+            foreach ($request->file('certificates') as $file) {
+                $path        = $file->store('certificates', 'public');
+                $certificate = \App\Models\Certificate::create([
+                    'name'  => $file->getClientOriginalName(),
+                    'image' => $path,
+                ]);
+                $course->certificates()->attach($certificate->id);
+            }
+        }
 
         return redirect()->route('dashboard.courses.index')
             ->with('success', 'Course updated successfully.');

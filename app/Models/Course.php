@@ -17,7 +17,7 @@ class Course extends Model
         'name',
         'image',
         'description',
-        //'category_id',
+        'category_id',
         'price',
         'price_offer',
         'branch_id',
@@ -53,14 +53,6 @@ class Course extends Model
     }
 
     /**
-     * Get the instructor that owns the course.
-     */
-    public function instructor()
-    {
-        return $this->belongsTo(\App\Models\Instructor::class, 'instructor_id');
-    }
-
-    /**
      * Get the students enrolled in the course.
      */
     public function students()
@@ -91,5 +83,21 @@ class Course extends Model
     public function branch()
     {
         return $this->belongsTo(\App\Models\Branch::class, 'branch_id');
+    }
+
+    /**
+     * The instructors that belong to the course.
+     */
+    public function instructors()
+    {
+        return $this->belongsToMany(\App\Models\Instructor::class, 'course_instructor');
+    }
+
+    /**
+     * The certificates that belong to the course.
+     */
+    public function certificates()
+    {
+        return $this->belongsToMany(\App\Models\Certificate::class, 'certificate_course');
     }
 }

@@ -14,23 +14,19 @@ class CourseCategorySeeder extends Seeder
         $categories = [
             [
                 'name'        => 'AutoCAD',
-                'description' => 'Learn AutoCAD from basics to advanced techniques',
+                'description' => 'AutoCAD related courses',
+            ],
+            [
+                'name'        => 'SketchUp',
+                'description' => 'SketchUp related courses',
             ],
             [
                 'name'        => '3D Modeling',
-                'description' => 'Master 3D modeling and visualization',
+                'description' => '3D Modeling courses',
             ],
             [
-                'name'        => 'BIM',
-                'description' => 'Building Information Modeling courses',
-            ],
-            [
-                'name'        => 'Revit',
-                'description' => 'Autodesk Revit training for architecture and construction',
-            ],
-            [
-                'name'        => 'Civil 3D',
-                'description' => 'Civil engineering and infrastructure design',
+                'name'        => 'Architecture',
+                'description' => 'Architecture related courses',
             ],
         ];
 

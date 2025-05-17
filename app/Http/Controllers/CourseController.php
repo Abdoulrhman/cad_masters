@@ -5,6 +5,7 @@ use App\Http\Requests\CourseRequest;
 use App\Models\Branch;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\Instructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -57,7 +58,27 @@ class CourseController extends Controller
                 break;
         }
 
-        $courses    = $query->paginate(12)->withQueryString();
+        $courses = $query->paginate(12)->withQueryString();
+
+        // Debug: Log the first course's category if it exists
+        if ($courses->count() > 0) {
+            Log::info('First course category: ' . json_encode($courses->first()->category));
+
+            // Additional debugging - check the current request URL
+            Log::info('Current URL: ' . request()->url());
+            Log::info('Current route name: ' . request()->route()->getName());
+
+            // Dump the category ID to make sure it's set
+            $firstCourse = $courses->first();
+            Log::info('Category ID: ' . $firstCourse->category_id);
+            Log::info('Category object: ' . ($firstCourse->category ? 'Found' : 'Not found'));
+
+            // Add a debug message to the session
+            if (! $firstCourse->category) {
+                session()->flash('debug', 'Category relationship not found for course #' . $firstCourse->id);
+            }
+        }
+
         $categories = CourseCategory::all();
 
         // Check if we're accessing from dashboard
@@ -84,7 +105,8 @@ class CourseController extends Controller
     {
         $courseCategories = CourseCategory::all();
         $branches         = Branch::all();
-        return view('dashboard.courses.create', compact('courseCategories', 'branches'));
+        $instructors      = Instructor::all();
+        return view('dashboard.courses.create', compact('courseCategories', 'branches', 'instructors'));
     }
 
     /**
@@ -93,6 +115,9 @@ class CourseController extends Controller
     public function store(CourseRequest $request)
     {
         $form_data = $request->validated();
+
+        // No need to sanitize description as we're using a rich text editor
+        // $form_data['description'] is already passed through validation
 
         if ($request->hasFile('image')) {
             $form_data['image'] = $request->file('image')->store('courses', 'public');
@@ -137,6 +162,9 @@ class CourseController extends Controller
     public function update(CourseRequest $request, Course $course)
     {
         $form_data = $request->validated();
+
+        // No need to sanitize description as we're using a rich text editor
+        // $form_data['description'] is already passed through validation
 
         if ($request->hasFile('image')) {
             // Delete old image if exists

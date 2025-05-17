@@ -115,15 +115,27 @@
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
-                                                <label for="instructor_id">Instructor</label>
-                                                <select name="instructor_id" id="instructor_id" class="form-control">
-                                                    <option value="">Select an Instructor</option>
+                                                <label for="instructors">Instructors</label>
+                                                <select name="instructors[]" id="instructors" class="form-control" multiple required>
                                                     @foreach($instructors as $instructor)
-                                                    <option value="{{ $instructor->id }}"
-                                                        {{ old('instructor_id', $course->instructor_id) == $instructor->id ? 'selected' : '' }}>
-                                                        {{ $instructor->name }}</option>
+                                                    <option value="{{ $instructor->id }}" {{ (collect(old('instructors', $course->instructors->pluck('id')))->contains($instructor->id)) ? 'selected' : '' }}>
+                                                        {{ $instructor->name }}
+                                                    </option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="tp-contact-input p-relative">
+                                                <label for="certificates">Certificates (Images)</label>
+                                                <input type="file" name="certificates[]" id="certificates" class="form-control" accept="image/*" multiple>
+                                                <small class="text-muted">You can upload multiple certificate images. Existing certificates will be shown below.</small>
+                                                <div class="mt-2">
+                                                    @foreach($course->certificates as $certificate)
+                                                        <img src="{{ asset('storage/' . $certificate->image) }}" alt="Certificate" style="max-width: 80px; max-height: 80px; margin-right: 8px;">
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
 
@@ -161,7 +173,7 @@
                                         <div class="col-12">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="description">Description</label>
-                                                <textarea name="description" id="description" class="form-control"
+                                                <textarea name="description" id="editor" class="form-control"
                                                     rows="4"
                                                     required>{{ old('description', $course->description) }}</textarea>
                                             </div>
@@ -228,12 +240,44 @@
 @endsection
 
 @push('scripts')
+<!-- CKEditor CDN -->
+<script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+<!-- Select2 CDN -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-let sessionIndex = {
-    {
-        $course - > sessions - > count()
-    }
-};
+// CKEditor 5 implementation
+let editor;
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'undo', 'redo'],
+    })
+    .then(newEditor => {
+        editor = newEditor;
+
+        // Fix for form validation errors on hidden/replaced form controls
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            // Fix for description field (CKEditor)
+            const descriptionInput = document.querySelector('textarea[name="description"]');
+            descriptionInput.value = editor.getData();
+
+            // Fix for name field if it's hidden
+            const nameInput = document.querySelector('input[name="name"]');
+            if (nameInput && nameInput.style.display === 'none') {
+                // Make sure the input is visible just before submission
+                nameInput.style.display = 'block';
+                nameInput.style.position = 'absolute';
+                nameInput.style.opacity = '0';
+            }
+        });
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+// Session management code
+let sessionIndex = {{ $course->sessions->count() }};
 document.getElementById('add-session').addEventListener('click', function() {
     const wrapper = document.getElementById('sessions-wrapper');
     const row = document.createElement('div');
@@ -252,10 +296,19 @@ document.getElementById('add-session').addEventListener('click', function() {
     wrapper.appendChild(row);
     sessionIndex++;
 });
+
 document.getElementById('sessions-wrapper').addEventListener('click', function(e) {
     if (e.target.classList.contains('remove-session')) {
         e.target.closest('.session-row').remove();
     }
+});
+
+// Enhance instructors select with Select2
+$(document).ready(function() {
+    $('#instructors').select2({
+        placeholder: 'Select instructors',
+        width: '100%'
+    });
 });
 </script>
 @endpush

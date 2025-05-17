@@ -1,4 +1,8 @@
 <div class="order-table">
+    @if(session('debug'))
+    <div class="alert alert-info">Debug: {{ session('debug') }}</div>
+    @endif
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -26,17 +30,31 @@
                     <a href="{{ $item->youtube_link }}" target="_blank">YouTube</a>
                     @elseif($header === 'created_at' || $header === 'updated_at')
                     {{ $item->$header->diffForHumans() }}
+                    @elseif($header === 'category')
+                    @if(isset($item->category_id))
+                    <!-- Debug info -->
+                    <small class="text-muted d-block">ID: {{ $item->category_id }}</small>
+                    @if($item->category)
+                    {{ $item->category->name ?? 'N/A' }}
+                    @else
+                    <span class="text-danger">No category relation found</span>
+                    @endif
+                    @else
+                    <span class="text-danger">No category_id</span>
+                    @endif
                     @elseif(str_contains($header, '_id'))
-                        @php
-                            $relation = str_replace('_id', '', $header);
-                            $relationObj = $item->$relation;
-                        @endphp
-                        {{ $relationObj->name ?? 'N/A' }}
+                    @php
+                    $relation = str_replace('_id', '', $header);
+                    $relationObj = $item->$relation;
+                    @endphp
+                    {{ $relationObj->name ?? 'N/A' }}
                     @elseif(method_exists($item, $header))
-                        @php
-                            $relation = $item->$header;
-                        @endphp
-                        {{ $relation ? $relation->name : 'N/A' }}
+                    @php
+                    $relation = $item->$header;
+                    @endphp
+                    {{ $relation ? $relation->name : 'N/A' }}
+                    @elseif($header === 'description')
+                    {!! Str::limit($item->$header ?? 'N/A', 100) !!}
                     @else
                     {{ $item->$header ?? 'N/A' }}
                     @endif

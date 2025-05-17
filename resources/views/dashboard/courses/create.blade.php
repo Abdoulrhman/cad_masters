@@ -24,7 +24,7 @@
                             @endif
 
                             <form action="{{ route('dashboard.courses.store') }}" method="POST"
-                                enctype="multipart/form-data">
+                                enctype="multipart/form-data" novalidate>
                                 @csrf
 
                                 <div class="row">
@@ -103,16 +103,23 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="instructor_id" class="form-label">Instructor</label>
-                                    <select name="instructor_id" id="instructor_id" class="form-control" required>
-                                        <option value="">Select an instructor</option>
+                                    <label for="instructors" class="form-label">Instructors</label>
+                                    <select name="instructors[]" id="instructors" class="form-control" multiple
+                                        required>
                                         @foreach ($instructors as $instructor)
                                         <option value="{{ $instructor->id }}"
-                                            {{ old('instructor_id') == $instructor->id ? 'selected' : '' }}>
+                                            {{ collect(old('instructors'))->contains($instructor->id) ? 'selected' : '' }}>
                                             {{ $instructor->name }}
                                         </option>
                                         @endforeach
                                     </select>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="certificates" class="form-label">Certificates (Images)</label>
+                                    <input type="file" name="certificates[]" id="certificates" class="form-control"
+                                        accept="image/*" multiple>
+                                    <small class="text-muted">You can upload multiple certificate images.</small>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -133,7 +140,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="4"
+                                    <textarea name="description" id="editor" class="form-control" rows="4"
                                         required>{{ old('description') }}</textarea>
                                 </div>
 
@@ -185,7 +192,56 @@
 @endsection
 
 @push('scripts')
+<!-- CKEditor CDN -->
+<script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+<!-- Select2 CDN -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
+// CKEditor 5 implementation
+let editor;
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote',
+            'insertTable', 'undo', 'redo'
+        ],
+    })
+    .then(newEditor => {
+        editor = newEditor;
+
+        // Fix for form validation errors on hidden/replaced form controls
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            // Fix for description field (CKEditor)
+            const descriptionInput = document.querySelector('textarea[name="description"]');
+            descriptionInput.value = editor.getData();
+
+            // Fix for name field if it's hidden
+            const nameSelect = document.querySelector('select[name="name"]');
+            if (nameSelect && nameSelect.style.display === 'none') {
+                nameSelect.removeAttribute('style'); // safer way
+                nameSelect.style.position = 'absolute';
+                nameSelect.style.opacity = '0';
+                nameSelect.style.pointerEvents = 'none';
+                nameSelect.style.height = '1px';
+                nameSelect.style.width = '1px';
+            }
+
+        });
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+// Enhance instructors select with Select2
+$(document).ready(function() {
+    $('#instructors').select2({
+        placeholder: 'Select instructors',
+        width: '100%'
+    });
+});
+
+// Session rows handling
 let sessionIndex = 1;
 document.getElementById('add-session').addEventListener('click', function() {
     const wrapper = document.getElementById('sessions-wrapper');

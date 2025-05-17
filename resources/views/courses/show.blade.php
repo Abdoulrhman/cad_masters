@@ -45,7 +45,7 @@
                             <h4 class="tp-course-details-2-main-title">About Course</h4>
                             <div class="tp-course-details-2-text mb-60">
                                 <div class="content">
-                                    <p>{{$course->description}}</p>
+                                    {!! $course->description !!}
                                 </div>
                                 {{--<a class="tp-course-details-showmore show-more-button"><span class="svg-icon">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
