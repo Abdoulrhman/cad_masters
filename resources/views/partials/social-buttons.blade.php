@@ -18,4 +18,9 @@
        aria-label="Chat on Messenger">
         <i class="fab fa-facebook-messenger"></i>
     </a>
+
+    <a href="#top" class="scroll-up-btn social-button  arrow" title="Go to top" style="display: none;">↑</a>
+
+
 </div>
+

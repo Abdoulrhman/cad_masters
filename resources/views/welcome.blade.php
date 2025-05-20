@@ -201,8 +201,7 @@
 <!-- partners-area-end -->
 
 
-
-<!-- JS here -->
+    <!-- JS here -->
 <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/waypoints.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-bundle.js') }}"></script>
@@ -252,6 +251,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Touch devices might need this
     whatsappBtn.addEventListener('touchstart', function() {
         this.style.right = '0';
+    });
+});
+
+window.onscroll = function() {
+    var btn = document.querySelector('.scroll-up-btn');
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        if (!btn.classList.contains('active')) {
+            btn.classList.add('active');
+        }
+    } else {
+        btn.classList.remove('active');
+    }
+};
+
+// Smooth scroll to top
+document.querySelector('.scroll-up-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 });
 

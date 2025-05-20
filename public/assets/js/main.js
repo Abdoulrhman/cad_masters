@@ -1116,5 +1116,32 @@
 		});
 	}
 
+	window.onscroll = function() {
+		var btn = document.querySelector('.scroll-up-btn');
+		if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+			btn.style.display = 'flex';
+			setTimeout(() => {
+				btn.classList.add('visible');
+		}, 10);
+		} else {
+			btn.classList.remove('visible');
+			// Wait for transition to complete before hiding
+			setTimeout(() => {
+				if (!btn.classList.contains('visible')) {
+				btn.style.display = 'none';
+			}
+		}, 300);
+		}
+	};
+
+// Smooth scroll to top
+	document.querySelector('.scroll-up-btn').addEventListener('click', function(e) {
+		e.preventDefault();
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	});
+
 
 })(jQuery);
