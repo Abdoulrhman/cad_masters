@@ -34144,3 +34144,17 @@ span.common-pale-purple {
 .messenger {
     background-color: #006AFF;
 }
+.arrow {
+    background-color: #100e10;
+    /* Initial state - hidden below other buttons */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Visible state when scrolling */
+.arrow.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex !important;
+}

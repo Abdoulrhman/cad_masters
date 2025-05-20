@@ -37,6 +37,11 @@
     </div>
 
     @include('partials.social-buttons')
+            <!-- Scroll up button -->
+    <button id="scrollUpBtn" class="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg hidden hover:bg-blue-700 transition">
+        ↑
+    </button>
+
 </body>
 
 </html>
