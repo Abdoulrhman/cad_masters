@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('carousels', function (Blueprint $table) {
-            // $table->integer('order')->default(0)->after('link');
+        Schema::table('courses', function (Blueprint $table) {
+            if (! Schema::hasColumn('courses', 'daysInWeek')) {
+                $table->string('daysInWeek')->nullable()->after('hours');
+            }
         });
     }
 
@@ -21,10 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('carousels', function (Blueprint $table) {
-            if (Schema::hasColumn('carousels', 'order')) {
-                $table->dropColumn('order');
-            }
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropColumn('daysInWeek');
         });
     }
 };

@@ -94,7 +94,11 @@
                                         value="{{ old('hours') }}">
                                 </div>
 
-
+                                <div class="col-md-6 mb-3">
+                                    <label for="daysInWeek" class="form-label">Days In Week</label>
+                                    <input type="text" name="daysInWeek" class="form-control" id="daysInWeek"
+                                        value="{{ old('daysInWeek') }}">
+                                </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label for="max_students" class="form-label">Maximum Students</label>

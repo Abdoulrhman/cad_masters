@@ -27,6 +27,7 @@ class CourseRequest extends FormRequest
             'branch_id'     => 'required|exists:branches,id',
             'outline_link'  => 'nullable|string|max:255',
             'youtube_link'  => 'nullable|string|max:255',
+            'daysInWeek'    => 'nullable|string|max:255',
         ];
     }
 

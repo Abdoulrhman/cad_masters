@@ -102,7 +102,12 @@
                                             </div>
                                         </div>
 
-
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="tp-contact-input p-relative">
+                                                <label for="daysInWeek">Days In Week</label>
+                                                <input type="text" name="daysInWeek" id="daysInWeek" class="form-control" value="{{ old('daysInWeek', $course->daysInWeek) }}">
+                                            </div>
+                                        </div>
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">

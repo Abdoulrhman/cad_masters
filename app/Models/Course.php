@@ -28,6 +28,7 @@ class Course extends Model
         'duration',
         'outline_link',
         'youtube_link',
+        'daysInWeek',
     ];
 
     /**
