@@ -2,7 +2,7 @@
 
 @section('title')
     Dashboard
-@endsection
+    @endsection
 
 @section('content')
     <main class="tp-dashboard-body-bg">
@@ -15,7 +15,7 @@
                     <div class="col-lg-9">
                         <div class="tpd-content-layout">
                             <div class="container">
-                                <h3 class="tp-contact-from-title">Edit Authorizations 👍🏻</h3>
+                                <h3 class="tp-contact-from-title">Edit Award 👍🏻</h3>
 
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -27,7 +27,7 @@
                                     </div>
                                 @endif
 
-                                <form action="{{ route('dashboard.authorizations.update', $authorization->id) }}" method="POST"
+                                <form action="{{ route('dashboard.awards.update', $award->id) }}" method="POST"
                                       enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -35,27 +35,18 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="name" class="form-label">Name</label>
                                             <input type="text" name="name" class="form-control" id="name" required
-                                                   value="{{ old('name', $authorization->name) }}">
+                                                   value="{{ old('name', $award->name) }}">
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="category" class="form-label">Award Category</label>
-                                            <select name="category" class="form-control" id="category" required>
-                                                <option value="">Select Category</option>
-                                                <option value="Authorized" {{ (old('category', $authorization->category ?? '') == 'Authorized') ? 'selected' : '' }}>Authorized</option>
-                                                <option value="Membership" {{ (old('category', $authorization->category ?? '') == 'Membership') ? 'selected' : '' }}>Member In</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-6 mb-3">
-                                            <label for="image" class="form-label">Profile Image</label>
+                                            <label for="image" class="form-label">Award Image</label>
                                             <input type="file" name="image" class="form-control" id="image"
                                                    accept="image/jpg,image/jpeg,image/png">
                                         </div>
 
-                                        @if ($authorization->image)
+                                        @if ($award->image)
                                             <div class="col-12 text-center mt-2">
-                                                <img src="{{ asset('storage/' . $authorization->image) }}" class="img-thumbnail"
+                                                <img src="{{ asset('storage/' . $award->image) }}" class="img-thumbnail"
                                                      width="100">
                                                 <p>Current Image</p>
                                             </div>
@@ -63,7 +54,7 @@
 
                                         <div class="col-12 text-center mt-4">
                                             <button type="submit" class="btn btn-primary">Update</button>
-                                            <a href="{{ route('dashboard.authorizations.index') }}" class="btn btn-secondary">Cancel</a>
+                                            <a href="{{ route('dashboard.awards.index') }}" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
                                 </form>

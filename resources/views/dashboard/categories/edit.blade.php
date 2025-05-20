@@ -15,7 +15,7 @@
                     <div class="col-lg-9">
                         <div class="tpd-content-layout">
                             <div class="container">
-                                <h3 class="tp-contact-from-title">Edit Edit Course Category 👍🏻</h3>
+                                <h3 class="tp-contact-from-title">Edit Awards 👍🏻</h3>
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>

@@ -29,30 +29,14 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="tp-course-details-2-main-inner pr-70">
-                    <div class="tp-course-details-2-nav d-flex align-items-center">
-                        <nav>
-                            <ul id="course_details2_nav">
-                                <li class="current"><a href="#info">Course Info</a></li>
-                                <li class=""><a href="#curriculum">Content</a></li>
-                                <li class=""><a href="#instructors">Instructors</a></li>
-                                <li class=""><a href="#reviews">Reviews</a></li>
-                            </ul>
-                        </nav>
-                    </div>
 
                     <div class="tp-course-details-2-content">
                         <div id="info">
                             <h4 class="tp-course-details-2-main-title">About Course</h4>
                             <div class="tp-course-details-2-text mb-60">
                                 <div class="content">
-                                    {!! $course->description !!}
+                                    <p>{{$course->description}}</p>
                                 </div>
-                                {{--<a class="tp-course-details-showmore show-more-button"><span class="svg-icon">
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6 1V11" stroke="#3C66F9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1 6H11" stroke="#3C66F9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                  </span> Show more</a>--}}
                             </div>
                             <h4 class="tp-course-details-2-main-title">What will you Learn?</h4>
                             <div class="tp-course-details-2-list">
@@ -70,52 +54,89 @@
                                     also free media like aerial video shots, background music, fonts, and more.</p>
                             </div>
                         </div>
+                        <br>
+                        <!-- course-area-start -->
 
-                        <div id="curriculum" class="pt-70">
-                            <h4 class="tp-course-details-2-main-title">Course Content</h4>
-                            <div class="tp-course-details-2-faq">
-                                <div class="accordion" id="accordionPanelsStayOpenExample">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                            <button class="accordion-button collapsed d-flex justify-content-between"
-                                                type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                                aria-controls="panelsStayOpen-collapseTwo">
-                                                <span class="span">Course Content PDF</span>
-                                                <span class="accordion-btn"></span>
-                                            </button>
-                                        </h2>
-                                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                                            aria-labelledby="panelsStayOpen-headingTwo">
-                                            <div class="accordion-body">
-                                                <div
-                                                    class="tp-course-details-2-faq-item d-flex justify-content-between">
-                                                    <div class="left"><span>
-                                                            @if($course->outline_link)
-                                                            <a href="{!! $course->outline_link !!}" target="_blank">
-                                                                <img src="{{ asset('assets/img/breadcrumb/pdf-bg.png') }}"
-                                                                    alt=""> Download the full course plan and outline in
-                                                                PDF format
-                                                            </a>
-                                                            @else
-                                                            <p>Course Outline will be available soon.</p>
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                    {{--<div class="right">
-                                              <span>20 min <a href="#"><svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                          <path d="M14.6808 4.83159C14.8936 5.13001 15 5.27922 15 5.5001C15 5.72097 14.8936 5.87018 14.6808 6.16861C13.7245 7.50949 11.2825 10.4001 8 10.4001C4.71755 10.4001 2.27547 7.50949 1.31923 6.16861C1.10641 5.87018 1 5.72097 1 5.5001C1 5.27922 1.10641 5.13001 1.31923 4.83159C2.27547 3.49071 4.71754 0.600098 8 0.600098C11.2825 0.600098 13.7245 3.49071 14.6808 4.83159Z" stroke="#5169F1" stroke-width="1.2" />
-                                                          <path d="M10.0999 5.49985C10.0999 4.34005 9.1597 3.39985 7.9999 3.39985C6.8401 3.39985 5.8999 4.34005 5.8999 5.49985C5.8999 6.65965 6.8401 7.59985 7.9999 7.59985C9.1597 7.59985 10.0999 6.65965 10.0999 5.49985Z" stroke="#5169F1" stroke-width="1.2" />
-                                                      </svg> Preview</a></span>
-                                              </div>--}}
-                                                </div>
+                        <ul class="tpd-table-list">
+                            <!-- Table Header -->
+                            <li class="tpd-table-head" style="background: #4fb469!important;">
+                                <div class="tpd-table-row">
+                                    <div class="tpd-quiz-info">
+                                        <h4 class="tpd-table-title tbd-color" style="color: white!important;">Start &
+                                            End Date</h4>
+                                    </div>
+                                    <div class="tpd-quiz-ques">
+                                        <h4 class="tpd-table-title tbd-color">Schedule</h4>
+                                    </div>
+                                    <div class="tpd-quiz-tm">
+                                        <h4 class="tpd-table-title tbd-color">Branch</h4>
+                                    </div>
+                                    <div class="tpd-quiz-ca">
+                                        <h4 class="tpd-table-title tbd-color">Price / Offer</h4>
+                                    </div>
+                                    <div class="tpd-quiz-details">
+                                        <h4 class="tpd-table-title tbd-color">Register NOW</h4>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Table Rows - Dynamic -->
+                            @forelse($course->sessions as $session)
+                            <li>
+                                <div class="tpd-table-row">
+                                    <div class="tpd-quiz-info">
+                                        <span class="tpd-common-date">
+                                            {{ $session->start_date->format('F j, Y') }}
+                                        </span>
+                                        <br>
+                                        <span class="tpd-common-date">
+                                            {{ $session->end_date->format('F j, Y') }}
+                                        </span>
+                                    </div>
+                                    <div class="tpd-quiz-ques">
+                                        <span class="tpd-common-text">
+                                            {{ $session->schedule ?? 'Not specified' }}
+                                        </span>
+                                    </div>
+                                    <div class="tpd-quiz-tm">
+                                        <h4 class="tpd-table-title">
+                                            {{ $course->branch->name ?? 'Online' }}
+                                        </h4>
+                                    </div>
+                                    <div class="tpd-quiz-ca">
+                                        <h4 class="tpd-table-title">
+                                            @if($course->price_offer)
+                                            <del>${{ number_format($course->price, 2) }}</del>
+                                            <br>
+                                            <span style="font-size: 12px"> Contact us for discount </span>
+                                            @else
+                                            ${{ number_format($course->price, 2) }}
+                                            @endif
+                                        </h4>
+                                    </div>
+                                    <div class="tpd-quiz-details">
+                                        <div class="tpd-quiz-details-box d-flex">
+                                            <div class="tpd-quiz-details-btn mr-15">
+                                                <a class="tpd-border-btn"
+                                                    href="{{ route('courses.register', $course) }}" target="_blank">
+                                                    Register
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                            @empty
+                            <li>
+                                <div class="tpd-table-row">
+                                    <div class="tpd-quiz-info" colspan="5">
+                                        <span class="tpd-common-text">No sessions available yet</span>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforelse
+                        </ul>
+
 
 
                         <br>
@@ -265,127 +286,153 @@
 
                         <div id="instructors" class="pt-100">
                             <h4 class="tp-course-details-2-main-title">Your Instructors</h4>
-                            <div class="tp-course-details-2-instructor d-flex">
-                                <div class="tp-course-details-2-instructor-thumb mr-40">
-                                    <img style="height: 80px!important;width: 100px!important;"
-                                        src="{{ $course->instructor && $course->instructor->image ? asset('storage/' . $course->instructor->image) : asset('assets/img/teacher/default.png') }}"
-                                        alt="{{ $course->instructor ? $course->instructor->name : 'Instructor' }}">
-                                </div>
-                                <div class="tp-course-details-2-instructor-content">
-                                    <h5>{{ $course->instructor ? $course->instructor->name : 'Instructor' }}"</h5>
-                                    <span
-                                        class="pre">{{ $course->instructor ? $course->instructor->title : 'Instructor' }}"</span>
-                                    <div class="tp-course-details-2-instructor-text">
-                                        <p>I am also the founder of a large local design organization, Salt Lake <br>
-                                            Designers, where I and other local influencers help cultivate the talents
-                                            <br>
-                                            of up and coming UX designers through workshops and panel discussions.
-                                        </p>
-                                        <p>Undon Xie is a brilliant educator, whose life was spent for computer <br>
-                                            science and love of nature.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div id="reviews">
-                            <h4 class="tp-course-details-2-main-title"> Reviews</h4>
-                            <div class="tp-course-details-2-review-rating">
-                                <div class="row gx-2">
-                                    <div class="col-lg-12 justify-content-center">
-                                        <div class="tp-course-details-2-review-details">
-                                            <div class="tp-course-details-2-review-content">
-                                                <div class="left"><span>
-                                                        @if($course->youtube_link)
-                                                        <iframe width="100%" height="300px"
-                                                            src="{{$course->youtube_link}}  "
-                                                            title="YouTube video player" frameborder="0"
-                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                            referrerpolicy="strict-origin-when-cross-origin"
-                                                            allowfullscreen></iframe>
-                                                        @else
-                                                        <p>Course Review will be available soon.</p>
-                                                        @endif
-                                                    </span>
-                                                </div>
+                            <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                                aria-labelledby="pills-profile-tab">
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="tp-shop-product-item text-center mb-50">
+                                            <div class="tp-shop-product-thumb p-relative">
+                                                <a
+                                                    href="{{ $course->instructor && $course->instructor->image ? asset('storage/' . $course->instructor->image) : asset('assets/img/teacher/default.png') }}"><img
+                                                        src="{{ $course->instructor && $course->instructor->image ? asset('storage/' . $course->instructor->image) : asset('assets/img/teacher/default.png') }}"
+                                                        style="max-width: 160px;max-height: 160px" alt=""></a>
+                                                <h5 class="pt-20">
+                                                    {{ $course->instructor ? $course->instructor->name : 'Instructor' }}"
+                                                </h5>
+                                                <span
+                                                    class="pre">{{ $course->instructor ? $course->instructor->title : 'Instructor' }}"</span>
+                                            </div>
+                                            <div class="tp-shop-product-content">
+
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
+
+                        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+
+                            <h4 class="tp-course-details-2-main-title"> Certificates </h4>
+
+                            {{--<div class="row">
+                                @foreach ($certificates as $certificate)
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="tp-shop-product-item text-center mb-50">
+                                            <div class="tp-shop-product-thumb p-relative">
+                                                <a href="{{ asset('storage/' . $certificate->image) }}"><img
+                                src="{{ asset('storage/' . $certificate->image) }}" alt="{{$certificate->name}}}"></a>
+                            <h4 class="tp-shop-product-title">{{$certificate->name}}}</h4>
+                        </div>
+                        <div class="tp-shop-product-content">
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="tp-course-details-2-widget">
-                    <div class="tp-course-details-2-widget-thumb p-relative">
-                        <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/details/course.jpg') }}"
-                            alt="{{ $course->name }}">
-                    </div>
-                    <div class="tp-course-details-2-widget-content">
-                        <div class="tp-course-details-2-widget-price">
+                @endforeach
+            </div>--}}
+        </div>
 
-                            <span> {{ $course->name }} </span>
-                        </div>
-                        <div class="tp-course-details-2-widget-btn">
-                            <a class="active" href="{{ route('courses.register', $course) }}"
-                                target="_blank">Register</a>
-                        </div>
-
-                        <div class="tp-course-details-2-widget-list">
-                            <h5>This course includes:</h5>
-
-                            <div class="tp-course-details-2-widget-list-item-wrapper">
-                                <div
-                                    class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z"
-                                                stroke="#4F5158" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M8 3.80005V8.00005L10.8 9.40005" stroke="#4F5158"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg> Duration</span>
-                                    <span>{{$course->hours}} Hours</span>
-                                </div>
-                                <div
-                                    class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span> <svg width="11" height="14" viewBox="0 0 11 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.5 13V5.5" stroke="#4F5158" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10 13V1" stroke="#4F5158" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M1 13V10" stroke="#4F5158" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg> Skill Level</span>
-                                    <span>Beginner</span>
-                                </div>
-
-                                <div
-                                    class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span>
-                                        @if($course->outline_link)
-                                        <a href="{!! $course->outline_link !!}" target="_blank">
-                                            <img src="{{ asset('assets/img/breadcrumb/pdf-bg.png') }}"
-                                                style="width: 50px!important;height: 50px!important;" alt=""> <a
-                                                href="{!! $course->outline_link !!}" target="_blank"
-                                                style="color: #0a53be"> Download Course Content </a>
-                                        </a>
+        <div id="reviews">
+            <h4 class="tp-course-details-2-main-title"> Reviews</h4>
+            <div class="tp-course-details-2-review-rating">
+                <div class="row gx-2">
+                    <div class="col-lg-12 justify-content-center">
+                        <div class="tp-course-details-2-review-details">
+                            <div class="tp-course-details-2-review-content">
+                                <div class="left"><span>
+                                        @if($course->youtube_link)
+                                        <iframe width="100%" height="300px" src="{{$course->youtube_link}}  "
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                         @else
-                                        <p>Course Outline will be available soon.</p>
+                                        <p>Course Review will be available soon.</p>
                                         @endif
                                     </span>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="tp-course-details-2-widget">
+            <div class="tp-course-details-2-widget-thumb p-relative">
+                <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/details/course.jpg') }}"
+                    alt="{{ $course->name }}">
+            </div>
+            <div class="tp-course-details-2-widget-content">
+                <div class="tp-course-details-2-widget-price">
+
+                    <span> {{ $course->name }} </span>
+                </div>
+                <div class="tp-course-details-2-widget-btn">
+                    <a class="active" href="{{ route('courses.register', $course) }}" target="_blank">Register</a>
+                </div>
+
+                <div class="tp-course-details-2-widget-list">
+                    <h5>This course includes:</h5>
+
+                    <div class="tp-course-details-2-widget-list-item-wrapper">
+                        <div
+                            class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
+                            <span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z"
+                                        stroke="#4F5158" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M8 3.80005V8.00005L10.8 9.40005" stroke="#4F5158" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg> Duration</span>
+                            <span>{{$course->hours}} Hours</span>
+                        </div>
+                        <div
+                            class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
+                            <span> <svg width="11" height="14" viewBox="0 0 11 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.5 13V5.5" stroke="#4F5158" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M10 13V1" stroke="#4F5158" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M1 13V10" stroke="#4F5158" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg> Skill Level</span>
+                            <span>Beginner</span>
+                        </div>
+
+                        <div
+                            class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
+                            <span>
+                                @if($course->outline_link)
+                                <a href="{!! $course->outline_link !!}" target="_blank">
+                                    <img src="{{ asset('assets/img/breadcrumb/pdf-bg.png') }}"
+                                        style="width: 50px!important;height: 50px!important;" alt=""> <a
+                                        href="{!! $course->outline_link !!}" target="_blank"></a> Download Course
+                                    Content
+                                </a>
+                                @else
+                                <p>Course Outline will be available soon.</p>
+                                @endif
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 </section>
 <!-- course details area end -->
@@ -440,24 +487,18 @@
             <div class="col-lg-4 col-md-6">
                 <div class="tp-course-item p-relative fix mb-30">
                     <div class="tp-course-thumb">
-                        <a href="{{ route('courses.show', $relatedCourse->id) }}">
-        <img class="course-pink"
-            src="{{ $relatedCourse->image ? asset('storage/'.$relatedCourse->image) : asset('assets/img/course/course-thumb-5.jpg') }}"
-            alt="{{ $relatedCourse->name }}">
-        </a>
+                        <a href="course-details-2.html"><img class="course-pink" src="assets/img/course/course-thumb-5.jpg" alt=""></a>
+                    </div>
+                    <div class="tp-course-content">
+                        <div class="tp-course-tag mb-10">
+                            <span>{{ $course->category ? $course->category->name : 'Uncategorized' }}</span>
     </div>
-    <div class="tp-course-content">
-        <div class="tp-course-tag mb-10">
-            <span>{{ $relatedCourse->category ? $relatedCourse->category->name : 'Uncategorized' }}</span>
-        </div>
-        <h4 class="tp-course-title">
-            <a href="{{ route('courses.show', $relatedCourse->id) }}">
-                {{ $relatedCourse->name }}
-            </a>
-        </h4>
+    <h4 class="tp-course-title">
+        <a href="course-details-2.html">The complete guide to build <br> restful API application</a>
+    </h4>
     </div>
     <div class="tp-course-btn">
-        <a href="{{ route('courses.show', $relatedCourse->id) }}">Preview this Course</a>
+        <a href="course-details-2.html">Preview this Course</a>
     </div>
     </div>
     </div>

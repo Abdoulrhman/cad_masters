@@ -1,4 +1,9 @@
 <footer class="text-white">{{--tp-footer-main tpd-dashboard-footer--}}
+   {{-- <x-whatsapp-button
+            :phoneNumber="config('whatsapp.number')"
+            :message="config('whatsapp.default_message')" />--}}
+    @include('partials.social-buttons')
+
     <div class="tp-footer-copyright pt-80 pb-55" data-bg-color="#0a1c3a">
         <div class="container">
             <div class="row">
@@ -35,7 +40,7 @@
                         <h4 class="tp-footer-widget-title mb-15 text-white">Contact us</h4>
                         <div class="tp-footer-widget-link">
                             <div class="tp-footer-contact">
-                                <h6 class="text-white">Nasr City Branch</h6>
+                                <h6 class="text-white">Head Branch</h6>
                                 <p class="text-white-50"> <i class="fa fa-location-dot"></i> 2 Hassan Afify St.-Makram Ebeid, Nasr City</p>
                             </div>
                             <div class="tp-footer-contact">

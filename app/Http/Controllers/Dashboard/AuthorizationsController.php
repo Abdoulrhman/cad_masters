@@ -21,8 +21,9 @@ class AuthorizationsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name'      => 'required|string|max:255',
+            'category'  => 'required|string|max:255',
+            'image'     => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imagePath = null;
@@ -31,7 +32,8 @@ class AuthorizationsController extends Controller
         }
 
         Authorization::create([
-            'name'  => $request->name,
+            'name'      => $request->name,
+            'category'  => $request->category,
             'image' => $imagePath,
         ]);
 
@@ -52,7 +54,8 @@ class AuthorizationsController extends Controller
         ]);
 
         $data = [
-            'name' => $request->name,
+            'name'     => $request->name,
+            'category' => $request->category,
         ];
 
         if ($request->hasFile('image')) {

@@ -33,7 +33,10 @@
         <main>
             @yield('content')
         </main>
+
     </div>
+
+    @include('partials.social-buttons')
 </body>
 
 </html>

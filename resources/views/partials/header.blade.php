@@ -28,7 +28,7 @@
                                                             <a href="{{ url('about') }}">About CAD Masters</a>
                                                             <a href="{{ url('authorization') }}">Accreditation,
                                                                 Authorizations and membership</a>
-                                                            <a href="{{ url('certificate') }}">Certificate awards &
+                                                            <a href="{{ url('award') }}">Certificate awards &
                                                                 Thanking</a>
                                                             <a href="{{ url('client') }}">Our Clients</a>
                                                         </div>
@@ -60,7 +60,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="{{ url('courses') }}">Courses</a></li>
                                 <li><a href="{{ url('media') }}">Media</a></li>
                                 <li><a href="{{ route('careers.index') }}">Careers</a></li>
                                 <li><a href="{{ url('contact') }}">Contact Us</a></li>

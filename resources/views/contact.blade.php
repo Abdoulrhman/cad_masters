@@ -89,8 +89,23 @@
 <!-- map area start -->
 <div class="tp-map-area">
     <div class="tp-contact-map-content">
-        <iframe class="align-content-center" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.265097446932!2d31.35307646511229!3d30.057934799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583e4352897419%3A0x4a2dfe8c6ca9a700!2z2YPYp9ivINmF2KfYs9iq2LHYsiDZhNmE2YPZiNix2LPYp9iqINin2YTZh9mG2K_Ys9mK2Kkg2YjYp9mE2KzYsdin2YHZitmD!5e0!3m2!1sar!2seg!4v1745277500856!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>CAD Masters (Cairo Branch)</h3>
+                <p><i class="fa fa-location-dot"></i> 2 Hassan Afify St.-Makram Ebeid, Nasr City</p>
+                <p><i class="fa fa-mobile"></i> +2 01 000 050300</p>
+                <br>
+                <iframe class="align-content-center" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.265097446932!2d31.35307646511229!3d30.057934799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583e4352897419%3A0x4a2dfe8c6ca9a700!2z2YPYp9ivINmF2KfYs9iq2LHYsiDZhNmE2YPZiNix2LPYp9iqINin2YTZh9mG2K_Ys9mK2Kkg2YjYp9mE2KzYsdin2YHZitmD!5e0!3m2!1sar!2seg!4v1745277500856!5m2!1sar!2seg" width="50" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-lg-6">
+                <h3>CAD Masters Alex (Alex Branch)</h3>
+                <p><i class="fa fa-location-dot"></i> برج التيسير2 الدور الاول - ش 50 - اول شارع يمين من شارع مصطفي كامل ناحية كوبري كيلوبترا - بجوار نقابة الاطباء - سموحة - الاسكندرية, Alexandria, Egypt</p>
+                <p><i class="fa-brands fa-whatsapp"></i> +2 01061 646424 , <i class="fa fa-mobile"></i> 03 4251029</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3412.2091468274225!2d29.9400601!3d31.214934499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c491d007319f%3A0x6f7870af68091f04!2sCAD%20MASTERS%20ALEX!5e0!3m2!1sen!2seg!4v1746306136220!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></iframe>
+            </div>
+        </div>
     </div>
+    <br>
 </div>
 <!-- map area end -->
 

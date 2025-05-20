@@ -28,9 +28,11 @@ class AuthorizationsController extends Controller
      */
     public function store(Request $request)
     {
+
         $form_data = $request->validate([
-            'name'        => 'required|string|max:255',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'      => 'required|string|max:255',
+            'category'  => 'required|string|max:255',
+            'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Handle file upload
@@ -70,7 +72,7 @@ class AuthorizationsController extends Controller
     {
         $request->validate([
             'name'       => 'required|min:3',
-
+            'category'   => 'required|min:3',
             'image'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 

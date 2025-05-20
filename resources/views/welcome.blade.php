@@ -237,5 +237,23 @@ document.addEventListener('DOMContentLoaded', function() {
         },
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const whatsappBtn = document.querySelector('.whatsapp-peek');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) { // Appears after scrolling 300px
+            whatsappBtn.style.right = '0';
+        } else {
+            whatsappBtn.style.right = '-10px';
+        }
+    });
+
+    // Touch devices might need this
+    whatsappBtn.addEventListener('touchstart', function() {
+        this.style.right = '0';
+    });
+});
+
 </script>
 @endsection

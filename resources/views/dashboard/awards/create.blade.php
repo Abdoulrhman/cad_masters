@@ -1,9 +1,5 @@
 @extends('layouts.dashboard')
 
-@section('title')
-    Dashboard
-@endsection
-
 @section('content')
 <main class="tp-dashboard-body-bg">
     <section class="tpd-main pb-75 pt-75">
@@ -15,7 +11,7 @@
                 <div class="col-lg-9">
                     <div class="tpd-content-layout">
                         <div class="container">
-                            <h3 class="tp-contact-from-title">Create New Authorizations 👍🏻</h3>
+                            <h3 class="tp-contact-from-title">Create New Awards 👍🏻</h3>
 
                             @if ($errors->any())
                             <div class="alert alert-danger">
@@ -27,35 +23,26 @@
                             </div>
                             @endif
 
-                            <form action="{{ route('dashboard.authorizations.store') }}" method="POST"
+                            <form action="{{ route('dashboard.awards.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">Authorizations Name</label>
+                                        <label for="name" class="form-label">Award Name</label>
                                         <input type="text" name="name" class="form-control" id="name" required
                                             value="{{ old('name') }}">
                                     </div>
 
-                                   <div class="col-md-6 mb-3">
-                                        <label for="category" class="form-label">Category</label>
-                                        <select name="category" class="form-control" id="category" required>
-                                            <option value="">Select Category</option>
-                                            <option value="Authorized" {{ old('category') == 'Authorized' ? 'selected' : '' }}>Authorized</option>
-                                            <option value="Membership" {{ old('category') == 'Membership' ? 'selected' : '' }}>Member In</option>
-                                        </select>
-                                   </div>
-
                                     <div class="col-md-6 mb-3">
-                                        <label for="image" class="form-label">Authorizations Image (Optional)</label>
+                                        <label for="image" class="form-label">Awards Image (Optional)</label>
                                         <input type="file" name="image" class="form-control" id="image"
                                             accept="image/jpg,image/jpeg,image/png">
                                     </div>
 
                                     <div class="col-12 text-center mt-4">
-                                        <button type="submit" class="btn btn-primary">Create Authorizations</button>
-                                        <a href="{{ route('dashboard.authorizations.index') }}" class="btn btn-secondary">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">Create Award</button>
+                                        <a href="{{ route('dashboard.awards.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </form>
