@@ -35,7 +35,7 @@
                             <h4 class="tp-course-details-2-main-title">About Course</h4>
                             <div class="tp-course-details-2-text mb-60">
                                 <div class="content">
-                                    <p>{{$course->description}}</p>
+                                    <p>{!! $course->description !!}</p>
                                 </div>
                             </div>
                             <h4 class="tp-course-details-2-main-title">What will you Learn?</h4>
@@ -56,86 +56,6 @@
                         </div>
                         <br>
                         <!-- course-area-start -->
-
-                        <ul class="tpd-table-list">
-                            <!-- Table Header -->
-                            <li class="tpd-table-head" style="background: #4fb469!important;">
-                                <div class="tpd-table-row">
-                                    <div class="tpd-quiz-info">
-                                        <h4 class="tpd-table-title tbd-color" style="color: white!important;">Start &
-                                            End Date</h4>
-                                    </div>
-                                    <div class="tpd-quiz-ques">
-                                        <h4 class="tpd-table-title tbd-color">Schedule</h4>
-                                    </div>
-                                    <div class="tpd-quiz-tm">
-                                        <h4 class="tpd-table-title tbd-color">Branch</h4>
-                                    </div>
-                                    <div class="tpd-quiz-ca">
-                                        <h4 class="tpd-table-title tbd-color">Price / Offer</h4>
-                                    </div>
-                                    <div class="tpd-quiz-details">
-                                        <h4 class="tpd-table-title tbd-color">Register NOW</h4>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <!-- Table Rows - Dynamic -->
-                            @forelse($course->sessions as $session)
-                            <li>
-                                <div class="tpd-table-row">
-                                    <div class="tpd-quiz-info">
-                                        <span class="tpd-common-date">
-                                            {{ $session->start_date->format('F j, Y') }}
-                                        </span>
-                                        <br>
-                                        <span class="tpd-common-date">
-                                            {{ $session->end_date->format('F j, Y') }}
-                                        </span>
-                                    </div>
-                                    <div class="tpd-quiz-ques">
-                                        <span class="tpd-common-text">
-                                            {{ $session->schedule ?? 'Not specified' }}
-                                        </span>
-                                    </div>
-                                    <div class="tpd-quiz-tm">
-                                        <h4 class="tpd-table-title">
-                                            {{ $course->branch->name ?? 'Online' }}
-                                        </h4>
-                                    </div>
-                                    <div class="tpd-quiz-ca">
-                                        <h4 class="tpd-table-title">
-                                            @if($course->price_offer)
-                                            <del>${{ number_format($course->price, 2) }}</del>
-                                            <br>
-                                            <span style="font-size: 12px"> Contact us for discount </span>
-                                            @else
-                                            ${{ number_format($course->price, 2) }}
-                                            @endif
-                                        </h4>
-                                    </div>
-                                    <div class="tpd-quiz-details">
-                                        <div class="tpd-quiz-details-box d-flex">
-                                            <div class="tpd-quiz-details-btn mr-15">
-                                                <a class="tpd-border-btn"
-                                                    href="{{ route('courses.register', $course) }}" target="_blank">
-                                                    Register
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            @empty
-                            <li>
-                                <div class="tpd-table-row">
-                                    <div class="tpd-quiz-info" colspan="5">
-                                        <span class="tpd-common-text">No sessions available yet</span>
-                                    </div>
-                                </div>
-                            </li>
-                            @endforelse
-                        </ul>
 
 
 
@@ -177,11 +97,17 @@
                                             {{ $session->end_date->format('F j, Y') }}
                                         </span>
                                     </div>
+
                                     <div class="tpd-quiz-ques">
                                         <span class="tpd-common-text">
-                                            {{ $session->schedule ?? 'Not specified' }}
+                                            @if(!empty($course->daysInWeek))
+                                                {{ $course->daysInWeek }}
+                                            @else
+                                                There is No Days Scheduled
+                                            @endif
                                         </span>
                                     </div>
+
                                     <div class="tpd-quiz-tm">
                                         <h4 class="tpd-table-title">
                                             {{ $course->branch->name ?? 'Online' }}
@@ -221,122 +147,72 @@
                             @endforelse
                         </ul>
 
-
-
-                        {{--<div class="tpd-course-area">
-                            <div class="col-lg-12">
-                                <div class="tpd-table mb-25">
-                                    <ul>
-                                        <li class="tpd-table-head">
-                                            <div class="tpd-table-row">
-                                                <div class="tpd-quiz-info">
-                                                    <h4 class="tpd-table-title">Start & End Date </h4>
-                                                </div>
-                                                <div class="tpd-quiz-ques">
-                                                    <h4 class="tpd-table-title">Schedule</h4>
-                                                </div>
-                                                <div class="tpd-quiz-tm">
-                                                    <h4 class="tpd-table-title">Branch</h4>
-                                                </div>
-                                                <div class="tpd-quiz-ca">
-                                                    <h4 class="tpd-table-title">Price / Offer</h4>
-                                                </div>
-                                                <div class="tpd-quiz-details">
-                                                    <h4 class="tpd-table-title">Register NOW</h4>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="tpd-table-row">
-                                                <div class="tpd-quiz-info">
-                                                    <span class="tpd-common-date">March 26, 2024</span>
-                                                    <span class="tpd-common-date">March 26, 2024</span>
-                                                </div>
-                                                <div class="tpd-quiz-ques">
-                                                    <span class="tpd-common-text">2</span>
-                                                </div>
-                                                <div class="tpd-quiz-tm">
-                                                    <h4 class="tpd-table-title">1</h4>
-                                                </div>
-                                                <div class="tpd-quiz-ca">
-                                                    <h4 class="tpd-table-title">0</h4>
-                                                </div>
-                                                <div class="tpd-quiz-details">
-                                                    <div class="tpd-quiz-details-box d-flex">
-                                                        <div class="tpd-quiz-details-btn mr-15">
-                                                            <a class="tpd-border-btn" href="instructor-quiz-attempts.html">Register</a>
-                                                        </div>
-                                                        <div class="tpd-action-inexact-btn">
-                                                            <button class="border-bg">
-
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div
-                                >
-                            </div>
-
-
-                        </div>--}}
-                        <!-- course-area-start-end -->
-
                         <div id="instructors" class="pt-100">
                             <h4 class="tp-course-details-2-main-title">Your Instructors</h4>
 
                             <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
-                                aria-labelledby="pills-profile-tab">
+                                 aria-labelledby="pills-profile-tab">
                                 <div class="row">
-
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="tp-shop-product-item text-center mb-50">
-                                            <div class="tp-shop-product-thumb p-relative">
-                                                <a
-                                                    href="{{ $course->instructor && $course->instructor->image ? asset('storage/' . $course->instructor->image) : asset('assets/img/teacher/default.png') }}"><img
-                                                        src="{{ $course->instructor && $course->instructor->image ? asset('storage/' . $course->instructor->image) : asset('assets/img/teacher/default.png') }}"
-                                                        style="max-width: 160px;max-height: 160px" alt=""></a>
-                                                <h5 class="pt-20">
-                                                    {{ $course->instructor ? $course->instructor->name : 'Instructor' }}"
-                                                </h5>
-                                                <span
-                                                    class="pre">{{ $course->instructor ? $course->instructor->title : 'Instructor' }}"</span>
+                                    @if($course->instructors->count() > 0)
+                                        @foreach($course->instructors as $instructor)
+                                            <div class="col-lg-4 col-sm-6">
+                                                <div class="tp-shop-product-item text-center mb-50">
+                                                    <div class="tp-shop-product-thumb p-relative">
+                                                        <a href="{{ $instructor->image ? asset('storage/' . $instructor->image) : asset('assets/img/teacher/default.png') }}">
+                                                            <img src="{{ $instructor->image ? asset('storage/' . $instructor->image) : asset('assets/img/teacher/default.png') }}"
+                                                                 style="max-width: 160px; max-height: 160px; min-width: 160px;min-height: 160px;"
+                                                                 alt="{{ $instructor->name }}">
+                                                        </a>
+                                                        <h5 class="pt-20">{{ $instructor->name }}</h5>
+                                                    </div>
+                                                    <div class="tp-shop-product-content">
+                                                        <!-- Additional instructor info can go here -->
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="tp-shop-product-content">
-
-                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="col-12">
+                                            <div class="alert alert-info">No instructors assigned yet.</div>
                                         </div>
-                                    </div>
-
-
+                                    @endif
                                 </div>
                             </div>
                         </div>
 
                         <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
-                            aria-labelledby="pills-profile-tab">
+                             aria-labelledby="pills-profile-tab">
+                            <h4 class="tp-course-details-2-main-title">Certificates</h4>
 
-                            <h4 class="tp-course-details-2-main-title"> Certificates </h4>
-
-                            {{--<div class="row">
-                                @foreach ($certificates as $certificate)
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="tp-shop-product-item text-center mb-50">
-                                            <div class="tp-shop-product-thumb p-relative">
-                                                <a href="{{ asset('storage/' . $certificate->image) }}"><img
-                                src="{{ asset('storage/' . $certificate->image) }}" alt="{{$certificate->name}}}"></a>
-                            <h4 class="tp-shop-product-title">{{$certificate->name}}}</h4>
+                            <div class="row">
+                                @if($course->certificates->count() > 0)
+                                    @foreach($course->certificates as $certificate)
+                                        <div class="col-lg-4 col-md-6 mb-4">
+                                            <div class="tp-shop-product-item text-center">
+                                                <div class="tp-shop-product-thumb p-relative">
+                                                    <a href="{{ asset('storage/'.$certificate->image) }}" data-lightbox="certificates" target="_blank">
+                                                        <img src="{{ asset('storage/'.$certificate->image) }}"
+                                                             class="img-fluid"
+                                                             alt="{{ $course->name }} certificate">
+                                                    </a>
+                                                </div>
+                                                <div class="tp-shop-product-content mt-2">
+                                                    <a href="{{ asset('storage/'.$certificate->path) }}"
+                                                       download="{{ Str::slug($course->name) }}-certificate-{{ $loop->iteration }}.jpg"
+                                                       class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-download me-1"></i> Download
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-12">
+                                        <div class="alert alert-info">No certificates available yet.</div>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <div class="tp-shop-product-content">
-
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>--}}
-        </div>
 
         <div id="reviews">
             <h4 class="tp-course-details-2-main-title"> Reviews</h4>
