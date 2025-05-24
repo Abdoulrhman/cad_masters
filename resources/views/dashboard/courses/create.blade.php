@@ -107,16 +107,20 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="instructors" class="form-label">Instructors</label>
-                                    <select name="instructors[]" id="instructors" class="form-control" multiple
-                                        required>
-                                        @foreach ($instructors as $instructor)
-                                        <option value="{{ $instructor->id }}"
-                                            {{ collect(old('instructors'))->contains($instructor->id) ? 'selected' : '' }}>
-                                            {{ $instructor->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="tpd-new-course-select2">
+                                        <div class="tpd-input">
+                                            <label for="instructors" class="form-label">Instructors</label>
+                                            <select name="instructors[]" id="instructors"
+                                                class="form-control select2-hidden-accessible" multiple required>
+                                                @foreach ($instructors as $instructor)
+                                                <option value="{{ $instructor->id }}"
+                                                    {{ collect(old('instructors'))->contains($instructor->id) ? 'selected' : '' }}>
+                                                    {{ $instructor->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -271,4 +275,12 @@ document.getElementById('sessions-wrapper').addEventListener('click', function(e
     }
 });
 </script>
+@endpush
+
+@push('styles')
+<style>
+div.nice-select.form-control {
+    display: none !important;
+}
+</style>
 @endpush
