@@ -215,54 +215,21 @@
                                         @foreach($courses as $course)
                                         <div class="col-lg-4 col-md-6">
                                             <div class="tp-course-item p-relative fix mb-30">
-
                                                 <div class="tp-course-thumb">
-                                                    <a href="{{ route('courses.show', $course) }}">
-                                                        <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/default.jpg') }}"
-                                                            alt="{{ $course->title }}">
-                                                    </a>
+                                                    <a href="{{ route('courses.show', $course) }}"><img class="course-pink"
+                                                                                                        src="{{ asset('storage/' . $course->image) }}" alt=""></a>
                                                 </div>
                                                 <div class="tp-course-content">
                                                     <div class="tp-course-tag mb-10">
-                                                        <span>{{ optional($course->category)->name ?? 'Uncategorized' }}</span>
+                                                        <span>{{$course->category ? $course->category->name : 'Uncategorized'}}</span>
                                                     </div>
-                                                    <div class="tp-course-meta">
-                                                        <span>
-                                                            <i class="fas fa-book"></i>
-                                                            {{ $course->hours }} Hours
-                                                        </span>
-                                                        <span>
-                                                            <i class="fas fa-users"></i>
-                                                            {{ $course->students_count ?? 0 }} Students
-                                                        </span>
-                                                    </div>
+
                                                     <h4 class="tp-course-title">
-                                                        <a
-                                                            href="{{ route('courses.show', $course) }}">{{ $course->title }}</a>
+                                                        <a href="{{ route('courses.show', $course) }}">{{$course->name}}</a>
                                                     </h4>
-                                                    <div
-                                                        class="tp-course-rating d-flex align-items-end justify-content-between">
-                                                        <div class="tp-course-rating-star">
-                                                            <p>{{ number_format($course->rating, 1) }}<span> /5</span>
-                                                            </p>
-                                                            <div class="tp-course-rating-icon">
-                                                                @for($i = 1; $i <= 5; $i++) <i
-                                                                    class="fa-solid fa-star {{ $i <= $course->rating ? 'text-warning' : 'text-muted' }}">
-                                                                    </i>
-                                                                    @endfor
-                                                            </div>
-                                                        </div>
-                                                        <div class="tp-course-pricing">
-                                                            {{--@if($course->price > 0)
-                                                            <span>${{ number_format($course->price, 2) }}</span>
-                                                            @else
-                                                            <span>Free</span>
-                                                            @endif--}}
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                                <div class="tp-course-btn">
-                                                    <a href="{{ route('courses.show', $course) }}">View Course</a>
+                                                <div class="tp-course-btn home-2">
+                                                    <a href="{{ route('courses.show', $course) }}">Preview this Course</a>
                                                 </div>
                                             </div>
                                         </div>

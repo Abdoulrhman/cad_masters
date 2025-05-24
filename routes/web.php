@@ -49,8 +49,8 @@ Route::get('/courses/{course}', [CourseController::class, 'show'])->name('course
 // Public Pages
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('client', [ClientController::class, 'index']);
-Route::get('architecture', [CoursesListController::class, 'architecture']);
 Route::get('courses/{course}', [CoursesListController::class, 'show'])->name('courses.show');
+Route::get('architecture', [CoursesListController::class, 'architecture']);
 Route::get('structure', [CoursesListController::class, 'structure']);
 Route::get('mechanical', [CoursesListController::class, 'mechanical']);
 Route::get('management', [CoursesListController::class, 'management']);

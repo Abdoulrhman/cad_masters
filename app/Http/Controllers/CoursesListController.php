@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 
-class coursesListController extends Controller
+class CoursesListController extends Controller
 {
     public function architecture()
     {
@@ -60,7 +60,7 @@ class coursesListController extends Controller
         return view('bim', compact('courses'));*/
 
         $courses = Course::whereHas('category', function ($query) {
-            $query->where('name', 'Bim'); // Filter by category name
+            $query->where('name', 'BIM Tracks'); // Filter by category name
         })->get();
 
         return view('bim', compact('courses'));
