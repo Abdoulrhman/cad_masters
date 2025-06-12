@@ -52,16 +52,19 @@
                                 </div>--}}
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="category_id" class="form-label">Category</label>
-                                    <select name="category_id" id="category_id" class="form-control" required>
-                                        <option value="">Select a category</option>
-                                        @foreach ($courseCategories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="tpd-new-course-select2">
+                                        <div class="tpd-input">
+                                            <label for="categories" class="form-label">Categories</label>
+                                            <select name="categories[]" id="categories" class="form-control select2-hidden-accessible" multiple required>
+                                                @foreach ($courseCategories as $category)
+                                                <option value="{{ $category->id }}"
+                                                    {{ collect(old('categories'))->contains($category->id) ? 'selected' : '' }}>
+                                                    {{ $category->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -76,22 +79,12 @@
                                         min="0" step="0.01" value="{{ old('price_offer') }}">
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="branch_id" class="form-label">Branch</label>
-                                    <select name="branch_id" id="branch_id" class="form-control" required>
-                                        <option value="">Select a branch</option>
-                                        @foreach ($branches as $branch)
-                                        <option value="{{ $branch->id }}"
-                                            {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
-                                            {{ $branch->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
 
                                 <div class="col-md-6 mb-3">
                                     <label for="hours" class="form-label">Hours</label>
-                                    <input type="number" name="hours" class="form-control" id="hours" min="1"
-                                        value="{{ old('hours') }}">
+                                    <input type="number" name="hours" id="hours" class="form-control"
+                                        value="{{ old('hours') }}" required min="1">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -167,15 +160,23 @@
                                     <label class="form-label">Course Sessions (Start/End Dates)</label>
                                     <div id="sessions-wrapper">
                                         <div class="row mb-2 session-row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <input type="datetime-local" name="sessions[0][start_date]"
                                                     class="form-control" placeholder="Start Date">
                                             </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <input type="datetime-local" name="sessions[0][end_date]"
                                                     class="form-control" placeholder="End Date">
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
+                                                <select name="sessions[0][branch_id]" class="form-control" required>
+                                                    <option value="">Select a branch</option>
+                                                    @foreach ($branches as $branch)
+                                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
                                                 <button type="button" class="btn btn-danger remove-session"
                                                     style="display:none;">Remove</button>
                                             </div>
@@ -249,6 +250,14 @@ $(document).ready(function() {
     });
 });
 
+// Enhance categories select with Select2
+$(document).ready(function() {
+    $('#categories').select2({
+        placeholder: 'Select categories',
+        width: '100%'
+    });
+});
+
 // Session rows handling
 let sessionIndex = 1;
 document.getElementById('add-session').addEventListener('click', function() {
@@ -256,13 +265,21 @@ document.getElementById('add-session').addEventListener('click', function() {
     const row = document.createElement('div');
     row.className = 'row mb-2 session-row';
     row.innerHTML = `
-        <div class="col-md-5">
+        <div class="col-md-4">
             <input type="datetime-local" name="sessions[${sessionIndex}][start_date]" class="form-control" placeholder="Start Date">
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <input type="datetime-local" name="sessions[${sessionIndex}][end_date]" class="form-control" placeholder="End Date">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
+            <select name="sessions[${sessionIndex}][branch_id]" class="form-control" required>
+                <option value="">Select a branch</option>
+                @foreach ($branches as $branch)
+                <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-1">
             <button type="button" class="btn btn-danger remove-session">Remove</button>
         </div>
     `;

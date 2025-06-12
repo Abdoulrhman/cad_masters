@@ -126,6 +126,11 @@ class CourseController extends Controller
         // Save the course
         $course = Course::create($form_data);
 
+        // Attach categories
+        if ($request->has('categories')) {
+            $course->categories()->attach($request->categories);
+        }
+
         // Save course sessions if provided
         if ($request->has('sessions')) {
             foreach ($request->sessions as $session) {
@@ -150,10 +155,12 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course           = Course::findOrFail($id);
+        $course           = Course::with('categories')->findOrFail($id);
         $courseCategories = CourseCategory::all();
+        $branches         = Branch::all();
+        $instructors      = Instructor::all();
 
-        return view('dashboard.courses.edit', compact('course', 'courseCategories'));
+        return view('dashboard.courses.edit', compact('course', 'courseCategories', 'branches', 'instructors'));
     }
 
     /**
@@ -180,6 +187,13 @@ class CourseController extends Controller
         }
 
         $course->update($form_data);
+
+        // Sync categories
+        if ($request->has('categories')) {
+            $course->categories()->sync($request->categories);
+        } else {
+            $course->categories()->detach();
+        }
 
         return redirect()->route('courses.index')
             ->with('success', 'Course updated successfully.');
