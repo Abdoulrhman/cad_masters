@@ -169,6 +169,18 @@
                     </li>
 
                     <li class="sidebar-item">
+                        <a href="#usersSubmenu" data-bs-toggle="collapse" class="sidebar-link">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Users</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse sidebar-dropdown" id="usersSubmenu">
+                            <li><a href="{{ route('dashboard.users.index') }}">All Users</a></li>
+                            <li><a href="{{ route('dashboard.users.create') }}">Add New User</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
                         <a href="#mediaSubmenu" data-bs-toggle="collapse" class="sidebar-link">
                             <i class="fas fa-photo-video"></i>
                             <span>Media</span>

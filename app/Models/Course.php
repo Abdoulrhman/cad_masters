@@ -17,7 +17,6 @@ class Course extends Model
         'name',
         'image',
         'description',
-        'category_id',
         'price',
         'price_offer',
         'branch_id',
@@ -46,11 +45,11 @@ class Course extends Model
     ];
 
     /**
-     * Get the category that owns the course.
+     * Get the categories that belong to the course.
      */
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(CourseCategory::class, 'category_id');
+        return $this->belongsToMany(CourseCategory::class, 'course_category');
     }
 
     /**

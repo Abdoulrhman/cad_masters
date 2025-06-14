@@ -48,12 +48,11 @@
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
-                                                <label for="category_id">Category</label>
-                                                <select name="category_id" id="category_id" class="form-control">
-                                                    <option value="">Select a Category</option>
-                                                    @foreach ($courseCategories as $category)
+                                                <label for="categories">Categories</label>
+                                                <select name="categories[]" id="categories" class="form-control" multiple required>
+                                                    @foreach($courseCategories as $category)
                                                     <option value="{{ $category->id }}"
-                                                        {{ old('category_id', $course->category_id) == $category->id ? 'selected' : '' }}>
+                                                        {{ (collect(old('categories', $course->categories->pluck('id')))->contains($category->id)) ? 'selected' : '' }}>
                                                         {{ $category->name }}
                                                     </option>
                                                     @endforeach
@@ -81,20 +80,6 @@
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
-                                                <label for="branch_id">Branch</label>
-                                                <select name="branch_id" id="branch_id" class="form-control" required>
-                                                    <option value="">Select a branch</option>
-                                                    @foreach($branches as $branch)
-                                                    <option value="{{ $branch->id }}"
-                                                        {{ old('branch_id', $course->branch_id) == $branch->id ? 'selected' : '' }}>
-                                                        {{ $branch->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6 col-lg-6">
-                                            <div class="tp-contact-input p-relative">
                                                 <label for="hours">Hours</label>
                                                 <input type="number" name="hours" id="hours"
                                                     value="{{ old('hours', $course->hours) }}" class="form-control"
@@ -105,7 +90,9 @@
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="daysInWeek">Days In Week</label>
-                                                <input type="text" name="daysInWeek" id="daysInWeek" class="form-control" value="{{ old('daysInWeek', $course->daysInWeek) }}">
+                                                <input type="text" name="daysInWeek" id="daysInWeek"
+                                                    class="form-control"
+                                                    value="{{ old('daysInWeek', $course->daysInWeek) }}">
                                             </div>
                                         </div>
 
@@ -121,9 +108,11 @@
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="instructors">Instructors</label>
-                                                <select name="instructors[]" id="instructors" class="form-control" multiple required>
+                                                <select name="instructors[]" id="instructors" class="form-control"
+                                                    multiple required>
                                                     @foreach($instructors as $instructor)
-                                                    <option value="{{ $instructor->id }}" {{ (collect(old('instructors', $course->instructors->pluck('id')))->contains($instructor->id)) ? 'selected' : '' }}>
+                                                    <option value="{{ $instructor->id }}"
+                                                        {{ (collect(old('instructors', $course->instructors->pluck('id')))->contains($instructor->id)) ? 'selected' : '' }}>
                                                         {{ $instructor->name }}
                                                     </option>
                                                     @endforeach
@@ -134,11 +123,15 @@
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="certificates">Certificates (Images)</label>
-                                                <input type="file" name="certificates[]" id="certificates" class="form-control" accept="image/*" multiple>
-                                                <small class="text-muted">You can upload multiple certificate images. Existing certificates will be shown below.</small>
+                                                <input type="file" name="certificates[]" id="certificates"
+                                                    class="form-control" accept="image/*" multiple>
+                                                <small class="text-muted">You can upload multiple certificate images.
+                                                    Existing certificates will be shown below.</small>
                                                 <div class="mt-2">
                                                     @foreach($course->certificates as $certificate)
-                                                        <img src="{{ asset('storage/' . $certificate->image) }}" alt="Certificate" style="max-width: 80px; max-height: 80px; margin-right: 8px;">
+                                                    <img src="{{ asset('storage/' . $certificate->image) }}"
+                                                        alt="Certificate"
+                                                        style="max-width: 80px; max-height: 80px; margin-right: 8px;">
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -178,8 +171,7 @@
                                         <div class="col-12">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="description">Description</label>
-                                                <textarea name="description" id="editor" class="form-control"
-                                                    rows="4"
+                                                <textarea name="description" id="editor" class="form-control" rows="4"
                                                     required>{{ old('description', $course->description) }}</textarea>
                                             </div>
                                         </div>
@@ -255,7 +247,9 @@
 let editor;
 ClassicEditor
     .create(document.querySelector('#editor'), {
-        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'undo', 'redo'],
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote',
+            'insertTable', 'undo', 'redo'
+        ],
     })
     .then(newEditor => {
         editor = newEditor;
@@ -282,7 +276,11 @@ ClassicEditor
     });
 
 // Session management code
-let sessionIndex = {{ $course->sessions->count() }};
+let sessionIndex = {
+    {
+        $course - > sessions - > count()
+    }
+};
 document.getElementById('add-session').addEventListener('click', function() {
     const wrapper = document.getElementById('sessions-wrapper');
     const row = document.createElement('div');
@@ -312,6 +310,14 @@ document.getElementById('sessions-wrapper').addEventListener('click', function(e
 $(document).ready(function() {
     $('#instructors').select2({
         placeholder: 'Select instructors',
+        width: '100%'
+    });
+});
+
+// Enhance categories select with Select2
+$(document).ready(function() {
+    $('#categories').select2({
+        placeholder: 'Select categories',
         width: '100%'
     });
 });

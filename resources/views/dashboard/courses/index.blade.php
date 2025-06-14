@@ -23,7 +23,7 @@
 
                             @include('partials.table', [
                             'headers' => ['id', 'name', 'image', 'description', 'category', 'price', 'price_offer',
-                            'branch', 'hours'],
+                            'hours'],
                             'items' => $courses,
                             'actions' => [
                             'edit' => 'dashboard.courses.edit',

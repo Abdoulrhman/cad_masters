@@ -10,24 +10,28 @@ class CourseRequest extends FormRequest
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name'          => 'required|string|max:255',
-            'description'   => 'required|string',
-            'price'         => 'required|numeric|min:0',
-            'max_students'  => 'required|integer|min:1',
-            'is_active'     => 'boolean',
-            // Optional fields
-            'image'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'category_id'   => 'required|exists:course_categories,id',
-            'price_offer'   => 'nullable|numeric|min:0',
-            'hours'         => 'nullable|integer|min:1',
-            'instructor_id' => 'nullable|exists:instructors,id',
-            'branch_id'     => 'required|exists:branches,id',
-            'outline_link'  => 'nullable|string|max:255',
-            'youtube_link'  => 'nullable|string|max:255',
-            'daysInWeek'    => 'nullable|string|max:255',
+            'name'                  => ['required', 'string', 'max:255'],
+            'description'           => ['required', 'string'],
+            'price'                 => ['required', 'numeric', 'min:0'],
+            'price_offer'           => ['nullable', 'numeric', 'min:0', 'lt:price'],
+            'hours'                 => ['required', 'integer', 'min:1'],
+            'max_students'          => ['required', 'integer', 'min:1'],
+            'image'                 => ['nullable', 'image', 'max:2048'],
+            'categories'            => ['required', 'array', 'min:1'],
+            'categories.*'          => ['required', 'exists:course_categories,id'],
+            'instructors'           => ['required', 'array', 'min:1'],
+            'instructors.*'         => ['required', 'exists:instructors,id'],
+            'branch_id'             => ['required', 'exists:branches,id'],
+            'duration'              => ['required', 'string', 'max:255'],
+            'outline_link'          => ['nullable', 'url', 'max:255'],
+            'youtube_link'          => ['nullable', 'url', 'max:255'],
+            'daysInWeek'            => ['required', 'string', 'max:255'],
+            'sessions'              => ['nullable', 'array'],
+            'sessions.*.start_date' => ['required_with:sessions.*.end_date', 'date'],
+            'sessions.*.end_date'   => ['required_with:sessions.*.start_date', 'date', 'after:sessions.*.start_date'],
         ];
     }
 

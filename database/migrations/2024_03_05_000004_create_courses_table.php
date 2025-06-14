@@ -30,6 +30,13 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('course_category', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_category_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -39,5 +46,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('course_enrollments');
         Schema::dropIfExists('courses');
+        Schema::dropIfExists('course_category');
     }
 };
