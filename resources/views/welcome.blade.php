@@ -7,14 +7,15 @@
 @section('content')
 
 <!-- hero-area-start -->
-<section class="tp-hero-area">
+<section class="tp-hero-area" style="width: 100%; height: 400px; overflow: hidden;">
     <div class="swiper tp-slider-active">
         <div class="swiper-wrapper">
             @foreach($sliders as $slider)
             <div class="swiper-slide">
                 <div class="tp-hero-item"
-                    style="background-image: url('{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}'); background-size: cover; background-position: center;">
-                    <div class="tp-hero-overlay"></div>
+                    style="background-image: url('{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}'); background-size: cover;height: 100%!important; background-position: center;object-fit: cover!important; /* Acts like background-size: cover */
+                            object-position: center;!important; background-size: cover; ">
+                    {{--<div class="tp-hero-overlay"></div>--}}
                     <div class="container">
                         <div class="row">
                             <div class="col-xxl-9 col-lg-11">

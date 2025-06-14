@@ -9,20 +9,14 @@
 @section('content')
 
         <!-- undergraduate breadcrumb start -->
-<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-    <div class="tp-breadcrumb__bg "
-         style="background: url('{{ asset('/assets/img/breadcrumb/about.PNG') }}') no-repeat center / cover !important"></div>
-    <div class="container">
-        <div class="row align-items-center">
-            {{--<div class="col-sm-12">
-                <div class="tp-breadcrumb__content">
-                     <h3 class="tp-breadcrumb__title color"> About CAD Masters</h3>
-
-                </div>
-            </div>--}}
-        </div>
-    </div>
-</section>
+    <section class=" tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix"
+             style="width: 100%; height: 400px; overflow: hidden;"> <!-- Set desired height -->
+        <div class="tp-breadcrumb__bg"
+             style="width: 100%;
+                     height: 100%;
+                     background: url('{{ asset('/assets/img/breadcrumb/About1.png') }}') no-repeat center center;
+                     background-size: cover;"></div>
+    </section>
 <!-- undergraduate breadcrumb end -->
 
 

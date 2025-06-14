@@ -1,10 +1,10 @@
 <?php
 
-use
-    App\Http\Controllers\AboutController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\AwardsController;
 use App\Http\Controllers\AwardController;
@@ -312,4 +312,31 @@ Route::middleware(['auth'])->group(function () {
         // Authorizations
         Route::resource('authorizations', AuthorizationsController::class);
     });
+
+
+
+
+   /*// Users Routes
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::resource('users', UserController::class)->names([
+            'index'   => 'dashboard.users.index',
+            'create'  => 'dashboard.users.create',
+            'store'   => 'dashboard.users.store',
+            'edit'    => 'dashboard.users.edit',
+            'update'  => 'dashboard.users.update',
+            'destroy' => 'dashboard.users.destroy',
+        ]);
+    });*/
+
+    Route::middleware(['auth'])->group(function () {
+        Route::resource('users', UserController::class)->names([
+            'index'   => 'dashboard.users.index',
+            'create'  => 'dashboard.users.create',
+            'store'   => 'dashboard.users.store',
+            'edit'    => 'dashboard.users.edit',
+            'update'  => 'dashboard.users.update',
+            'destroy' => 'dashboard.users.destroy',
+        ]);
+    });
+
 });

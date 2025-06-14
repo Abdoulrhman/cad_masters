@@ -12491,6 +12491,13 @@ a.social-insta {
 /*----------------------------------------*/
 /*  7.1 Hero css
 /*----------------------------------------*/
+.tp-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Acts like background-size: cover */
+    object-position: center; /* Acts like background-position: center */
+    display: block;
+}
 .tp-hero-item {
     padding-top: 300px;
     padding-bottom: 254px;
