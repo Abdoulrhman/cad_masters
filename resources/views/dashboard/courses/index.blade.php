@@ -22,7 +22,7 @@
                             </div>
 
                             @include('partials.table', [
-                            'headers' => ['id', 'name', 'image', 'description', 'category', 'price', 'price_offer',
+                            'headers' => ['id', 'name', 'image', 'description', 'price', 'price_offer',
                             'hours'],
                             'items' => $courses,
                             'actions' => [

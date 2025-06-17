@@ -16,7 +16,7 @@ class CoursesController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Course::query()->with('category');
+        $query = Course::query()->with('categories');
 
         // Search filter
         if ($request->filled('search')) {
@@ -135,7 +135,7 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        $course           = Course::findOrFail($id);
+        $course           = Course::with('categories', 'branch', 'certificates', 'sessions')->findOrFail($id);
         $courseCategories = CourseCategory::all();
         $branches         = Branch::all();
         $instructors      = \App\Models\Instructor::all();
