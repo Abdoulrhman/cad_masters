@@ -40,16 +40,26 @@
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="name">Course Name</label>
-                                                <input type="text" name="name" id="name"
-                                                    value="{{ old('name', $course->name) }}" class="form-control"
-                                                    required>
+                                                <select name="name" id="name"
+                                                    class="form-select @error('name') is-invalid @enderror" required>
+                                                    @foreach(config('courses.courses') as $value => $label)
+                                                    <option value="{{ $value }}"
+                                                        {{ old('name', $course->name) == $value ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="categories">Categories</label>
-                                                <select name="categories[]" id="categories" class="form-control" multiple required>
+                                                <select name="categories[]" id="categories" class="form-control"
+                                                    multiple required>
                                                     @foreach($courseCategories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ (collect(old('categories', $course->categories->pluck('id')))->contains($category->id)) ? 'selected' : '' }}>
@@ -168,6 +178,20 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="tp-contact-input p-relative">
+                                                <label for="branch_id">Branch</label>
+                                                <select name="branch_id" id="branch_id" class="form-control" required>
+                                                    <option value="">Select a branch</option>
+                                                    @foreach ($branches as $branch)
+                                                    <option value="{{ $branch->id }}"
+                                                        {{ old('branch_id', $course->branch_id) == $branch->id ? 'selected' : '' }}>
+                                                        {{ $branch->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="col-12">
                                             <div class="tp-contact-input p-relative">
                                                 <label for="description">Description</label>
@@ -198,19 +222,30 @@
                                             <div id="sessions-wrapper">
                                                 @foreach($course->sessions as $i => $session)
                                                 <div class="row mb-2 session-row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-4">
                                                         <input type="datetime-local"
                                                             name="sessions[{{ $i }}][start_date]" class="form-control"
                                                             value="{{ old('sessions.'.$i.'.start_date', $session->start_date ? $session->start_date->format('Y-m-d\TH:i') : '') }}"
                                                             placeholder="Start Date">
                                                     </div>
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-4">
                                                         <input type="datetime-local" name="sessions[{{ $i }}][end_date]"
                                                             class="form-control"
                                                             value="{{ old('sessions.'.$i.'.end_date', $session->end_date ? $session->end_date->format('Y-m-d\TH:i') : '') }}"
                                                             placeholder="End Date">
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
+                                                        <select name="sessions[{{ $i }}][branch_id]"
+                                                            class="form-control" required>
+                                                            <option value="">Select a branch</option>
+                                                            @foreach ($branches as $branch)
+                                                            <option value="{{ $branch->id }}"
+                                                                {{ old('sessions.'.$i.'.branch_id', $session->branch_id ?? '') == $branch->id ? 'selected' : '' }}>
+                                                                {{ $branch->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-1">
                                                         <button type="button" class="btn btn-danger remove-session"
                                                             {{ $i == 0 ? 'style=display:none;' : '' }}>Remove</button>
                                                     </div>
@@ -262,49 +297,20 @@ ClassicEditor
             descriptionInput.value = editor.getData();
 
             // Fix for name field if it's hidden
-            const nameInput = document.querySelector('input[name="name"]');
-            if (nameInput && nameInput.style.display === 'none') {
-                // Make sure the input is visible just before submission
-                nameInput.style.display = 'block';
-                nameInput.style.position = 'absolute';
-                nameInput.style.opacity = '0';
+            const nameSelect = document.querySelector('select[name="name"]');
+            if (nameSelect && nameSelect.style.display === 'none') {
+                nameSelect.removeAttribute('style');
+                nameSelect.style.position = 'absolute';
+                nameSelect.style.opacity = '0';
+                nameSelect.style.pointerEvents = 'none';
+                nameSelect.style.height = '1px';
+                nameSelect.style.width = '1px';
             }
         });
     })
     .catch(error => {
         console.error(error);
     });
-
-// Session management code
-let sessionIndex = {
-    {
-        $course - > sessions - > count()
-    }
-};
-document.getElementById('add-session').addEventListener('click', function() {
-    const wrapper = document.getElementById('sessions-wrapper');
-    const row = document.createElement('div');
-    row.className = 'row mb-2 session-row';
-    row.innerHTML = `
-            <div class="col-md-5">
-                <input type="datetime-local" name="sessions[${sessionIndex}][start_date]" class="form-control" placeholder="Start Date">
-            </div>
-            <div class="col-md-5">
-                <input type="datetime-local" name="sessions[${sessionIndex}][end_date]" class="form-control" placeholder="End Date">
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-danger remove-session">Remove</button>
-            </div>
-        `;
-    wrapper.appendChild(row);
-    sessionIndex++;
-});
-
-document.getElementById('sessions-wrapper').addEventListener('click', function(e) {
-    if (e.target.classList.contains('remove-session')) {
-        e.target.closest('.session-row').remove();
-    }
-});
 
 // Enhance instructors select with Select2
 $(document).ready(function() {
@@ -320,6 +326,46 @@ $(document).ready(function() {
         placeholder: 'Select categories',
         width: '100%'
     });
+});
+
+// Session management code
+let branches = @json($branches);
+let sessionIndex = {
+    {
+        $course - > sessions - > count()
+    }
+};
+document.getElementById('add-session').addEventListener('click', function() {
+    const wrapper = document.getElementById('sessions-wrapper');
+    const row = document.createElement('div');
+    row.className = 'row mb-2 session-row';
+    let branchOptions = '<option value="">Select a branch</option>';
+    branches.forEach(branch => {
+        branchOptions += `<option value="${branch.id}">${branch.name}</option>`;
+    });
+    row.innerHTML = `
+        <div class="col-md-4">
+            <input type="datetime-local" name="sessions[${sessionIndex}][start_date]" class="form-control" placeholder="Start Date">
+        </div>
+        <div class="col-md-4">
+            <input type="datetime-local" name="sessions[${sessionIndex}][end_date]" class="form-control" placeholder="End Date">
+        </div>
+        <div class="col-md-3">
+            <select name="sessions[${sessionIndex}][branch_id]" class="form-control" required>
+                ${branchOptions}
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-danger remove-session">Remove</button>
+        </div>
+    `;
+    wrapper.appendChild(row);
+    sessionIndex++;
+});
+document.getElementById('sessions-wrapper').addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove-session')) {
+        e.target.closest('.session-row').remove();
+    }
 });
 </script>
 @endpush
