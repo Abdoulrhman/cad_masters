@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Course::query()->with('category');
+        $query = Course::query()->with('categories');
 
         // Search filter
         if ($request->filled('search')) {
@@ -27,9 +27,11 @@ class CourseController extends Controller
             });
         }
 
-        // Category filter
+        // Category filter (many-to-many)
         if ($request->filled('category')) {
-            $query->whereIn('category_id', $request->category);
+            $query->whereHas('categories', function ($q) use ($request) {
+                $q->whereIn('id', $request->category);
+            });
         }
 
         // Price range filter
@@ -62,7 +64,7 @@ class CourseController extends Controller
 
         // Debug: Log the first course's category if it exists
         if ($courses->count() > 0) {
-            Log::info('First course category: ' . json_encode($courses->first()->category));
+            Log::info('First course category: ' . json_encode($courses->first()->categories));
 
             // Additional debugging - check the current request URL
             Log::info('Current URL: ' . request()->url());
@@ -70,11 +72,11 @@ class CourseController extends Controller
 
             // Dump the category ID to make sure it's set
             $firstCourse = $courses->first();
-            Log::info('Category ID: ' . $firstCourse->category_id);
-            Log::info('Category object: ' . ($firstCourse->category ? 'Found' : 'Not found'));
+            Log::info('Category ID: ' . $firstCourse->categories->first()->id);
+            Log::info('Category object: ' . ($firstCourse->categories->first() ? 'Found' : 'Not found'));
 
             // Add a debug message to the session
-            if (! $firstCourse->category) {
+            if ($firstCourse->categories->isEmpty()) {
                 session()->flash('debug', 'Category relationship not found for course #' . $firstCourse->id);
             }
         }

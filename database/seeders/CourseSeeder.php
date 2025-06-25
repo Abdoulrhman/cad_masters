@@ -33,51 +33,54 @@ class CourseSeeder extends Seeder
             [
                 'name'         => 'AutoCAD 2D Professional',
                 'description'  => 'Learn the basics of AutoCAD, including 2D drawing, editing, and annotation tools.',
-                'category_id'  => $autocadCategory->id,
                 'price'        => 197.00,
                 'price_offer'  => 26.00,
                 'branch_id'    => $branch->id,
                 'hours'        => 11,
                 'is_active'    => true,
                 'max_students' => 20,
+                'categories'   => [$autocadCategory->id],
             ],
             [
                 'name'         => 'AutoCAD 2D Advanced',
                 'description'  => 'About Course SketchUp is a powerful free graphics modeling program',
-                'category_id'  => $sketchupCategory->id,
                 'price'        => 9000.00,
                 'price_offer'  => 8000.00,
                 'branch_id'    => $branch->id,
                 'hours'        => 9,
                 'is_active'    => true,
                 'max_students' => 15,
+                'categories'   => [$sketchupCategory->id],
             ],
             [
                 'name'         => '3D Studio Max Essential Training',
                 'description'  => 'Master 3D modeling, texturing, lighting, and rendering in 3ds Max.',
-                'category_id'  => $modelingCategory->id,
                 'price'        => 399.99,
                 'price_offer'  => 350.00,
                 'branch_id'    => $branch->id,
                 'hours'        => 60,
                 'is_active'    => true,
                 'max_students' => 12,
+                'categories'   => [$modelingCategory->id],
             ],
             [
                 'name'         => 'Architecture Fundamentals',
                 'description'  => 'Comprehensive training in architecture design fundamentals.',
-                'category_id'  => $architectureCategory->id,
                 'price'        => 499.99,
                 'price_offer'  => 450.00,
                 'branch_id'    => $branch->id,
                 'hours'        => 80,
                 'is_active'    => true,
                 'max_students' => 18,
+                'categories'   => [$architectureCategory->id],
             ],
         ];
 
-        foreach ($courses as $course) {
-            Course::create($course);
+        foreach ($courses as $courseData) {
+            $categories = $courseData['categories'];
+            unset($courseData['categories']);
+            $course = Course::create($courseData);
+            $course->categories()->attach($categories);
         }
     }
 }

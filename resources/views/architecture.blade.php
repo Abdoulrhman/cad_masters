@@ -4,8 +4,8 @@
     Architecture
 @endsection
 
-    @section('content')
-            <!-- undergraduate breadcrumb start -->
+@section('content')
+    <!-- undergraduate breadcrumb start -->
     <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
         <div class="tp-breadcrumb__bg overlay"
              style="background: url('{{ asset('/assets/img/breadcrumb/Contact-Us.PNG') }}') no-repeat center / cover !important"></div>
@@ -42,7 +42,14 @@
                         <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"
                              tabindex="0">
                             <div class="row">
-                                @foreach($courses as $course)
+                                @php
+                                    $architectureCourses = $courses->filter(function($course) {
+                                        return $course->categories->contains(function($cat) {
+                                            return $cat->name === 'Architecture';
+                                        });
+                                    });
+                                @endphp
+                                @forelse($architectureCourses as $course)
                                     <div class="col-lg-4 col-md-6">
                                         <div class="tp-course-item p-relative fix mb-30">
                                             <div class="tp-course-thumb">
@@ -51,7 +58,9 @@
                                             </div>
                                             <div class="tp-course-content">
                                                 <div class="tp-course-tag mb-10">
-                                                    <span>{{$course->category ? $course->category->name : 'Uncategorized'}}</span>
+                                                    @foreach($course->categories as $cat)
+                                                        <span>{{ $cat->name }}</span>@if(!$loop->last), @endif
+                                                    @endforeach
                                                 </div>
                                                 <div class="tp-course-meta">
                                             <span>
@@ -107,7 +116,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <div class="col-12">
+                                        <p>No Architecture courses found.</p>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -116,6 +129,4 @@
         </div>
     </section>
     <!-- Courses Section  End -->
-
-
 @endsection
