@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-
+{{ $course->name }}
 @section('content')
 
 <!-- course details breadcrumb start -->
@@ -359,6 +359,7 @@
             <i class="fas fa-info-circle me-2"></i> No related courses found in this category.
         </div>
         @endif
+
     </div>
 </section>
 <!-- course details area end -->

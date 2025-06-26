@@ -219,9 +219,18 @@ class CourseController extends Controller
             ->with('success', 'Course deleted successfully.');
     }
 
-    public function show(Course $course)
-    {
-        return view('courses.show', compact('course'));
+    public function show(Course $course) {
+        $course->load(['categories', 'sessions', 'instructors', 'certificates', 'branch']);
+
+        $relatedCourses = Course::with('categories')
+            ->whereHas('categories', function($q) use ($course) {
+                $q->whereIn('id', $course->categories->pluck('id'));
+            })
+            ->where('id', '!=', $course->id)
+            ->limit(3)
+            ->get();
+
+        return view('courses.show', compact('course', 'relatedCourses'));
     }
 
     /**

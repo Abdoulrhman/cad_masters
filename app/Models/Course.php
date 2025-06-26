@@ -52,6 +52,8 @@ class Course extends Model
         return $this->belongsToMany(CourseCategory::class, 'course_category');
     }
 
+
+
     /**
      * Get the students enrolled in the course.
      */
@@ -99,5 +101,11 @@ class Course extends Model
     public function certificates()
     {
         return $this->belongsToMany(\App\Models\Certificate::class, 'certificate_course');
+    }
+
+    public function getPrimaryCategoryAttribute()
+    {
+        return $this->categories->first() ??
+        (new class { public $name = 'Uncategorized'; });
     }
 }

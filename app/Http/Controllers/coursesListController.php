@@ -7,35 +7,29 @@ class coursesListController extends Controller
 {
     public function architecture()
     {
-        /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
-        return view('architecture', compact('courses'));*/
-
-        $courses = Course::whereHas('category', function ($query) {
-            $query->where('name', 'Architecture'); // Filter by category name
+        $courses = Course::whereHas('categories', function ($query) {
+            $query->where('name', 'Architecture'); // Now matches the method name
         })->get();
-        return view('architecture', compact('courses'));
 
+        return view('architecture', compact('courses'));
     }
 
     public function structure()
     {
-        /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
-         return view('structure', compact('courses'));*/
-
-        $courses = Course::whereHas('category', function ($query) {
-            $query->where('name', 'Structure'); // Filter by category name
+        $courses = Course::whereHas('categories', function ($query) {
+            $query->where('name', 'Structure'); // Now matches the method name
         })->get();
 
         return view('structure', compact('courses'));
-
     }
+
 
     public function management()
     {
         /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
         return view('management', compact('courses'));*/
 
-        $courses = Course::whereHas('category', function ($query) {
+        $courses = Course::whereHas('categories', function ($query) {
             $query->where('name', 'Management'); // Filter by category name
         })->get();
 
@@ -47,7 +41,7 @@ class coursesListController extends Controller
         /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
          return view('mechanical', compact('courses'));*/
 
-        $courses = Course::whereHas('category', function ($query) {
+        $courses = Course::whereHas('categories', function ($query) {
             $query->where('name', 'Mechanical'); // Filter by category name
         })->get();
 
@@ -59,7 +53,7 @@ class coursesListController extends Controller
         /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
         return view('bim', compact('courses'));*/
 
-        $courses = Course::whereHas('category', function ($query) {
+        $courses = Course::whereHas('categories', function ($query) {
             $query->where('name', 'Bim'); // Filter by category name
         })->get();
 
@@ -71,7 +65,7 @@ class coursesListController extends Controller
         /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
         return view('electrical', compact('courses'));*/
 
-        $courses = Course::whereHas('category', function ($query) {
+        $courses = Course::whereHas('categories', function ($query) {
             $query->where('name', 'electrical'); // Filter by category name
         })->get();
 
@@ -83,7 +77,7 @@ class coursesListController extends Controller
         /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
         return view('graphics', compact('courses'));*/
 
-        $courses = Course::whereHas('category', function ($query) {
+        $courses = Course::whereHas('categories', function ($query) {
             $query->where('name', 'Graphics'); // Filter by category name
         })->get();
 
