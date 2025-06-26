@@ -45,7 +45,7 @@ class Course extends Model
     ];
 
     /**
-     * Get the categories that belong to the course.
+     * The categories that belong to the course (many-to-many).
      */
     public function categories()
     {

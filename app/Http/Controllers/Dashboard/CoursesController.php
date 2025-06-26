@@ -84,25 +84,20 @@ class CoursesController extends Controller
     public function store(CourseRequest $request)
     {
         $form_data = $request->validated();
-
         if ($request->hasFile('image')) {
             $form_data['image'] = $request->file('image')->store('courses', 'public');
         }
-
-        // Ensure branch_id is set if present in the request
         if ($request->has('branch_id')) {
             $form_data['branch_id'] = $request->branch_id;
         }
-
-        // Save the course
         $course = Course::create($form_data);
-
-        // Attach instructors (many-to-many)
+        // Attach categories (many-to-many)
+        if ($request->has('categories')) {
+            $course->categories()->attach($request->categories);
+        }
         if ($request->has('instructors')) {
             $course->instructors()->sync($request->instructors);
         }
-
-        // Handle certificate images (many-to-many)
         if ($request->hasFile('certificates')) {
             foreach ($request->file('certificates') as $file) {
                 $path        = $file->store('certificates', 'public');
@@ -113,8 +108,6 @@ class CoursesController extends Controller
                 $course->certificates()->attach($certificate->id);
             }
         }
-
-        // Save course sessions if provided
         if ($request->has('sessions')) {
             foreach ($request->sessions as $session) {
                 if (! empty($session['start_date']) && ! empty($session['end_date'])) {
@@ -125,7 +118,6 @@ class CoursesController extends Controller
                 }
             }
         }
-
         return redirect()->route('dashboard.courses.index')
             ->with('success', 'Course created successfully.');
     }
@@ -148,9 +140,7 @@ class CoursesController extends Controller
     public function update(CourseRequest $request, Course $course)
     {
         $form_data = $request->validated();
-
         if ($request->hasFile('image')) {
-            // Delete old image if exists
             if ($course->image && \Storage::disk('public')->exists($course->image)) {
                 \Storage::disk('public')->delete($course->image);
             }
@@ -158,15 +148,16 @@ class CoursesController extends Controller
         } else {
             unset($form_data['image']);
         }
-
         $course->update($form_data);
-
-        // Sync instructors (many-to-many)
+        // Sync categories (many-to-many)
+        if ($request->has('categories')) {
+            $course->categories()->sync($request->categories);
+        } else {
+            $course->categories()->detach();
+        }
         if ($request->has('instructors')) {
             $course->instructors()->sync($request->instructors);
         }
-
-        // Handle certificate images (many-to-many)
         if ($request->hasFile('certificates')) {
             foreach ($request->file('certificates') as $file) {
                 $path        = $file->store('certificates', 'public');
@@ -177,7 +168,6 @@ class CoursesController extends Controller
                 $course->certificates()->attach($certificate->id);
             }
         }
-
         return redirect()->route('dashboard.courses.index')
             ->with('success', 'Course updated successfully.');
     }
