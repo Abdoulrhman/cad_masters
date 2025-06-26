@@ -28,7 +28,7 @@
             <div class="row align-items-end">
                 <div class="col-xxl-5 col-xl-6 col-lg-7">
                     <div class="tp-section mb-40">
-                        <h3 class="tp-section-3-title ">Architecture
+                        <h3 class="tp-section-3-title ">Mechanical
                         <span>Courses
                             <img class="tp-underline-shape-6 wow bounceIn" data-wow-duration="1.5s" data-wow-delay=".4s"
                                  src="assets/img/unlerline/course-2-svg-1.svg" alt="">

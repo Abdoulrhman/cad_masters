@@ -32,9 +32,26 @@
                                 @csrf
 
                                 <div class="row">
-                                    <div class="form-group col-md-6 mb-3">
+                                   {{-- <div class="form-group col-md-6 mb-3">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+                                        @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>--}}
+
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label for="name">Category</label>
+                                        <select class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                                            <option value="">Select a category</option>
+                                            <option value="Architecture" {{ old('name') == 'Architecture' ? 'selected' : '' }}>Architecture</option>
+                                            <option value="Structure" {{ old('name') == 'Structure' ? 'selected' : '' }}>Structure</option>
+                                            <option value="Management" {{ old('name') == 'Management' ? 'selected' : '' }}>Management</option>
+                                            <option value="Mechanical" {{ old('name') == 'Mechanical' ? 'selected' : '' }}>Mechanical</option>
+                                            <option value="Electrical" {{ old('name') == 'Electrical' ? 'selected' : '' }}>Electrical</option>
+                                            <option value="Graphics" {{ old('name') == 'Graphics' ? 'selected' : '' }}>Graphics</option>
+                                            <option value="BIM Tracks" {{ old('name') == 'BIM Tracks' ? 'selected' : '' }}>BIM Tracks</option>
+                                        </select>
                                         @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

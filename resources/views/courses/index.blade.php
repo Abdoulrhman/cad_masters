@@ -240,8 +240,7 @@
                                                         <a
                                                             href="{{ route('courses.show', $course) }}">{{ $course->title }}</a>
                                                     </h4>
-                                                    <div
-                                                        class="tp-course-rating d-flex align-items-end justify-content-between">
+                                                    <div class="tp-course-rating d-flex align-items-end justify-content-between">
                                                         <div class="tp-course-rating-star">
                                                             <p>{{ number_format($course->rating, 1) }}<span> /5</span>
                                                             </p>

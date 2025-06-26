@@ -5,30 +5,41 @@ use App\Models\Course;
 
 class coursesListController extends Controller
 {
+
+   /* public function architecture()
+    {
+        $courses = Course::whereHas('categories', function ($query) {
+            $query->whereIn('name', ['Architecture', 'Structure', 'Mechanical' , 'Management', ]); // OR condition
+        })->with('categories')
+            ->get();
+
+        return view('architecture', compact('courses'));
+    }*/
+
     public function architecture()
     {
-        /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
-        return view('architecture', compact('courses'));*/
-
-        $courses = Course::whereHas('category', function ($query) {
-            $query->where('name', 'Architecture'); // Filter by category name
+        $courses = Course::whereHas('categories', function ($query) {
+            $query->whereIn('name', ['Architecture', 'Another Category']);
         })->get();
-        return view('architecture', compact('courses'));
 
+        return view('architecture', compact('courses'));
     }
+
 
     public function structure()
     {
-        /* $courses = Course::where('category_id', 1)->get(); // Replace `1` with the actual category ID
-         return view('structure', compact('courses'));*/
-
-        $courses = Course::whereHas('category', function ($query) {
-            $query->where('name', 'Structure'); // Filter by category name
+        $courses = Course::whereHas('categories', function ($query) {
+            $query->where('name', 'Architecture');
         })->get();
 
-        return view('structure', compact('courses'));
+        // Fallback: If no Architecture courses, show all courses
+        if ($courses->isEmpty()) {
+            $courses = Course::with('categories')->get();
+        }
 
+        return view('architecture', compact('courses'));
     }
+
 
     public function management()
     {
