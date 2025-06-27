@@ -219,39 +219,21 @@
                                                 <div class="tp-course-thumb">
                                                     <a href="{{ route('courses.show', $course) }}">
                                                         <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/default.jpg') }}"
-                                                            alt="{{ $course->title }}">
+                                                            alt="{{ $course->name }}">
                                                     </a>
                                                 </div>
                                                 <div class="tp-course-content">
                                                     <div class="tp-course-tag mb-10">
-                                                        <span>{{ optional($course->category)->name ?? 'Uncategorized' }}</span>
-                                                    </div>
-                                                    <div class="tp-course-meta">
-                                                        <span>
-                                                            <i class="fas fa-book"></i>
-                                                            {{ $course->hours }} Hours
-                                                        </span>
-                                                        <span>
-                                                            <i class="fas fa-users"></i>
-                                                            {{ $course->students_count ?? 0 }} Students
-                                                        </span>
+                                                        @foreach($course->categories as $cat)
+                                                            <span>{{ $cat->name }}</span>@if(!$loop->last), @endif
+                                                        @endforeach
                                                     </div>
                                                     <h4 class="tp-course-title">
                                                         <a
-                                                            href="{{ route('courses.show', $course) }}">{{ $course->title }}</a>
+                                                            href="{{ route('courses.show', $course) }}">{{ $course->name }}</a>
                                                     </h4>
                                                     <div
                                                         class="tp-course-rating d-flex align-items-end justify-content-between">
-                                                        <div class="tp-course-rating-star">
-                                                            <p>{{ number_format($course->rating, 1) }}<span> /5</span>
-                                                            </p>
-                                                            <div class="tp-course-rating-icon">
-                                                                @for($i = 1; $i <= 5; $i++) <i
-                                                                    class="fa-solid fa-star {{ $i <= $course->rating ? 'text-warning' : 'text-muted' }}">
-                                                                    </i>
-                                                                    @endfor
-                                                            </div>
-                                                        </div>
                                                         <div class="tp-course-pricing">
                                                             {{--@if($course->price > 0)
                                                             <span>${{ number_format($course->price, 2) }}</span>
@@ -278,14 +260,14 @@
                                         <div class="tp-course-filter-thumb">
                                             <a href="{{ route('courses.show', $course) }}">
                                                 <img src="{{ $course->image ?? 'assets/img/course/default.jpg' }}"
-                                                    alt="{{ $course->title }}">
+                                                    alt="{{ $course->name }}">
                                             </a>
                                         </div>
                                         <div class="tp-course-filter-content">
-                                            <div
-                                                class="tp-course-filter-tag d-flex align-items-center justify-content-between mb-10">
-                                                <span
-                                                    class="tag-span">{{ optional($course->category)->name ?? 'Uncategorized' }}</span>
+                                            <div class="tp-course-filter-tag d-flex align-items-center justify-content-between mb-10">
+                                                @foreach($course->categories as $cat)
+                                                    <span>{{ $cat->name }}</span>@if(!$loop->last), @endif
+                                                @endforeach
                                                 <div class="tp-course-rating-star">
                                                     <p>{{ number_format($course->rating, 1) }}<span> /5</span></p>
                                                     <div class="tp-course-rating-icon">
@@ -297,7 +279,7 @@
                                                 </div>
                                             </div>
                                             <h4 class="tp-course-filter-title">
-                                                <a href="{{ route('courses.show', $course) }}">{{ $course->title }}</a>
+                                                <a href="{{ route('courses.show', $course) }}">{{ $course->name }}</a>
                                             </h4>
                                             <div class="tp-course-filter-meta">
                                                 <span><img

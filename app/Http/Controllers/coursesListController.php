@@ -90,20 +90,44 @@ class coursesListController extends Controller
         return view('graphics', compact('courses'));
     }
 
-    public function show($id)
+   /* public function show($id)
     {
         $course = Course::with('categories')->findOrFail($id);
+
         // Find related courses by shared categories
         $relatedCourses = Course::whereHas('categories', function ($query) use ($course) {
-            $query->whereIn('id', $course->categories->pluck('id'));
+            $query->whereIn('course_categories.id', $course->categories->pluck('id'));
         })
-        ->where('id', '!=', $id)
-        ->with('categories')
-        ->limit(3)
-        ->get();
+            ->where('courses.id', '!=', $id)  // Explicitly specify table
+            ->with('categories')
+            ->limit(3)
+            ->get();
+
         return view('courses.show', [
             'course' => $course,
             'relatedCourses' => $relatedCourses
+        ]);
+    }*/
+
+    public function show($id)
+    {
+        $course = Course::with('categories')->findOrFail($id);
+
+        // Find related courses by shared categories
+        $relatedCourses = Course::whereHas('categories', function ($query) use ($course) {
+            $query->whereIn('course_category.course_category_id', $course->categories->pluck('id'));
+        })
+            ->where('id', '!=', $course->id)
+            ->with(['categories' => function($query) use ($course) {
+                $query->whereIn('course_category.course_category_id', $course->categories->pluck('id'));
+            }])
+            ->limit(3)
+            ->get();
+
+        return view('courses.show', [
+            'course' => $course,
+            'relatedCourses' => $relatedCourses,
+            'currentCourseCategories' => $course->categories->pluck('id')
         ]);
     }
 
