@@ -110,10 +110,12 @@ class CoursesController extends Controller
         }
         if ($request->has('sessions')) {
             foreach ($request->sessions as $session) {
+                \Log::info('Session data:', $session);
                 if (! empty($session['start_date']) && ! empty($session['end_date'])) {
                     $course->sessions()->create([
                         'start_date' => $session['start_date'],
                         'end_date'   => $session['end_date'],
+                        'branch_id'  => $session['branch_id'] ?? null,
                     ]);
                 }
             }

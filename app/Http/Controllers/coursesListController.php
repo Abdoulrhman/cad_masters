@@ -111,7 +111,7 @@ class coursesListController extends Controller
 
     public function show($id)
     {
-        $course = Course::with('categories')->findOrFail($id);
+        $course = Course::with(['categories', 'sessions.branch'])->findOrFail($id);
 
         // Find related courses by shared categories
         $relatedCourses = Course::whereHas('categories', function ($query) use ($course) {
@@ -123,6 +123,10 @@ class coursesListController extends Controller
             }])
             ->limit(3)
             ->get();
+
+        foreach ($course->sessions as $session) {
+            \Log::info('Session branch:', $session->branch ? $session->branch->toArray() : ['branch' => null]);
+        }
 
         return view('courses.show', [
             'course' => $course,

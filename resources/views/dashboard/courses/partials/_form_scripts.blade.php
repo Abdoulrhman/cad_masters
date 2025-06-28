@@ -2,6 +2,10 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
+<script>
+    window.branches = @json($branches);
+</script>
+
 @push('scripts')
 <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -27,6 +31,10 @@
         const wrapper = document.getElementById('sessions-wrapper');
         const row = document.createElement('div');
         row.className = 'row mb-2 session-row';
+        let branchOptions = '<option value="">Select a branch</option>';
+        window.branches.forEach(function(branch) {
+            branchOptions += `<option value="${branch.id}">${branch.name}</option>`;
+        });
         row.innerHTML = `
             <div class="col-md-4">
                 <input type="datetime-local" name="sessions[${sessionIndex}][start_date]" class="form-control">
@@ -36,10 +44,7 @@
             </div>
             <div class="col-md-3">
                 <select name="sessions[${sessionIndex}][branch_id]" class="form-control" required>
-                    <option value="">Select a branch</option>
-                    @foreach ($branches as $branch)
-                        <option value="{{ $branch->id }}">{{ $branch->name }}</option>
-                    @endforeach
+                    ${branchOptions}
                 </select>
             </div>
             <div class="col-md-1">

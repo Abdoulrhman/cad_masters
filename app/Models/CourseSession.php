@@ -12,6 +12,7 @@ class CourseSession extends Model
         'course_id',
         'start_date',
         'end_date',
+        'branch_id',
     ];
 
     protected $casts = [
@@ -22,5 +23,10 @@ class CourseSession extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(\App\Models\Branch::class, 'branch_id');
     }
 }

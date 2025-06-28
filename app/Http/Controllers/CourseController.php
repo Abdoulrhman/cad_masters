@@ -221,6 +221,12 @@ class CourseController extends Controller
 
     public function show(Course $course)
     {
+        \Log::info('Show method called for course', ['id' => $course->id]);
+        $course->load(['categories', 'sessions.branch', 'instructors', 'certificates']);
+        \Log::info('Session count:', ['count' => $course->sessions->count()]);
+        foreach ($course->sessions as $session) {
+            \Log::info('Session branch:', $session->branch ? $session->branch->toArray() : ['branch' => null]);
+        }
         return view('courses.show', compact('course'));
     }
 

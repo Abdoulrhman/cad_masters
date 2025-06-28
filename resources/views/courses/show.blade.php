@@ -115,15 +115,13 @@
 
                                                 <div class="tpd-quiz-tm">
                                                     <h4 class="tpd-table-title">
-                                                        @if($session->branch && in_array($session->branch->name, ['Nasr City', 'Nekaba']))
+                                                        @if($session->branch)
                                                             {{ $session->branch->name }}
                                                             @if($session->branch->location)
                                                                 <br><small>{{ $session->branch->location }}</small>
                                                             @endif
-                                                        @elseif($session->branch)
-                                                            No branch yet
                                                         @else
-                                                             no Online
+                                                            no Online
                                                         @endif
                                                     </h4>
                                                 </div>
