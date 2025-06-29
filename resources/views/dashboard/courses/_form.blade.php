@@ -158,11 +158,12 @@
                                 <select name="sessions[{{ $index }}][branch_id]" class="form-control" required>
                                     <option value="">Select a branch</option>
                                     @foreach ($branches as $branch)
-                                        <option value="{{ $branch->id }}" {{ $session->branch_id == $branch->id ? 'selected' : '' }}>
+                                        <option value="{{ $branch->id }}" {{ ($session->branch_id == $branch->id || (isset($session->branch) && $session->branch->id == $branch->id)) ? 'selected' : '' }}>
                                             {{ $branch->name }}
                                         </option>
                                     @endforeach
                                 </select>
+                                <input type="hidden" name="sessions[{{ $index }}][id]" value="{{ $session->id }}">
                             </div>
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-danger remove-session">Remove</button>

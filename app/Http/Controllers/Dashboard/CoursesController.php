@@ -129,7 +129,7 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        $course           = Course::with('categories', 'branch', 'certificates', 'sessions')->findOrFail($id);
+        $course           = Course::with('categories', 'branch', 'certificates', 'sessions.branch')->findOrFail($id);
         $courseCategories = CourseCategory::all();
         $branches         = Branch::all();
         $instructors      = \App\Models\Instructor::all();
@@ -168,6 +168,31 @@ class CoursesController extends Controller
                     'image' => $path,
                 ]);
                 $course->certificates()->attach($certificate->id);
+            }
+        }
+        // Update or create sessions
+        if ($request->has('sessions')) {
+            foreach ($request->sessions as $sessionData) {
+                if (!empty($sessionData['id'])) {
+                    // Update existing session
+                    $session = $course->sessions()->find($sessionData['id']);
+                    if ($session) {
+                        $session->update([
+                            'start_date' => $sessionData['start_date'],
+                            'end_date'   => $sessionData['end_date'],
+                            'branch_id'  => $sessionData['branch_id'] ?? null,
+                        ]);
+                    }
+                } else {
+                    // Create new session
+                    if (!empty($sessionData['start_date']) && !empty($sessionData['end_date'])) {
+                        $course->sessions()->create([
+                            'start_date' => $sessionData['start_date'],
+                            'end_date'   => $sessionData['end_date'],
+                            'branch_id'  => $sessionData['branch_id'] ?? null,
+                        ]);
+                    }
+                }
             }
         }
         return redirect()->route('dashboard.courses.index')
