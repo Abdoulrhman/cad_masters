@@ -115,14 +115,20 @@
 
                                                 <div class="tpd-quiz-tm">
                                                     <h4 class="tpd-table-title">
-                                                        @if($session->branch)
+                                                        @if(!empty($course->branch))
+                                                            {{ $course->branch->name }}
+                                                        @else
+                                                            There is No Location Scheduled
+                                                        @endif
+
+                                                        {{--@if($session->branch)
                                                             {{ $session->branch->name }}
                                                             @if($session->branch->location)
                                                                 <br><small>{{ $session->branch->location }}</small>
                                                             @endif
                                                         @else
                                                             no Online
-                                                        @endif
+                                                        @endif--}}
                                                     </h4>
                                                 </div>
                                                 <div class="tpd-quiz-ca">

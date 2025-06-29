@@ -2,6 +2,7 @@
     $isEdit = $formMode === 'edit';
 @endphp
 
+
 <form action="{{ $isEdit ? route('dashboard.courses.update', $course->id) : route('dashboard.courses.store') }}"
       method="POST" enctype="multipart/form-data" novalidate>
     @csrf
@@ -20,6 +21,8 @@
                     </option>
                 @endforeach
             </select>
+
+
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -30,7 +33,7 @@
             <div class="tpd-new-course-select2">
                 <div class="tpd-input">
                     <label for="categories" class="form-label">Categories</label>
-                    <select name="categories[]" id="categories" class="form-control select2-hidden-accessible" multiple required>
+                    <select name="categories[]" id="categories" class="form-control select2-hidden-accessible" multiple required size="8" style=" max-height: 200px; height: auto; overflow-y: scroll;">
                         @foreach ($courseCategories as $category)
                             <option value="{{ $category->id }}"
                                 {{ in_array($category->id, old('categories', $isEdit ? $course->categories->pluck('id')->toArray() : [])) ? 'selected' : '' }}>
@@ -202,3 +205,8 @@
         </div>
     </div>
 </form>
+
+
+
+
+
