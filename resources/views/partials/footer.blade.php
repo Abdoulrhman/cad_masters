@@ -1,7 +1,4 @@
-<footer class="text-white">{{--tp-footer-main tpd-dashboard-footer--}}
-   {{-- <x-whatsapp-button
-            :phoneNumber="config('whatsapp.number')"
-            :message="config('whatsapp.default_message')" />--}}
+<footer class="text-white">
     @include('partials.social-buttons')
     <div class="tp-footer-copyright pt-80 pb-55" data-bg-color="#0a1c3a">
         <div class="container">
@@ -28,8 +25,8 @@
                                 <li><a href="{{ url('courses') }}" class="text-white-50">Courses</a></li>
                                 <li><a href="{{ url('authorization') }}" class="text-white-50">Authorizations</a></li>
                                 <li><a href="{{ url('certificate') }}" class="text-white-50">Awards</a></li>
-                                <li><a href="{{ url('Client') }}" class="text-white-50">Our Clients</a></li>
-                                <li><a href="{{ url('Media') }}" class="text-white-50">Events</a></li>
+                                <li><a href="{{ url('client') }}" class="text-white-50">Our Clients</a></li>
+                                <li><a href="{{ url('media') }}" class="text-white-50">Events</a></li>
                             </ul>
                         </div>
                     </div>
@@ -89,22 +86,12 @@
                                 </div>
                             </form>
                             <div class="tp-footer-newsletter-social d-flex gap-3 mt-4 justify-content-center">
-                                <a class="social-fb" href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                <a class="social-twit" href="#"><i class="fa-brands fa-twitter"></i></a>
-                                <a class="social-lnkd" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a class="social-insta" href="#"><i class="fa-brands fa-instagram"></i></a>
-                                <a class="social-yout" href="#"><i class="fa-brands fa-youtube"></i></a>
-                                <a class="social-tik" href="#"><i class="fa-brands fa-tiktok"></i></a>
-                                {{--<a class="social-fb text-white" href="#"><i style="line-height:2;"
-                                        class="fa-brands fa-facebook-f"></i></a>
-                                <a class="social-twit text-white" href="#"><i style="line-height:2;"
-                                        class="fa-brands fa-twitter"></i></a>
-                                <a class="social-lnkd text-white" href="#"><i style="line-height:2;"
-                                        class="fa-brands fa-linkedin-in"></i></a>
-                                <a class="social-yout text-white" href="#"><i style="line-height:2;"
-                                        class="fa-brands fa-youtube"></i></a>
-                                <a class="social-tik text-white" href="#"><i style="line-height:2;"
-                                        class="fa-brands fa-tiktok"></i></a>--}}
+                                <a class="social-fb" href="https://www.facebook.com/CAD.MASTERS" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a class="social-twit" href="https://x.com/cadegypt" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                                <a class="social-lnkd" href="https://www.linkedin.com/company/cad-masters/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a class="social-insta" href="https://www.instagram.com/cad.masters" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                <a class="social-yout" href="https://www.youtube.com/@CADMASTERSegypt" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                                <a class="social-tik" href="https://www.tiktok.com/@cad.masters" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
                             </div>
                         </div>
                     </div>

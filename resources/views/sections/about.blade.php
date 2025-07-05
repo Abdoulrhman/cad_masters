@@ -23,8 +23,8 @@
                     <div class="tp-about-exprience">
                         <div class="tp-about-exprience-text d-flex">
                             <h3 class="tp-about-exprience-count">
-                                <span data-purecounter-duration="1" data-purecounter-end="25"
-                                    class="purecounter">23</span>
+                                <span data-purecounter-duration="1" data-purecounter-end="18"
+                                    class="purecounter">18</span>
                             </h3>
                             <p>Years of <br> Experience</p>
                         </div>
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="tp-about-btn pt-10">
-                            <a class="tp-btn tp-btn-sm" href="">Read More
+                            <a class="tp-btn tp-btn-sm" href="about">Read More
                                 <span>
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">

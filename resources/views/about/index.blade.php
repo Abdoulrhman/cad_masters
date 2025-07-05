@@ -9,9 +9,9 @@
 @section('content')
 
         <!-- undergraduate breadcrumb start -->
-<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
+<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
     <div class="tp-breadcrumb__bg "
-         style="background: url('{{ asset('/assets/img/breadcrumb/about.PNG') }}') no-repeat center / cover !important"></div>
+         style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / cover !important;"></div>
     <div class="container">
         <div class="row align-items-center">
             {{--<div class="col-sm-12">
@@ -68,12 +68,25 @@
                 </div>
                 <div class="col-lg-5 pb-95">
                     <div class="">
+                       {{-- @if($companyProfile)
+                            <div class="tp-contact-btn text-center">
+                                <a href="{{ asset('storage/' . $companyProfile->file_path) }}" class="tp-btn"
+                                   download="{{ $companyProfile->file_name }}">
+                                    <i class="fas fa-download me-2"></i> Download Company Profile
+                                </a>
+                            </div>
+                        @endif--}}
+
                         @if($companyProfile)
                             <div class="tp-contact-btn text-center">
                                 <a href="{{ asset('storage/' . $companyProfile->file_path) }}" class="tp-btn"
                                    download="{{ $companyProfile->file_name }}">
                                     <i class="fas fa-download me-2"></i> Download Company Profile
                                 </a>
+                            </div>
+                        @else
+                            <div class="alert alert-info text-center">
+                                <i class="fas fa-info-circle me-2"></i> No company profile uploaded yet
                             </div>
                         @endif
                     </div>
@@ -123,23 +136,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 pb-10 justify-content-center">
-                    @if($companyProfile)
-                        <div class="tp-contact-btn text-center">
-                            <a href="{{ asset('storage/' . $companyProfile->file_path) }}" class="tp-btn"
-                               download="{{ $companyProfile->file_name }}">
-                                <i class="fas fa-download me-2"></i> Download Company Profile
-                            </a>
-                        </div>
-                    @endif
-                </div>
             </div>
         </div>
     </section>
     <!-- tutor area end -->
 
     <!-- Counter section start -->
-    <section class="tp-counter-area pt-80 pb-60" style="background-color: #4661FD;">
+    <section class="tp-counter-area" style="background-color: #4661FD;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -174,7 +177,7 @@
     <!-- Counter section end -->
 
     <!-- Services section start -->
-    <section class="tp-service-area pt-120 pb-90 bg-light">
+    <section class="tp-service-area pt-120 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6">
@@ -216,7 +219,7 @@
     <!-- Services section end -->
 
     <!-- Hardware section start -->
-    <section class="tp-feature-area pt-120 pb-90">
+    <section class="tp-feature-area pt-120 pb-40">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -257,41 +260,6 @@
     </section>
     <!-- Hardware section end -->
 
-    <!-- Contact section start -->
-    <section class="tp-contact-area pb-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="tp-contact-info mb-30">
-                        <h3 class="tp-contact-title">Contact Us</h3>
-                        <div class="tp-contact-list">
-                            <div class="tp-contact-item mb-30">
-                                <h4>Walnut Creek Office</h4>
-                                <p>201 N Civic Dr. Suite 182<br>Walnut Creek, CA 94596</p>
-                                <span>Phone: (925) 939-1378</span>
-                            </div>
-                            <div class="tp-contact-item">
-                                <h4>Sacramento Office</h4>
-                                <p>1451 River Park Dr. Suite 126<br>Sacramento, CA 95815</p>
-                                <span>Phone: (916) 641-0100</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    @if($companyProfile)
-                    <div class="tp-contact-btn text-center">
-                        <a href="{{ asset('storage/' . $companyProfile->file_path) }}" class="tp-btn"
-                            download="{{ $companyProfile->file_name }}">
-                            <i class="fas fa-download me-2"></i> Download Company Profile
-                        </a>
-                    </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact section end -->
 </main>
 @endsection
 

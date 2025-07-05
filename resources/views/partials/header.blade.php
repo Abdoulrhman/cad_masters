@@ -168,8 +168,8 @@
                                                             <a href="{{ url('architecture') }}">Architecture</a>
                                                             <a href="{{ url('structure') }}">Structure & Civil</a>
                                                             <a href="{{ url('mechanical') }}"> Mechanical & MEP</a>
-                                                            <a href="{{ url('mechanical') }}"> Management & Site</a>
-                                                            <a href="{{ url('management') }}"> Electrical</a>
+                                                            <a href="{{ url('management') }}"> Management & Site</a>
+                                                            <a href="{{ url('electrical') }}"> Electrical</a>
                                                             <a href="{{ url('bim') }}">Bim Tracks</a>
                                                             <a href="{{ url('graphics') }}">Graphics</a>
                                                         </div>

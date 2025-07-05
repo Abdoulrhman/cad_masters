@@ -34,13 +34,11 @@
                 <div class="row">
                     @foreach($authorizations as $authorization)
                         @if($authorization->category == 'Authorized')
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tp-financial-item mb-30">
-                                    <div class="tp-financial-thumb">
-                                        <img src="{{ asset('storage/' . $authorization->image) }}" alt="{{ $authorization->name }}">
-                                    </div>
-                                    <div class="tp-financial-content">
-                                        <h4 class="tp-financial-content-title">{{ $authorization->name }}</h4>
+                            <div class="col-xl-3 col-lg-4 col-md-6 pr-50">
+                                <div class="tp-category-5-item mb-60">
+                                    <div class="tp-category-5-hover"></div>
+                                    <div class="tp-category-5-thumb">
+                                        <img src="{{ asset('storage/' . $authorization->image) }}" alt="{{$authorization->name}}">
                                     </div>
                                 </div>
                             </div>
@@ -72,13 +70,11 @@
                     <div class="row">
                         @foreach($authorizations as $authorization)
                             @if($authorization->category == 'Membership')
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="tp-financial-item mb-30">
-                                        <div class="tp-financial-thumb">
-                                            <img src="{{ asset('storage/' . $authorization->image) }}" alt="{{ $authorization->name }}">
-                                        </div>
-                                        <div class="tp-financial-content">
-                                            <h4 class="tp-financial-content-title">{{ $authorization->name }}</h4>
+                                <div class="col-xl-3 col-lg-4 col-md-6 pr-50">
+                                    <div class="tp-category-5-item mb-60">
+                                        <div class="tp-category-5-hover"></div>
+                                        <div class="tp-category-5-thumb">
+                                            <img src="{{ asset('storage/' . $authorization->image) }}" alt="{{$authorization->name}}">
                                         </div>
                                     </div>
                                 </div>

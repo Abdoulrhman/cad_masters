@@ -1,25 +1,45 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Architecture
+    Certificate awards
 @endsection
 
 @section('content')
 
+
+
         <!-- undergraduate breadcrumb start -->
-    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-        <div class="tp-breadcrumb__bg overlay" data-background="{{url('assets/img/breadcrumb/campus-breadcrumb1.jpg')}}"></div>
+    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
+        <div class="tp-breadcrumb__bg "
+             style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / cover !important;"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-sm-12">
+                {{--<div class="col-sm-12">
                     <div class="tp-breadcrumb__content">
-                        <h3 class="tp-breadcrumb__title color">Certificate awards & Thanking</h3>
+                         <h3 class="tp-breadcrumb__title color"> About CAD Masters</h3>
+
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </section>
     <!-- undergraduate breadcrumb end -->
+
+
+    {{--   <!-- undergraduate breadcrumb start -->
+   <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
+       <div class="tp-breadcrumb__bg overlay" data-background="{{url('assets/img/breadcrumb/campus-breadcrumb1.jpg')}}"></div>
+       <div class="container">
+           <div class="row align-items-center">
+               <div class="col-sm-12">
+                   <div class="tp-breadcrumb__content">
+                       <h3 class="tp-breadcrumb__title color">Certificate awards & Thanking</h3>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+   <!-- undergraduate breadcrumb end -->--}}
 
 
     <!-- shop product area start -->
@@ -41,7 +61,7 @@
                             <div class="col-lg-3 col-sm-6">
                                 <div class="tp-shop-product-item text-center mb-50">
                                     <div class="tp-shop-product-thumb p-relative">
-                                        <a href="{{ asset('storage/' . $award->image) }}"><img src="{{ asset('storage/' . $award->image) }}" alt=""></a>
+                                        <a href="{{ asset('storage/' . $award->image) }}"><img src="{{ asset('storage/' . $award->image) }}" alt="{{$award->name}}"></a>
                                         <h4 class="tp-shop-product-title"><a href="shop-details.html">{{$award->name}}</a></h4>
                                     </div>
                                     <div class="tp-shop-product-content">

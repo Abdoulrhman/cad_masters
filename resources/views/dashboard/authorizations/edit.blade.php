@@ -39,7 +39,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="category" class="form-label">Award Category</label>
+                                            <label for="category" class="form-label">Authorization Category</label>
                                             <select name="category" class="form-control" id="category" required>
                                                 <option value="">Select Category</option>
                                                 <option value="Authorized" {{ (old('category', $authorization->category ?? '') == 'Authorized') ? 'selected' : '' }}>Authorized</option>

@@ -18899,7 +18899,7 @@ span.cat-lgreen {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: var(--tp-theme-5);
+    background-color: #88b94e;
     z-index: -1;
     border-radius: 14px;
     -webkit-transition: all 0.3s 0s ease-out;

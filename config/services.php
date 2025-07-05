@@ -36,7 +36,7 @@ return [
     ],
 
     'whatsapp' => [
-        'number' => env('WHATSAPP_NUMBER', '01141469149'),
+        'number' => env('WHATSAPP_NUMBER', '01000050300'),
         'default_message' => env('WHATSAPP_DEFAULT_MESSAGE', 'Hello, I have a question about...'),
     ],
 

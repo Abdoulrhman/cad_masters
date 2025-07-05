@@ -5,21 +5,42 @@
 @endsection
 
 @section('content')
-    <!-- undergraduate breadcrumb start -->
-    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-        <div class="tp-breadcrumb__bg overlay"
-             style="background: url('{{ asset('/assets/img/breadcrumb/Contact-Us.PNG') }}') no-repeat center / cover !important"></div>
+
+
+        <!-- undergraduate breadcrumb start -->
+    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
+        <div class="tp-breadcrumb__bg "
+             style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / cover !important;"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-sm-12">
+                {{--<div class="col-sm-12">
                     <div class="tp-breadcrumb__content">
-                        <h3 class="tp-breadcrumb__title color">Architecture Courses</h3>
+                         <h3 class="tp-breadcrumb__title color"> About CAD Masters</h3>
+
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </section>
     <!-- undergraduate breadcrumb end -->
+
+
+    {{-- <!-- undergraduate breadcrumb start -->
+     <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
+         <div class="tp-breadcrumb__bg overlay"
+              style="background: url('{{ asset('/assets/img/breadcrumb/Contact-Us.PNG') }}') no-repeat center / cover !important"></div>
+         <div class="container">
+             <div class="row align-items-center">
+                 <div class="col-sm-12">
+                     <div class="tp-breadcrumb__content">
+                         <h3 class="tp-breadcrumb__title color">Architecture Courses</h3>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <!-- undergraduate breadcrumb end -->--}}
+
 
     <!-- Courses Section  Start -->
     <section class="course-area tp-course-wrapper mt-100 mb-100">
@@ -54,7 +75,7 @@
                                         <div class="tp-course-item p-relative fix mb-30">
                                             <div class="tp-course-thumb">
                                                 <a href="{{ route('courses.show', $course) }}"><img class="course-pink"
-                                                                                                    src="{{ asset('storage/' . $course->image) }}" alt=""></a>
+                                                         src="{{ asset('storage/' . $course->image) }}" alt="{{$course->name}}"></a>
                                             </div>
                                             <div class="tp-course-content">
                                                 <div class="tp-course-tag mb-10">

@@ -5,21 +5,22 @@
 @endsection
 
 @section('content')
+        <!-- undergraduate breadcrumb start -->
+   <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
+       <div class="tp-breadcrumb__bg "
+            style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / cover !important;"></div>
+       <div class="container">
+           <div class="row align-items-center">
+               {{--<div class="col-sm-12">
+                   <div class="tp-breadcrumb__content">
+                        <h3 class="tp-breadcrumb__title color"> About CAD Masters</h3>
 
-<!-- breadcrumb start -->
-<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-    <div class="tp-breadcrumb__bg overlay" style="background-image: url('{{url('assets/img/breadcrumb/campus-breadcrumb1.jpg')}}');"></div>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-sm-12">
-                <div class="tp-breadcrumb__content">
-                    <h3 class="tp-breadcrumb__title text-white">Media Gallery</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- breadcrumb end -->
+                   </div>
+               </div>--}}
+           </div>
+       </div>
+   </section>
+   <!-- undergraduate breadcrumb end -->
 
 <!-- media gallery area start -->
 <section class="tp-shop-product-area pb-50 pt-50">

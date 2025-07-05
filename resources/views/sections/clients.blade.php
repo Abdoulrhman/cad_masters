@@ -19,7 +19,7 @@
                 <div class="tp-category-6-item mb-30 wow fadeInUp" data-wow-delay=".3s">
                     <div class="tp-category-6-item-thumb">
                         <a href="course-categories.html">
-                            <img src="{{ asset('storage/' . $client->image) }}" alt="">
+                            <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
                         </a>
                     </div>
                     <div class="tp-category-6-item-content text-center">
@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="tp-category-6-btn text-center pt-40">
                     <div class="tp-hero-6-btn">
-                        <a class="tp-btn-inner" href="course-with-filter.html">View all Clients
+                        <a class="tp-btn-inner" href="client">View all Clients
                             <span>
                                 <svg width="14" height="11" viewBox="0 0 14 11" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
