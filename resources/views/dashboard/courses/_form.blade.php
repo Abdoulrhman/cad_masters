@@ -14,15 +14,7 @@
         {{-- Course Name --}}
         <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Course Name</label>
-            <select name="name" id="name" class="form-select @error('name') is-invalid @enderror" required>
-                @foreach(config('courses.courses') as $value => $label)
-                    <option value="{{ $value }}" {{ old('name', $isEdit ? $course->name : '') == $value ? 'selected' : '' }}>
-                        {{ $label }}
-                    </option>
-                @endforeach
-            </select>
-
-
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" required value="{{ old('name', $isEdit ? $course->name : '') }}">
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -85,7 +77,7 @@
             <div class="tpd-new-course-select2">
                 <div class="tpd-input">
                     <label for="instructors" class="form-label">Instructors</label>
-                    <select name="instructors[]" id="instructors" class="form-control select2-hidden-accessible" multiple required>
+                    <select name="instructors[]" id="instructors" class="form-control select2-hidden-accessible" multiple>
                         @foreach ($instructors as $instructor)
                             <option value="{{ $instructor->id }}"
                                 {{ in_array($instructor->id, old('instructors', $isEdit ? $course->instructors->pluck('id')->toArray() : [])) ? 'selected' : '' }}>

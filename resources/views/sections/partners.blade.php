@@ -58,7 +58,7 @@
 <!-- author area end -->--}}
 
 <!-- team-area-start -->
-<section class="team-area pt-100">
+<section class="team-area pt-100 mb-50">
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-6 col-md-8">
@@ -93,12 +93,12 @@
         <div class="swiper tp-team-2-active wow fadeInUp" data-wow-delay=".5s">
             <div class="swiper-wrapper align-items-end">
                 @foreach($partners as $partner)
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" style="height: auto; display: flex; align-items: center; justify-content: center;">
                         <div class="tp-team-2-item">
                             <div class="tp-shop-author-item text-center mb-30"
                                  style="display: flex;flex-direction: column;align-items: center;">
-                                <div class="tp-shop-author-thumb" style="width: 200px;height: 200px;">
-                                    <img src="{{ asset('storage/' . $partner->image) }}" alt="{{$partner->name}}" style="height: 100%">
+                                <div class="tp-shop-author-thumb" style="width: 200px;height: 200px; display: flex; align-items: center; justify-content: center;">
+                                    <img src="{{ asset('storage/' . $partner->image) }}" alt="{{$partner->name}}" style="width: 100%; height: 100%; object-fit: contain;">
                                 </div>
                                 {{-- <div class="tp-shop-author-content">
                                      <h4 class="tp-shop-author-item-title"><a href="my-profile.html">{{$partner->name}}</a></h4>
@@ -108,7 +108,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="tp-shop-author-btn">
+            <div class="tp-shop-author-btn" style="display: flex; justify-content: center; margin-top: 30px;">
                 <a href="partner">All Partners <span><svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 9L5 5L1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>

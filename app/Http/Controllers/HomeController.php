@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders    = Carousel::all();
-        $courses    = Course::all();
+        $courses    = Course::latest()->take(6)->get();
         $partners   = Partner::all();
         $clients    = Client::all();
         return view('welcome', compact('sliders', 'partners', 'clients', 'courses'));

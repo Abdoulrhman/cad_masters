@@ -44,6 +44,9 @@
                             </div>
                             @endforeach
                         </div>
+                        <div class="text-center mt-4">
+                            <a href="{{ route('courses.index') }}" class="btn btn-primary">View All Courses</a>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-trending" role="tabpanel" aria-labelledby="nav-trending-tab"
                         tabindex="0">
