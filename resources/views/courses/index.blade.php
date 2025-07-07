@@ -70,8 +70,7 @@
                                                 </div>
                                                 <div class="tp-course-filter-btn mb-20">
                                                     <button type="button"
-                                                        class="tp-filter-btn filter-show-dropdown-btn filter-open-btn"
-                                                        onclick="document.getElementById('filters').classList.toggle('d-none')">
+                                                        class="tp-filter-btn filter-show-dropdown-btn filter-open-btn">
                                                         <i class="fas fa-filter"></i> Filter
                                                     </button>
                                                 </div>
@@ -81,7 +80,7 @@
 
                                     <!-- Filter Dropdown Area -->
                                     <div id="filters"
-                                        class="tp-filter-dropdown-area tp-filter-dropdown-wrapper {{ request()->hasAny(['category', 'price_range', 'sort']) ? '' : 'd-none' }}">
+                                        class="tp-filter-dropdown-area tp-filter-dropdown-wrapper {{ request()->hasAny(['category', 'price_range', 'sort']) ? 'filter-dropdown-opened' : '' }}">
                                         <form action="{{ route('courses.index') }}" method="GET">
                                             <!-- Preserve search query if exists -->
                                             @if(request('search'))
@@ -100,12 +99,11 @@
                                                                 @foreach($categories as $category)
                                                                 <li>
                                                                     <div class="form-check">
-                                                                        <input type="checkbox" name="category[]"
+                                                                        <input type="checkbox" id="cat_{{ $category->id }}" name="category[]"
                                                                             value="{{ $category->id }}"
-                                                                            {{ in_array($category->id, (array)request('category')) ? 'checked' : '' }}
+                                                                            {{ in_array((string)$category->id, (array)request('category')) ? 'checked' : '' }}
                                                                             class="form-check-input">
-                                                                        <label
-                                                                            class="form-check-label">{{ $category->name }}</label>
+                                                                        <label for="cat_{{ $category->id }}" class="form-check-label">{{ $category->name }}</label>
                                                                     </div>
                                                                 </li>
                                                                 @endforeach
@@ -217,7 +215,7 @@
                                             <div class="tp-course-item p-relative fix mb-30">
 
                                                 <div class="tp-course-thumb">
-                                                    <a href="{{ route('courses.show', $course) }}">
+                                                    <a href="{{ route('courses.show', ['course' => $course->id] + request()->query()) }}">
                                                         <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/default.jpg') }}"
                                                             alt="{{ $course->name }}">
                                                     </a>
@@ -230,7 +228,7 @@
                                                     </div>
                                                     <h4 class="tp-course-title">
                                                         <a
-                                                            href="{{ route('courses.show', $course) }}">{{ $course->name }}</a>
+                                                            href="{{ route('courses.show', ['course' => $course->id] + request()->query()) }}">{{ $course->name }}</a>
                                                     </h4>
                                                     <div
                                                         class="tp-course-rating d-flex align-items-end justify-content-between">
@@ -244,7 +242,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="tp-course-btn">
-                                                    <a href="{{ route('courses.show', $course) }}">View Course</a>
+                                                    <a href="{{ route('courses.show', ['course' => $course->id] + request()->query()) }}">View Course</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -258,7 +256,7 @@
                                     @foreach($courses as $course)
                                     <div class="tp-course-filter-item mb-25 d-flex">
                                         <div class="tp-course-filter-thumb">
-                                            <a href="{{ route('courses.show', $course) }}">
+                                            <a href="{{ route('courses.show', ['course' => $course->id] + request()->query()) }}">
                                                 <img src="{{ $course->image ?? 'assets/img/course/default.jpg' }}"
                                                     alt="{{ $course->name }}">
                                             </a>
@@ -279,7 +277,7 @@
                                                 </div>
                                             </div>
                                             <h4 class="tp-course-filter-title">
-                                                <a href="{{ route('courses.show', $course) }}">{{ $course->name }}</a>
+                                                <a href="{{ route('courses.show', ['course' => $course->id] + request()->query()) }}">{{ $course->name }}</a>
                                             </h4>
                                             <div class="tp-course-filter-meta">
                                                 <span><img
@@ -302,7 +300,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="tp-course-filter-btn">
-                                                    <a href="{{ route('courses.show', $course) }}">View Course</a>
+                                                    <a href="{{ route('courses.show', ['course' => $course->id] + request()->query()) }}">View Course</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -508,6 +506,31 @@
 .tp-course-filter-btn a:hover {
     background: #3f54d1;
 }
+
+.tp-filter-dropdown-wrapper {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+.tp-filter-dropdown-wrapper.filter-dropdown-opened {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
 </style>
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterForm = document.querySelector('#filters form');
+        if (filterForm) {
+            filterForm.addEventListener('submit', function() {
+                document.getElementById('filters').classList.remove('filter-dropdown-opened');
+            });
+        }
+    });
+</script>
 @endpush
 @endsection

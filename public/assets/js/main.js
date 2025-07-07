@@ -217,7 +217,7 @@
 	////////////////////////////////////////////////////
 	// 09. filter show
 	$(".filter-show-dropdown-btn").on("click", function () {
-		$(".tp-filter-dropdown-area").toggleClass('filter-dropdown-opened');
+		$(".tp-filter-dropdown-wrapper").toggleClass('filter-dropdown-opened');
 	});
 
 

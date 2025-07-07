@@ -87,7 +87,7 @@
 <!-- contact area end -->
 
 <!-- map area start -->
-<div class="tp-map-area">
+<div class="tp-map-area" style="margin-bottom: 200px;">
     <div class="tp-contact-map-content">
         <div class="row">
             <div class="col-lg-6">
@@ -109,6 +109,13 @@
 </div>
 <!-- map area end -->
 
+<style>
+@media (max-width: 767px) {
+  .tp-map-area {
+    margin-bottom: 130% !important;
+  }
+}
+</style>
 
 @endsection
 

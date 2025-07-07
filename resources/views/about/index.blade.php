@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="tp-about-tutor-thumb">
-                        <img style="max-height: 360px!important;max-width: 500px!important;" src="{{ asset('assets/img/about/About-Us-001.jpg') }}"
+                        <img style="width:100%" src="{{ asset('assets/img/about/About-Us-001.jpg') }}"
                             alt="Autodesk Gold Partner">
                     </div>
                 </div>
@@ -313,6 +313,14 @@
 .tp-contact-item h4 {
     margin-bottom: 15px;
     color: #4661FD;
+}
+
+.tp-about-tutor-thumb img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 </style>
 @endpush

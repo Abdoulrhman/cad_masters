@@ -30,7 +30,7 @@ class CourseController extends Controller
         // Category filter (many-to-many)
         if ($request->filled('category')) {
             $query->whereHas('categories', function ($q) use ($request) {
-                $q->whereIn('id', $request->category);
+                $q->whereIn('course_categories.id', $request->category);
             });
         }
 

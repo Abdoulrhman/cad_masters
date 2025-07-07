@@ -71,7 +71,7 @@
                     <div class="tp-header-2-contact d-flex align-items-center justify-content-end">
                         <div class="tp-header-search" style="margin-right: 20px; position: relative;">
                             <input type="text" id="course-search" class="form-control" placeholder="Search courses..."
-                                autocomplete="off" style="width: 220px;">
+                                autocomplete="off">
                             <div id="course-search-results" class="list-group"
                                 style="position: absolute; z-index: 1000; width: 100%; display: none;"></div>
                         </div>
@@ -190,7 +190,7 @@
                     <div class="tp-header-2-contact d-flex align-items-center justify-content-end">
                         <div class="tp-header-search" style="margin-right: 20px; position: relative;">
                             <input type="text" id="course-search" class="form-control" placeholder="Search courses..."
-                                   autocomplete="off" style="width: 220px;">
+                                   autocomplete="off">
                             <div id="course-search-results" class="list-group"
                                  style="position: absolute; z-index: 1000; width: 100%; display: none;"></div>
                         </div>
@@ -376,6 +376,14 @@
 
     .mobile-menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    @media (max-width: 767px) {
+        .tp-header-inner-logo img {
+            width: 144px !important;
+            max-width: 144px !important;
+            height: auto;
+        }
     }
 </style>
 
