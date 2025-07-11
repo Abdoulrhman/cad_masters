@@ -1,5 +1,5 @@
 <!-- category-area-start -->
-<section class="tp-category-6-ptb pb-120 pt-120">
+<section class="tp-category-6-ptb pb-120 pt-60">
     <div class="container custom-container-1300">
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-10">
@@ -13,23 +13,17 @@
                 </div>
             </div>
         </div>
-        <div class="row tp-gx-20">
-            @foreach($clients as $client)
-            <div class="col-xl-3 col-lg-6 col-md-6">
-                <div class="tp-category-6-item mb-30 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="tp-category-6-item-thumb">
-                        <a href="course-categories.html">
-                            <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
-                        </a>
+            <div class="row">
+                @foreach($clients as $client)
+                    <div class="col-xl-3 col-md-5 col-md-6 pr-25 pl-25">
+                        <div class="tp-category-5-item mb-25">
+                            <div class="tp-category-5-thumb">
+                                <img src="{{ asset('storage/' . $client->image) }}" alt="{{$client->name}}">
+                            </div>
+                        </div>
                     </div>
-                    <div class="tp-category-6-item-content text-center">
-                        <h4 class="tp-category-6-item-title"><a href="course-categories.html">{{ $client->name }}</a>
-                        </h4>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="tp-category-6-btn text-center pt-40">

@@ -17,8 +17,8 @@
                                         <span class="color">All Courses</span>
                                     </div>
                                     <h3 class="tp-breadcrumb__title">All Courses</h3>
-                                    <p>We have the largest collection of <span>{{ $courses->total() }}</span> courses
-                                    </p>
+                                    {{--<p>We have the largest collection of <span>{{ $courses->total() }}</span> courses
+                                    </p>--}}
                                 </div>
 
                                 <div class="tp-course-filter-wrap p-relative">

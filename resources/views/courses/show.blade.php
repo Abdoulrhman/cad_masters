@@ -48,21 +48,6 @@
                                     <p>{!! $course->description !!}</p>
                                 </div>
                             </div>
-                            <h4 class="tp-course-details-2-main-title">What will you Learn?</h4>
-                            <div class="tp-course-details-2-list">
-                                <ul>
-                                    <li>Become a UX designer.</li>
-                                    <li>Filming 101</li>
-                                    <li>Learn to design websites.</li>
-                                    <li>Tools you need for best results.</li>
-                                    <li>How to plan for a video idea</li>
-                                    <li>How to use premade UI kits.</li>
-                                    <li>Differences between ads, trailers, vlogs,etc</li>
-                                </ul>
-                                <p>With this course, you also have access to a whole lot of resources not only for
-                                    reference but
-                                    also free media like aerial video shots, background music, fonts, and more.</p>
-                            </div>
                         </div>
                         <br>
                         <!-- course-area-start -->

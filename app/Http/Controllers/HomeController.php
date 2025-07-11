@@ -15,7 +15,8 @@ class HomeController extends Controller
         $sliders    = Carousel::all();
         $courses    = Course::latest()->take(6)->get();
         $partners   = Partner::all();
-        $clients    = Client::all();
+        //$clients    = Client::all();
+        $clients    = Client::latest()->take(8)->get();
         return view('welcome', compact('sliders', 'partners', 'clients', 'courses'));
     }
 }

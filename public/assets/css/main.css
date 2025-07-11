@@ -13578,7 +13578,7 @@ a.social-insta {
 /*  7.2 About css
 /*----------------------------------------*/
 .tp-about-bg {
-    padding-bottom: 152px;
+    padding-bottom: 50px;
 }
 .tp-about-thumb-wrapper {
     display: flex;
@@ -34150,6 +34150,49 @@ span.common-pale-purple {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+/* For tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+    .location-card {
+        margin-bottom: 30px;
+    }
+
+    .map-container {
+        min-height: 300px;
+    }
+}
+
+/*breadcramp*/
+.tp-breadcrumb__area {
+    display: block;
+    width: 100%;
+    height: 300px; /* Fixed height - adjust as needed */
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.tp-breadcrumb__bg {
+    width: 100%;
+    height: 100%;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Responsive height adjustments */
+@media (max-width: 767px) {
+    .tp-breadcrumb__area {
+        height: 100px; /* Smaller height for mobile */
+    }
+}
+
+@media (min-width: 992px) {
+    .tp-breadcrumb__area {
+        height: 350px; /* Taller for desktop */
+    }
 }
 
 /* Visible state when scrolling */

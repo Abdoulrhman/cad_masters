@@ -1,5 +1,5 @@
 <!-- about-area-start -->
-<section class="about-area tp-about-bg grey-bg pt-105">
+<section class="about-area tp-about-bg grey-bg pt-40 pb-50">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">

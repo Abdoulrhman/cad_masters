@@ -36,7 +36,6 @@
                         @if($authorization->category == 'Authorized')
                             <div class="col-xl-3 col-lg-4 col-md-6 pr-50">
                                 <div class="tp-category-5-item mb-60">
-                                    <div class="tp-category-5-hover"></div>
                                     <div class="tp-category-5-thumb">
                                         <img src="{{ asset('storage/' . $authorization->image) }}" alt="{{$authorization->name}}">
                                     </div>
@@ -72,7 +71,6 @@
                             @if($authorization->category == 'Membership')
                                 <div class="col-xl-3 col-lg-4 col-md-6 pr-50">
                                     <div class="tp-category-5-item mb-60">
-                                        <div class="tp-category-5-hover"></div>
                                         <div class="tp-category-5-thumb">
                                             <img src="{{ asset('storage/' . $authorization->image) }}" alt="{{$authorization->name}}">
                                         </div>

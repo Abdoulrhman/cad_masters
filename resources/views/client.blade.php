@@ -23,7 +23,7 @@
         <!-- undergraduate breadcrumb end -->
 
 <!-- leadership area start  -->
-<section class="tp-leadership-area grey-bg pt-50 pb-50">
+<section class="tp-leadership-area pt-50 pb-50">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -38,17 +38,13 @@
         </div>
         <div class="row">
             @foreach($clients as $client)
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="tp-leadership-item mb-55 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="tp-leadership-thumb p-relative">
-                        <img src="{{ asset('storage/' . $client->image) }}" alt="">
+                    <div class="col-xl-3 col-md-5 col-md-6 pr-25 pl-25">
+                        <div class="tp-category-5-item mb-25">
+                            <div class="tp-category-5-thumb">
+                                <img src="{{ asset('storage/' . $client->image) }}" alt="{{$client->name}}">
+                            </div>
+                        </div>
                     </div>
-                    <div class="tp-leadership-content">
-                        <h4 class="tp-leadership-title"><a
-                                href="{{ asset('storage/' . $client->image) }}">{{$client->name}}</a></h4>
-                    </div>
-                </div>
-            </div>
             @endforeach
         </div>
     </div>

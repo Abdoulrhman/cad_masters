@@ -158,7 +158,7 @@
                                     </div>
                                 </li>
                                 <li class="has-dropdown">
-                                    <a href="{{ url('courses') }}"> courses</a>
+                                    <a href="{{ url('courses') }}"> Courses</a>
                                     <div class="tp-megamenu-main">
                                         <div class="megamenu-demo-small p-relative">
                                             <div class="tp-megamenu-small-content">
@@ -237,8 +237,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
+        <div class="menu-bottom-line"></div>
     </div>
+
 
     <!-- Mobile Menu (Hidden by default) -->
     <div class="mobile-menu-container d-xl-none" id="mobile-menu-container">
@@ -262,7 +266,7 @@
                         <li><a href="{{ url('mechanical') }}">Mechanical & MEP</a></li>
                         <li><a href="{{ url('mechanical') }}">Management & Site</a></li>
                         <li><a href="{{ url('management') }}">Electrical</a></li>
-                        <li><a href="{{ url('bim') }}">Bim Tracks</a></li>
+                        <li><a href="{{ url('bim') }}">BIM Tracks</a></li>
                         <li><a href="{{ url('graphics') }}">Graphics</a></li>
                     </ul>
                 </li>
@@ -277,6 +281,15 @@
 
 <style>
     /* Mobile Menu Button Styles */
+
+    .menu-bottom-line {
+        width: 100%;
+        height: 3px;
+        background: #4CAF50; /* Green color */
+        position: relative; /* Moves with the sticky header */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: Adds a slight shadow */
+    }
+
     .mobile-menu-toggle {
         background: none;
         border: none;
