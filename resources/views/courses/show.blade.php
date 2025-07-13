@@ -52,109 +52,64 @@
                         <br>
                         <!-- course-area-start -->
 
-
-
-                        <br>
-                        <!-- course-area-start -->
-
-                        <ul class="tpd-table-list">
-                            <!-- Table Header -->
-                            <li class="tpd-table-head" style="background: #4fb469!important;">
-                                <div class="tpd-table-row">
-                                    <div class="tpd-quiz-info">
-                                        <h4 class="tpd-table-title">Start & End Date</h4>
-                                    </div>
-                                    <div class="tpd-quiz-ques">
-                                        <h4 class="tpd-table-title">Schedule</h4>
-                                    </div>
-                                    <div class="tpd-quiz-tm">
-                                        <h4 class="tpd-table-title">Branch</h4>
-                                    </div>
-                                    <div class="tpd-quiz-ca">
-                                        <h4 class="tpd-table-title">Price / Offer</h4>
-                                    </div>
-                                    <div class="tpd-quiz-details">
-                                        <h4 class="tpd-table-title">Register NOW</h4>
-                                    </div>
-                                </div>
-                            </li>
-
-                                @if($course->sessions->count() > 0)
-                                    @foreach($course->sessions as $session)
-                                        <li>
-                                            <div class="tpd-table-row">
-                                                <div class="tpd-quiz-info">
-                                                    <span class="tpd-common-date">
-                                                        {{ $session->start_date->format('F j, Y') }}
-                                                    </span>
-                                                                                    <br>
-                                                    <span class="tpd-common-date">
-                                                        {{ $session->end_date->format('F j, Y') }}
-                                                    </span>
-                                                 </div>
-
-                                                <div class="tpd-quiz-ques">
-                                                    <span class="tpd-common-text">
-                                                        @if(!empty($course->daysInWeek))
-                                                            {{ $course->daysInWeek }}
-                                                        @else
-                                                            There is No Days Scheduled
-                                                        @endif
-                                                    </span>
-                                                </div>
-
-                                                <div class="tpd-quiz-tm">
-                                                    <h4 class="tpd-table-title">
-                                                        {{--@if(!empty($course->branch))
-                                                          {{ $course->branch->name }}
-                                                       @else
-                                                           There is No Location Scheduled
-                                                       @endif--}}
-
-                                                        @if($session->branch)
-                                                            {{ $session->branch->name }}
-                                                            @if($session->branch->location)
-                                                                <br><small>{{ $session->branch->location }}</small>
-                                                            @endif
-                                                        @else
-                                                            no Online
-                                                        @endif
-                                                    </h4>
-                                                </div>
-                                                <div class="tpd-quiz-ca">
-                                                    <h4 class="tpd-table-title">
-                                                        @if($course->price_offer)
-                                                            <del>EG{{ number_format($course->price, 2) }}</del>
-                                                            <br>
-                                                            <span style="font-size: 12px"> Contact us for discount </span>
-                                                        @else
-                                                            EG{{ number_format($course->price, 2) }}
-                                                        @endif
-                                                    </h4>
-                                                </div>
-                                            <div class="tpd-quiz-details">
-                                                <div class="tpd-quiz-details-box d-flex">
-                                                    <div class="tpd-quiz-details-btn mr-15">
-                                                        <a class="tpd-border-btn"
-                                                           href="{{ route('courses.register', $course) }}" target="_blank">
-                                                            Register
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            @else
-                                <li>
-                                    <div class="tpd-table-row">
-                                        <div class="tpd-quiz-info" colspan="5">
-                                            <span class="tpd-common-text">No sessions available yet</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endif
-                        </ul>
+<div class="table-responsive mt-4 mb-5">
+  <table class="table table-bordered table-hover align-middle">
+    <thead class="table-success">
+      <tr>
+        <th scope="col">Start & End Date</th>
+        <th scope="col">Schedule</th>
+        <th scope="col">Branch</th>
+        <th scope="col">Price / Offer</th>
+        <th scope="col">Register NOW</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if($course->sessions->count() > 0)
+        @foreach($course->sessions as $session)
+          <tr>
+            <td>
+              <div>{{ $session->start_date->format('F j, Y') }}</div>
+              <div class="text-muted small">{{ $session->end_date->format('F j, Y') }}</div>
+            </td>
+            <td>
+              @if(!empty($course->daysInWeek))
+                {{ $course->daysInWeek }}
+              @else
+                <span class="text-muted small">No Days Scheduled</span>
+              @endif
+            </td>
+            <td>
+              @if($session->branch)
+                {{ $session->branch->name }}
+                @if($session->branch->location)
+                  <div class="text-muted small">{{ $session->branch->location }}</div>
+                @endif
+              @else
+                <span class="text-muted small">no Online</span>
+              @endif
+            </td>
+            <td>
+              @if($course->price_offer)
+                <span class="text-decoration-line-through text-muted me-1">EG{{ number_format($course->price, 2) }}</span>
+                <div class="small text-success">Contact us for discount</div>
+              @else
+                EG{{ number_format($course->price, 2) }}
+              @endif
+            </td>
+            <td>
+              <a class="btn btn-success btn-sm fw-bold" href="{{ route('courses.register', $course) }}" target="_blank">Register</a>
+            </td>
+          </tr>
+        @endforeach
+      @else
+        <tr>
+          <td colspan="5" class="text-center text-muted">No sessions available yet</td>
+        </tr>
+      @endif
+    </tbody>
+  </table>
+</div>
+<!-- end new Bootstrap table -->
 
                         <div id="instructors" class="pt-100">
                             <h4 class="tp-course-details-2-main-title">Your Instructors</h4>
