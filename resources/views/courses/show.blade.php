@@ -23,7 +23,7 @@
                                 <span>Uncategorized</span>
                             @endforelse
                                 </span>
-                        <h3 class="tp-course-details-2-title">{{ $course->name }}</h3>
+                        <h3 class="tp-course-details-2-title mb-3">{{ $course->name }}</h3>
                     </div>
                 </div>
             </div>
