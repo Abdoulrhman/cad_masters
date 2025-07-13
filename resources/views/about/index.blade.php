@@ -11,7 +11,7 @@
         <!-- undergraduate breadcrumb start -->
 <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
     <div class="tp-breadcrumb__bg "
-         style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / cover !important;"></div>
+         style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / contain !important;"></div>
     <div class="container">
         <div class="row align-items-center">
             {{--<div class="col-sm-12">
@@ -229,14 +229,14 @@
                             developed deep knowledge of the hardware necessary for engineers, architects, surveyors, and
                             drafters to do their best work.</p>
                         <div class="tp-feature-list">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Standard Workstation for AutoCAD users</li>
-                                <li><i class="fas fa-check"></i> Premium Workstation for AutoCAD, Civil 3D, and Revit
-                                    users</li>
-                                <li><i class="fas fa-check"></i> Premium+ Workstation for all Autodesk products</li>
-                                <li><i class="fas fa-check"></i> Ultimate Workstation for drone and Lidar data
-                                    processing</li>
-                            </ul>
+                            
+                                <p><i class="fas fa-check"></i> Standard Workstation for AutoCAD users</p>
+                                <p><i class="fas fa-check"></i> Premium Workstation for AutoCAD, Civil 3D, and Revit
+                                    users</p>
+                                <p><i class="fas fa-check"></i> Premium+ Workstation for all Autodesk products</p>
+                                <p><i class="fas fa-check"></i> Ultimate Workstation for drone and Lidar data
+                                    processing</p>
+                        
                         </div>
                     </div>
                 </div>
@@ -246,12 +246,12 @@
                         <p>Our award-winning technical support via phone, email, or remote web assistance is free with
                             any Autodesk software subscription, and includes:</p>
                         <div class="tp-feature-list">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Installation and licensing assistance</li>
-                                <li><i class="fas fa-check"></i> Troubleshooting software and drawing errors</li>
-                                <li><i class="fas fa-check"></i> Brief how-to's and software usage pointers</li>
-                                <li><i class="fas fa-check"></i> Purchase technical support in time blocks</li>
-                            </ul>
+                           
+                                <p><i class="fas fa-check"></i> Installation and licensing assistance</p>
+                                <p><i class="fas fa-check"></i> Troubleshooting software and drawing errors</p>
+                                <p><i class="fas fa-check"></i> Brief how-to's and software usage pointers</p>
+                                <p><i class="fas fa-check"></i> Purchase technical support in time blocks</p>
+                         
                         </div>
                     </div>
                 </div>
