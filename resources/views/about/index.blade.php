@@ -141,41 +141,6 @@
     </section>
     <!-- tutor area end -->
 
-    <!-- Counter section start -->
-    <section class="tp-counter-area" style="background-color: #4661FD;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="tp-counter-item mb-30">
-                        <h4 class="tp-counter-number text-white"><span class="purecounter" data-purecounter-duration="1"
-                                data-purecounter-end="36">0</span>+</h4>
-                        <p class="text-white">Training Courses</p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="tp-counter-item mb-30">
-                        <h4 class="tp-counter-number text-white"><span class="purecounter" data-purecounter-duration="1"
-                                data-purecounter-end="2">0</span></h4>
-                        <p class="text-white">Training Locations</p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="tp-counter-item mb-30">
-                        <h4 class="tp-counter-number text-white">Gold</h4>
-                        <p class="text-white">Autodesk Partner</p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="tp-counter-item mb-30">
-                        <h4 class="tp-counter-number text-white">#1</h4>
-                        <p class="text-white">AEC Instructor 2023</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Counter section end -->
-
     <!-- Services section start -->
     <section class="tp-service-area pt-120 bg-light">
         <div class="container">
