@@ -164,7 +164,6 @@
         min-height: 300px;
     }
     .tp-hero-item {
-        background-size: contain !important;
         background-repeat: no-repeat;
         background-position: center;
         background-color: #fff;
