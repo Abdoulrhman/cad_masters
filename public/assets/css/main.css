@@ -21597,7 +21597,7 @@ a .course-sky {
 .tp-course-details-2-main-title {
     font-size: 26px;
     font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: -6px;
     color: var(--tp-heading-2);
 }
 .tp-course-details-2-category {
@@ -21664,7 +21664,7 @@ a .course-sky {
     border-radius: 10px;
     background-color: var(--tp-common-white);
     box-shadow: 0 0 24px 0 rgba(3, 31, 66, 0.1);
-    margin-top: -300px;
+    margin-top: 80px;
     position: sticky;
     z-index: 9;
 }
@@ -21992,10 +21992,10 @@ a .course-sky {
     background-color: rgb(245, 246, 255);
 }
 .tp-course-details-2-content {
-    padding-top: 60px;
+    padding-top: 15px;
 }
 .tp-course-details-2-content #reviews {
-    padding-top: 95px;
+    padding-top: 10px;
 }
 @media only screen and (max-width: 767px) {
     .tp-course-details-2-content #reviews {
@@ -22292,7 +22292,7 @@ a .course-sky {
     color: #6c7275;
 }
 .tp-course-details-2-review-details {
-    padding: 22px 30px;
+   /* padding: 22px 30px;*/
     border-radius: 6px;
     border: 1px solid #e6e8f0;
 }

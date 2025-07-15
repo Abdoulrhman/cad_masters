@@ -8,7 +8,7 @@
 @section('content')
 
 <!-- course details breadcrumb start -->
-<section class="tp-breadcrumb__area pt-25 pb-15 p-relative z-index-1 fix">
+<section class="tp-breadcrumb__area pt-15 pb-15 p-relative z-index-1 fix" style="padding-top: 20px!important; padding-bottom: 200px!important;">
     <div class="tp-breadcrumb__bg" data-background="assets/img/breadcrumb/breadcrumb-bg-2.jpg"></div>
     <div class="container">
         <div class="row align-items-center">
@@ -23,7 +23,11 @@
                                 <span>Uncategorized</span>
                             @endforelse
                                 </span>
-                        <h3 class="tp-course-details-2-title mb-3">{{ $course->name }}</h3>
+                        <h3 class="tp-course-details-2-title mb-3" style="text-align: center !important;">{{ $course->name }}</h3>
+                        <div class="tp-course-details-2-widget-thumb p-relative d-flex justify-content-center">
+                            <img style="width: 75%" src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/details/course.jpg') }}"
+                                 alt="{{ $course->name }}">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,27 +47,26 @@
                     <div class="tp-course-details-2-content">
                         <div id="info">
                             <h4 class="tp-course-details-2-main-title">About Course</h4>
-                            <div class="tp-course-details-2-text mb-60">
+                            <div class="tp-course-details-2-text mb-20">
                                 <div class="content">
                                     <p>{!! $course->description !!}</p>
                                 </div>
                             </div>
                         </div>
-                        <br>
                         <!-- course-area-start -->
 
-<div class="table-responsive mt-4 mb-5">
+{{--<div class="table-responsive mt-4 mb-5">
   <table class="table table-bordered table-hover align-middle">
-    <thead class="table-success">
+    <thead class="table-success text-center" style="background-color: #198754!important;width: 100px!important;">
       <tr>
-        <th scope="col">Start & End Date</th>
-        <th scope="col">Schedule</th>
-        <th scope="col">Branch</th>
-        <th scope="col">Price / Offer</th>
-        <th scope="col">Register NOW</th>
+        <th class="" style="color: white!important;" scope="col">Start & End Date</th>
+        <th style="color: white!important;" scope="col">Schedule</th>
+        <th style="color: white!important;" scope="col">Branch</th>
+        <th style="color: white!important;" scope="col">Price / Offer</th>
+        <th style="color: white!important;" scope="col">Register NOW</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
       @if($course->sessions->count() > 0)
         @foreach($course->sessions as $session)
           <tr>
@@ -108,13 +111,78 @@
       @endif
     </tbody>
   </table>
-</div>
+</div>--}}
+
+                        <div class="table-responsive mt-4 mb-5">
+                            <h4 class="tp-course-details-2-main-title pb-15"> Public Calender</h4>
+                            <table class="table table-bordered table-hover align-middle" >
+                                <thead class="table-success text-center" style="background-color: #198754!important;">
+                                <tr>
+                                    <th  style="color: white!important;">Start & End Date</th>
+                                    <th  style="color: white!important;">Days</th>
+                                    <th  style="color: white!important;">Branch</th>
+                                    <th  style="color: white!important;">Price / Offer</th>
+                                    <th  style="color: white!important;">Register NOW</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                @if($course->sessions->count() > 0)
+                                    @foreach($course->sessions as $session)
+                                        <tr>
+                                            <td class="text-center" style="min-width: 100px;">
+                                                <div class="d-flex flex-column">
+                                                    <span>{{ $session->start_date->format('M j, Y') }}</span>
+                                                    <span class="">{{ $session->end_date->format('M j, Y') }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                @if(!empty($course->daysInWeek))
+                                                    {{ $course->daysInWeek }}
+                                                @else
+                                                    <span class="text-muted small">No Days Scheduled</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if($session->branch)
+                                                    <div class="d-flex flex-column">
+                                                        <span>{{ $session->branch->name }}</span>
+                                                        @if($session->branch->location)
+                                                            <span class="text-muted small">{{ $session->branch->location }}</span>
+                                                        @endif
+                                                    </div>
+                                                @else
+                                                    <span class="text-muted small">Online</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex flex-column">
+                                                    @if($course->price_offer)
+                                                        <span class="text-decoration-line-through text-muted">EG{{ number_format($course->price, 2) }}</span>
+                                                        <span class="small text-success">Contact us for discount</span>
+                                                    @else
+                                                        <span>EG{{ number_format($course->price, 2) }}</span>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-success btn-sm fw-bold" href="{{ route('courses.register', $course) }}" target="_blank">Register</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">No sessions available yet</td>
+                                    </tr>
+                                @endif
+                                </tbody>
+                            </table>
+                        </div>
 <!-- end new Bootstrap table -->
 
-                        <div id="instructors" class="pt-100">
-                            <h4 class="tp-course-details-2-main-title">Your Instructors</h4>
+                        <div id="instructors" class="pt-20">
+                            <h4 class="tp-course-details-2-main-title">Course Instructors</h4>
 
-                            <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                            <div class="tab-pane fade show active pt-25" id="pills-profile" role="tabpanel"
                                  aria-labelledby="pills-profile-tab">
                                 <div class="row">
                                     @if($course->instructors->count() > 0)
@@ -146,12 +214,12 @@
 
                         <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
                              aria-labelledby="pills-profile-tab">
-                            <h4 class="tp-course-details-2-main-title">Certificates</h4>
+                            <h4 class="tp-course-details-2-main-title">Course Certificates</h4>
 
                             <div class="row">
                                 @if($course->certificates->count() > 0)
                                     @foreach($course->certificates as $certificate)
-                                        <div class="col-lg-4 col-md-6 mb-4">
+                                        <div class="col-lg-4 col-md-6 mb-4 pt-25">
                                             <div class="tp-shop-product-item text-center">
                                                 <div class="tp-shop-product-thumb p-relative">
                                                     <a href="{{ asset('storage/'.$certificate->image) }}" data-lightbox="certificates" target="_blank">
@@ -161,11 +229,11 @@
                                                     </a>
                                                 </div>
                                                 <div class="tp-shop-product-content mt-2">
-                                                    <a href="{{ asset('storage/'.$certificate->path) }}"
+                                                    {{--<a href="{{ asset('storage/'.$certificate->path) }}"
                                                        download="{{ Str::slug($course->name) }}-certificate-{{ $loop->iteration }}.jpg"
                                                        class="btn btn-sm btn-primary">
                                                         <i class="fas fa-download me-1"></i> Download
-                                                    </a>
+                                                    </a>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -179,7 +247,7 @@
                         </div>
 
         <div id="reviews">
-            <h4 class="tp-course-details-2-main-title"> Reviews</h4>
+            <h4 class="tp-course-details-2-main-title pb-15"> Reviews</h4>
             <div class="tp-course-details-2-review-rating">
                 <div class="row gx-2">
                     <div class="col-lg-12 justify-content-center">
@@ -207,21 +275,38 @@
     </div>
     <div class="col-lg-4">
         <div class="tp-course-details-2-widget">
-            <div class="tp-course-details-2-widget-thumb p-relative">
+            {{--<div class="tp-course-details-2-widget-thumb p-relative">
                 <img src="{{ $course->image ? asset('storage/' . $course->image) : asset('assets/img/course/details/course.jpg') }}"
                     alt="{{ $course->name }}">
-            </div>
+            </div>--}}
             <div class="tp-course-details-2-widget-content">
-                <div class="tp-course-details-2-widget-price">
+               {{-- <div class="tp-course-details-2-widget-price">
 
                     <span> {{ $course->name }} </span>
-                </div>
+                </div>--}}
                 <div class="tp-course-details-2-widget-btn">
                     <a class="active" href="{{ route('courses.register', $course) }}" target="_blank">Register</a>
                 </div>
 
                 <div class="tp-course-details-2-widget-list">
-                    <h5>This course includes:</h5>
+
+                    <div
+                            class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
+                            <span>
+                                @if($course->outline_link)
+                                    <a href="{!! $course->outline_link !!}" target="_blank">
+                                        <img src="{{ asset('assets/img/breadcrumb/pdf-bg.png') }}"
+                                             style="width: 50px!important;height: 50px!important;" alt=""> <a
+                                                href="{!! $course->outline_link !!}" target="_blank"></a> Download Course
+                                        Content
+                                    </a>
+                                @else
+                                    <p>Course Outline will be available soon.</p>
+                                @endif
+                            </span>
+                    </div>
+
+                   {{-- <h5>This course includes:</h5>
 
                     <div class="tp-course-details-2-widget-list-item-wrapper">
                         <div
@@ -249,23 +334,7 @@
                                         stroke-linejoin="round" />
                                 </svg> Skill Level</span>
                             <span>Beginner</span>
-                        </div>
-
-                        <div
-                            class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                            <span>
-                                @if($course->outline_link)
-                                <a href="{!! $course->outline_link !!}" target="_blank">
-                                    <img src="{{ asset('assets/img/breadcrumb/pdf-bg.png') }}"
-                                        style="width: 50px!important;height: 50px!important;" alt=""> <a
-                                        href="{!! $course->outline_link !!}" target="_blank"></a> Download Course
-                                    Content
-                                </a>
-                                @else
-                                <p>Course Outline will be available soon.</p>
-                                @endif
-                            </span>
-                        </div>
+                        </div>--}}
 
                     </div>
                 </div>
@@ -549,6 +618,8 @@
     transform: translateY(-1px);
 }
 
+
+
 @media (max-width: 991px) {
     .course-details-sidebar {
         margin-top: 30px;
@@ -561,6 +632,7 @@
         font-size: 24px;
     }
 
+
     .course-details-meta {
         flex-direction: column;
         align-items: flex-start;
@@ -570,6 +642,15 @@
     .course-details-price {
         text-align: left !important;
         margin-top: 15px;
+    }
+}
+@media (max-width: 400px) {
+    .table-responsive table {
+        font-size: 14px;
+    }
+    .btn-sm {
+        padding: 0.15rem 0.5rem;
+        font-size: 12px;
     }
 }
 </style>
