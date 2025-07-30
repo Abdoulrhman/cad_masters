@@ -10,6 +10,6 @@ class AuthorizationController extends Controller
     public function index()
     {
         $authorizations    = Authorization::all();
-        return view('authorization', compact('authorizations'));
+        return view('about.authorization', compact('authorizations'));
     }
 }

@@ -3874,7 +3874,7 @@ div.demo img {
 }
 .tp-section-title span {
     position: relative;
-    color: var(--tp-theme-primary);
+    color: #7dc142;
     display: inline-block;
 }
 .tp-section-title span svg {
@@ -3969,7 +3969,7 @@ div.demo img {
     }
 }
 .tp-section-3-title span {
-    color: var(--tp-theme-secondary);
+    color: #7dc142;
     position: relative;
     z-index: 1;
     display: inline-block;
@@ -13690,8 +13690,8 @@ a.social-insta {
 .tp-about-exprience {
     display: inline-block;
     position: absolute;
-    right: -40px;
-    bottom: 80px;
+    left: -190px;
+    bottom: 0px;
     padding: 7px 36px 20px 24px;
     border-radius: 6px;
     border: 1px solid rgba(1, 15, 28, 0.1);
@@ -13701,14 +13701,16 @@ a.social-insta {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .tp-about-exprience {
-        right: 0;
-        bottom: 65px;
+        left: -300px;
+        margin-left: 400px;
+        margin-bottom: -130px;
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
     only screen and (max-width: 767px) {
     .tp-about-exprience {
-        right: 0;
+        /*right: 0;*/
+        margin-left: 255px;
     }
 }
 .tp-about-exprience-text {
@@ -22292,7 +22294,7 @@ a .course-sky {
     color: #6c7275;
 }
 .tp-course-details-2-review-details {
-   /* padding: 22px 30px;*/
+    padding: 22px 30px;
     border-radius: 6px;
     border: 1px solid #e6e8f0;
 }
@@ -23206,6 +23208,13 @@ span.dark-border {
     margin-right: 10px;
     border-radius: 50px;
 }
+
+.partner-next, .partner-prev,
+.client-next, .client-prev {
+    margin-right: 10px;
+    border-radius: 50px;
+}
+
 
 .tp-trainer-5-wrap {
     margin-left: 60px;
@@ -31703,7 +31712,7 @@ span.common-pale-purple {
     color: var(--tp-common-white);
 }
 .tpd-dashboard-footer-bottom {
-    background: #142542;
+    background: #000000;
 }
 .tpd-dashboard-footer-bottom .tp-footer-copyright span {
     color: var(--tp-common-white);

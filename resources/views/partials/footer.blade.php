@@ -1,6 +1,6 @@
 <footer class="text-white">
     @include('partials.social-buttons')
-    <div class="tp-footer-copyright pt-80 pb-55" data-bg-color="#0a1c3a">
+    <div class="tp-footer-copyright pt-40 pb-40" data-bg-color="black">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-3 col-md-6">

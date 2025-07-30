@@ -41,7 +41,7 @@ return [
     ],
 
     'messenger' => [
-        'username' => env('MESSENGER_USERNAME', 'yourpage'),
-        'default_message' => env('MESSENGER_DEFAULT_MESSAGE', 'Hello, I have a question about...'),
+        'username' => env('MESSENGER_USERNAME'),
+        'default_message' => env('MESSENGER_DEFAULT_MESSAGE', 'Hello'),
     ],
 ];

@@ -119,14 +119,14 @@
 
         <!-- header-area-start -->
 <header class="header-area p-relative">
-    <div id="header-sticky" class="tp-header-2 ">
+    <div id="header-sticky" class="tp-header-2">
         <div class="container custom-container-larg">
             <div class="row align-items-center">
                 <div class="col-xxl-3 col-xl-3 col-lg-6 col-6">
                     <div class="tp-header-2-right d-flex align-items-center">
                         <div class="tp-header-inner-logo tp-header-logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('assets/img/logo/CAD Masters Drak.png') }}" alt="logo">
+                                <img src="{{ asset('assets/img/logo/CAD Masters Logo Black.png') }}" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -137,19 +137,19 @@
                             <ul>
                                 <li><a href="{{ url('/') }}">Home</a></li>
                                 <li class="has-dropdown">
-                                    <a href="{{ url('about') }}">About Us</a>
+                                    <a href="{{ url('about/index') }}">About Us</a>
                                     <div class="tp-megamenu-main">
                                         <div class="megamenu-demo-small p-relative">
                                             <div class="tp-megamenu-small-content">
                                                 <div class="row tp-gx-50">
                                                     <div class="col-xl-6">
                                                         <div class="tp-megamenu-list yellow-color">
-                                                            <a href="{{ url('about') }}">About CAD Masters</a>
-                                                            <a href="{{ url('authorization') }}">Accreditation,
+                                                            <a href="{{ url('about/index') }}">About CAD Masters</a>
+                                                            <a href="{{ url('about/authorization') }}">Accreditation,
                                                                 Authorizations and membership</a>
-                                                            <a href="{{ url('award') }}">Certificate awards &
+                                                            <a href="{{ url('about.award') }}">Certificate awards &
                                                                 Thanking</a>
-                                                            <a href="{{ url('client') }}">Our Clients</a>
+                                                            <a href="{{ url('about.client') }}">Our Clients</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,7 +170,7 @@
                                                             <a href="{{ url('mechanical') }}"> Mechanical & MEP</a>
                                                             <a href="{{ url('management') }}"> Management & Site</a>
                                                             <a href="{{ url('electrical') }}"> Electrical</a>
-                                                            <a href="{{ url('bim') }}">Bim Tracks</a>
+                                                            <a href="{{ url('bim') }}">BIM Tracks</a>
                                                             <a href="{{ url('graphics') }}">Graphics</a>
                                                         </div>
                                                     </div>
@@ -189,7 +189,7 @@
                 <div class="col-xxl-3 col-xl-2 col-lg-6 col-6">
                     <div class="tp-header-2-contact d-flex align-items-center justify-content-end">
                         <div class="tp-header-search" style="margin-right: 20px; position: relative;">
-                            <input type="text" id="course-search" class="form-control" placeholder="Search courses..."
+                            <input type="text" id="course-search" class="form-control" placeholder="Search"
                                    autocomplete="off">
                             <div id="course-search-results" class="list-group"
                                  style="position: absolute; z-index: 1000; width: 100%; display: none;"></div>
@@ -250,12 +250,13 @@
             <ul>
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li class="mobile-menu-dropdown">
-                    <a href="{{ url('about') }}">About Us</a>
+                    <a href="{{  url('about/index') }}">About Us</a>
                     <ul class="mobile-submenu">
-                        <li><a href="{{ url('about') }}">About CAD Masters</a></li>
-                        <li><a href="{{ url('authorization') }}">Accreditation, Authorizations and membership</a></li>
-                        <li><a href="{{ url('award') }}">Certificate awards & Thanking</a></li>
-                        <li><a href="{{ url('client') }}">Our Clients</a></li>
+                        <li><a href="{{  url('about/index') }}">About CAD Masters</a></li>
+                        <li><a href="{{ url('about/authorization') }}">Accreditation, Authorizations and membership</a></li>
+                        <li><a href="{{ url('about/award') }}">Certificate awards & Thanking</a></li>
+                        <li><a href="{{ route('about/client') }}">Our Clients</a></li>
+
                     </ul>
                 </li>
                 <li class="mobile-menu-dropdown">
@@ -280,6 +281,8 @@
 <!-- header-area-end -->
 
 <style>
+
+
     /* Mobile Menu Button Styles */
 
     .menu-bottom-line {

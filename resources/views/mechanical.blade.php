@@ -6,23 +6,27 @@
 
     @section('content')
             <!-- undergraduate breadcrumb start -->
-    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
+
+    <section class="tp-breadcrumb__area p-relative">
+        <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/Mechanical.PNG') }}') no-repeat center / contain !important"></div>
+    </section>
+
+    {{--<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
         <div class="tp-breadcrumb__bg "
              style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / cover !important;"></div>
         <div class="container">
             <div class="row align-items-center">
-                {{--<div class="col-sm-12">
+                --}}{{--<div class="col-sm-12">
                     <div class="tp-breadcrumb__content">
                          <h3 class="tp-breadcrumb__title color"> About CAD Masters</h3>
 
                     </div>
-                </div>--}}
+                </div>--}}{{--
             </div>
         </div>
-    </section>
+    </section>--}}
     <!-- undergraduate breadcrumb end -->
 
-    <!-- Courses Section  Start -->
     <!-- Courses Section Start -->
     <section class="course-area tp-course-wrapper mt-100 mb-100">
         <div class="container">
@@ -31,8 +35,8 @@
                     <div class="tp-section mb-40">
                         <h3 class="tp-section-3-title">Mechanical
                         <span>Courses
-                            <img class="tp-underline-shape-6 wow bounceIn" data-wow-duration="1.5s" data-wow-delay=".4s"
-                                 src="assets/img/unlerline/course-2-svg-1.svg" alt="">
+                           {{-- <img class="tp-underline-shape-6 wow bounceIn" data-wow-duration="1.5s" data-wow-delay=".4s"
+                                 src="assets/img/unlerline/course-2-svg-1.svg" alt="">--}}
                         </span>
                         </h3>
                     </div>

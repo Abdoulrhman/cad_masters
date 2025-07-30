@@ -9,26 +9,15 @@
 @section('content')
 
         <!-- undergraduate breadcrumb start -->
-<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix" style="height: 450px">
-    <div class="tp-breadcrumb__bg "
-         style="background: url('{{ asset('/assets/img/breadcrumb/About-.PNG') }}') no-repeat center / contain !important;"></div>
-    <div class="container">
-        <div class="row align-items-center">
-            {{--<div class="col-sm-12">
-                <div class="tp-breadcrumb__content">
-                     <h3 class="tp-breadcrumb__title color"> About CAD Masters</h3>
-
-                </div>
-            </div>--}}
-        </div>
-    </div>
-</section>
+    <section class="tp-breadcrumb__area p-relative">
+        <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/About.PNG') }}') no-repeat center / contain !important"></div>
+    </section>
 <!-- undergraduate breadcrumb end -->
 
 
 <main>
     <!-- Hero section start -->
-    <section class="tp-about-tutor-area pt-110 pb-90">
+    <section class="tp-about-tutor-area pt-30 pb-30">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-lg-7">
@@ -103,7 +92,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="tp-our-mission-thumb wow fadeInUp" data-wow-delay=".3s">
-                        <img src="assets/img/our-mission/thumb-1.png" alt="">
+                        <img src="/assets/img/our-mission/thumb-1.png" alt="CAD Masters">
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
@@ -115,8 +104,8 @@
                         </div>
                         <div class="tp-tutor-content" style="max-height: 200px!important;">
                             <h4 class="tp-tutor-title"><a href="#">Vision</a></h4>
-                            <p>To participate in the advancement of the engineering industry in the Middle East by implementing the latest
-                                software and tools, in addition to training and graduating highly qualified human resources.</p>
+                            <p>To be a professional company and a research center for training, technical support and solutions
+                                specialized in CAD, CAM, BIM and graphic technology.</p>
                         </div>
                     </div>
                 </div>
@@ -129,9 +118,8 @@
                         </div>
                         <div class="tp-tutor-content" style="max-height: 200px!important;">
                             <h4 class="tp-tutor-title"><a href="#">Mission</a></h4>
-                            <p>To be a professional company and a research center for training, technical support and solutions
-                                specialized in CAD, CAM, BIM and graphic technology.
-
+                            <p>To participate in the advancement of the engineering industry in the Middle East by implementing the latest
+                                software and tools, in addition to training and graduating highly qualified human resources.
                             </p>
                         </div>
                     </div>
@@ -141,6 +129,21 @@
     </section>
     <!-- tutor area end -->
 
+
+
+
+
+
+    {{-- <i class="fas fa-life-ring fa-3x text-primary"></i>
+     <i class="fas fa-phone-volume fa-3x text-primary"></i>
+     <i class="fas fa-life-ring fa-3x text-primary"></i>--}}
+
+    {{--<i class="fas fa-headset fa-3x text-primary"></i>--}}
+
+
+
+
+
     <!-- Services section start -->
     <section class="tp-service-area pt-120 bg-light">
         <div class="container">
@@ -148,9 +151,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="tp-service-item mb-30">
                         <div class="tp-service-icon">
-                            <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                            <i class="fas fa-chalkboard-teacher fa-3x text-primary"></i>
                         </div>
-                        <h4 class="tp-service-title">Software Solutions</h4>
+                        <h4 class="tp-service-title">Professional Training</h4>
                         <p>CAD Masters specializes in the AEC and GIS marketplaces. Our dedicated account
                             representatives, registered engineers, and CAD experts guide you in the purchase and
                             maintenance of your Autodesk subscription software.</p>
@@ -159,9 +162,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="tp-service-item mb-30">
                         <div class="tp-service-icon">
-                            <i class="fas fa-chalkboard-teacher fa-3x text-primary"></i>
+                            <i class="fas fa-tools fa-3x text-primary"></i>
                         </div>
-                        <h4 class="tp-service-title">Professional CAD Training</h4>
+                        <h4 class="tp-service-title">Technical Support</h4>
                         <p>We offer 36 different in-person and online professional CAD training courses, from beginner
                             to advanced topics. Courses cover Autodesk's AEC Industry Collection software, including
                             AutoCAD, Civil 3D, Revit, and more.</p>
@@ -170,7 +173,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="tp-service-item mb-30">
                         <div class="tp-service-icon">
-                            <i class="fas fa-cogs fa-3x text-primary"></i>
+                            <i class="fas fa-chart-line fa-3x text-primary"></i>
                         </div>
                         <h4 class="tp-service-title">Engineering & Consulting</h4>
                         <p>Our engineers help with project planning and setup in BIM environments of Civil 3D or Revit.
@@ -184,7 +187,7 @@
     <!-- Services section end -->
 
     <!-- Hardware section start -->
-    <section class="tp-feature-area pt-120 pb-40">
+    {{--<section class="tp-feature-area pt-120 pb-40">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -222,7 +225,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--}}
     <!-- Hardware section end -->
 
 </main>

@@ -48,8 +48,13 @@ Route::get('/courses/search', [CourseController::class, 'search'])->name('course
 Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
 // Public Pages
-Route::get('about', [AboutController::class, 'index'])->name('about');
-Route::get('client', [ClientController::class, 'index']);
+Route::get('about/index', [AboutController::class, 'index'])->name('about/index');
+Route::get('about/award', [AwardController::class, 'index'])->name('about/award');
+Route::get('about/client', [ClientController::class, 'index'])->name('about/client');
+Route::get('about/partner', [PartnerController::class, 'index'])->name('about/partner');
+Route::get('about/certificate', [CertificateController::class, 'index'])->name('about/certificate');
+Route::get('about/authorization', [AuthorizationController::class, 'index'])->name('about/authorization');
+
 Route::get('architecture', [CoursesListController::class, 'architecture']);
 Route::get('courses/{course}', [CoursesListController::class, 'show'])->name('courses.show');
 Route::get('structure', [CoursesListController::class, 'structure']);
@@ -59,10 +64,6 @@ Route::get('electrical', [CoursesListController::class, 'electrical']);
 Route::get('graphics', [CoursesListController::class, 'graphics']);
 Route::get('/courses/{course}', [CoursesListController::class, 'show'])->name('courses.show');
 Route::get('bim', [CoursesListController::class, 'bim']);
-Route::get('certificate', [CertificateController::class, 'index']);
-Route::get('partner', [PartnerController::class, 'index']);
-Route::get('authorization', [AuthorizationController::class, 'index']);
-Route::get('award', [AwardController::class, 'index']);
 Route::get('contact', [ConatctUsController::class, 'index']);
 Route::get('media', [MediaController::class, 'index'])->name('media.index');
 Route::get('media/albums/{album:slug}', [MediaController::class, 'show'])->name('media.albums.show');

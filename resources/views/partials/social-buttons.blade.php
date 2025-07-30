@@ -12,7 +12,7 @@
     </a>
 
     <!-- Messenger -->
-    <a href="https://m.me/{{ config('services.messenger.username') }}"
+    <a href="https://m.me/31909816831?ref={{ urlencode(config('app.name')) }}&text={{ urlencode('Hello! I have a question about your courses.') }}"
        target="_blank"
        class="social-button messenger"
        aria-label="Chat on Messenger">

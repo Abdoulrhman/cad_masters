@@ -6,14 +6,48 @@
 
 @section('content')
 
+
+
+        <!-- Add to your Blade template -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($sliders as $key => $slider)
+                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                    <img
+                            src="{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}"
+                            class="d-block w-100"
+                            alt="{{ $slider->title }}"
+                    >
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ $slider->title }}</h5>
+                        <p>{{ $slider->description }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <!-- Fixed buttons: Changed data-bs-target to #mainCarousel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 <!-- hero-area-start -->
-<section class="tp-hero-area" style="height: 750px">
+{{--<section class="tp-hero-area" >
     <div class="swiper tp-slider-active">
         <div class="swiper-wrapper">
             @foreach($sliders as $slider)
             <div class="swiper-slide">
-                <div class="tp-hero-item"
-                    style="background-image: url('{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}'); background-size: cover; background-position: center;">
+--}}{{--
+                <div class="tp-hero-item" style="background-image: url('{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}'); background-size: cover; background-position: center;">
+--}}{{--
+                <div class="tp-hero-item" style="background-image: url('{{ $slider->image ? asset('storage/' . $slider->image) : asset('storage/carousel_images/default-slider.jpg') }}'); background-size: contain;  /* Displays entire image */
+                        background-repeat: no-repeat;
+                        background-color: #3a52d7;
+                        background-position: center">
                     <div class="container">
                         <div class="row">
                             <div class="col-xxl-9 col-lg-11">
@@ -46,13 +80,44 @@
         </div>
         <div class="tp-program-dot swiper-pagination"></div>
     </div>
-</section>
+</section>--}}
 <!-- hero-area-end -->
 
 <style>
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        background: none !important; /* Remove default Bootstrap background */
+        border: none !important;    /* Remove borders if any */
+        width: auto;               /* Reset to natural size */
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        /* Replace Bootstrap's default SVG with a green version */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237dc142' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E") !important;
+        /* For next arrow, mirror the same SVG */
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237dc142' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E") !important;
+    }
+
+    /* Hide arrows by default */
+    .carousel-control-prev,
+    .carousel-control-next {
+        opacity: 0;
+        transition: opacity 0.3s ease; /* Smooth fade effect */
+    }
+
+    /* Show arrows on carousel hover */
+    .carousel:hover .carousel-control-prev,
+    .carousel:hover .carousel-control-next {
+        opacity: 1;
+    }
+
 .tp-hero-area {
     position: relative;
-    height: 600px;
+    height: 400px;
     margin-top: 0;
     overflow: hidden;
 }
@@ -65,7 +130,7 @@
 
 .tp-hero-item {
     position: relative;
-    height: 600px;
+    height: 500px;
     display: flex;
     align-items: center;
     z-index: 1;
@@ -183,24 +248,27 @@
 }
 </style>
 
-<!-- course-area-start -->
-@include('sections.courses')
-<!-- course-area-end -->
-
 <!-- about-area-start -->
 @include('sections.about')
 <!-- about-area-end -->
+
+    <!-- partners-area-start -->
+    @include('sections.partners')
+            <!-- partners-area-end -->
 
 <!-- clients-area-start -->
 @include('sections.clients')
 <!-- clients-area-end -->
 
-<!-- partners-area-start -->
-@include('sections.partners')
-<!-- partners-area-end -->
 
+
+
+    <!-- course-area-start -->
+    @include('sections.courses')
+            <!-- course-area-end -->
 
     <!-- JS here -->
+
 <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/waypoints.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-bundle.js') }}"></script>

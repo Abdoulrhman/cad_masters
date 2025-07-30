@@ -9,10 +9,8 @@ Careers
 
 
     <!-- undergraduate breadcrumb start -->
-    <section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-        <div class="tp-breadcrumb__bg"
-            style="background: url('{{ asset('/assets/img/breadcrumb/Careers.PNG') }}') no-repeat center / cover !important;max-width: 100%">
-        </div>
+    <section class="tp-breadcrumb__area p-relative">
+        <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/Careers.PNG') }}') no-repeat center / contain !important"></div>
     </section>
     <!-- undergraduate breadcrumb end -->
 

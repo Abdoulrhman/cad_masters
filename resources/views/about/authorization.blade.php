@@ -8,12 +8,9 @@
 
 
         <!-- undergraduate breadcrumb start -->
-<section class="tp-breadcrumb__area pt-160 pb-150 p-relative z-index-1 fix">
-    <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/Accreditation and Authorizations.PNG') }}') no-repeat center / cover !important"></div>
-    <div class="container">
-
-    </div>
-</section>
+    <section class="tp-breadcrumb__area p-relative">
+        <div class="tp-breadcrumb__bg" style="background: url('{{ asset('/assets/img/breadcrumb/Accreditation and Authorizations.png') }}') no-repeat center / contain !important"></div>
+    </section>
 <!-- undergraduate breadcrumb end -->
 
 <!-- shop product area start -->
